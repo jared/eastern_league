@@ -97,6 +97,8 @@
   </aside><!-- end of sidebar -->
 
   <section id="main" class="column">
+    <%= render :partial => "layouts/flash", :locals => { :flash => flash } %>
+
     <%= yield %>
   </section>
 </body>

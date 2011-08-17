@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/binarylogic/authlogic.git
+  revision: 0297e1c005c626c1e37bcc1de5f347476c838ed0
+  ref: 0297e1c005c626c1e37b
+  specs:
+    authlogic (3.0.2)
+      activerecord (>= 3.0.7)
+      activerecord (>= 3.0.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -125,12 +134,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic!
+  bcrypt-ruby
   coffee-rails (~> 3.1.0.rc)
   jquery-rails
   rails (= 3.1.0.rc5)
   rspec-rails
   sass-rails (~> 3.1.0.rc)
-  sprockets
   sqlite3
   turn
   uglifier

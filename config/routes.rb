@@ -12,6 +12,7 @@ EasternLeague::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  resource :user_session
 
   # Sample resource route with options:
   #   resources :products do

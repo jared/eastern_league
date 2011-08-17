@@ -1,0 +1,24 @@
+<article class="module width_3_quarter">
+  <header><h3>Log In to your Eastern League Account</h3></header>
+  <%= form_for @user_session, :url => user_session_path do |f| %>
+    <div class="module_content">
+      <fieldset>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      <div class="clear"><br /></div>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      <div class="clear"><br /></div>
+      </fieldset>
+      <div class="clear"></div>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.label :remember_me, :style => "display:inline; float:none;" %>
+        <%= f.check_box :remember_me, :checked => true %>
+        &nbsp;
+        <%= f.submit "Login", :class => "alt_btn" %>
+      </div>
+    </footer>
+  <% end %>
+</article>
