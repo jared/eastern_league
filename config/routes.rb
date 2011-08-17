@@ -9,6 +9,15 @@ EasternLeague::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
+  match 'about'       => 'about#index',       :as => :about
+  match 'competitors' => 'about#competitors', :as => :competitors
+  match 'organizers'  => 'about#organizers',  :as => :organizers
+  match 'spectators'  => 'about#spectators',  :as => :spectators
+
+  match 'links'       => 'about#links',       :as => :links
+
+  match 'login'   => 'user_sessions#new',      :as => :login
+  match 'logout'  => 'user_sessions#destroy',  :as => :logout, :method => :delete
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

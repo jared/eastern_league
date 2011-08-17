@@ -3,11 +3,25 @@
 
   <head>
     <meta charset="utf-8"/>
-    <title>Eastern League Sport Kite Association</title>
-    <%= stylesheet_link_tag    "application" %>
+    <title><%= content_for?(:page_title) ? yield(:page_title) : "Eastern League Sport Kite Association" %></title>
+    <%= stylesheet_link_tag "application" %>
+    <!--[if lt IE 9]>
+    <style type="text/css" media="screen">
+      .quick_search{text-align:center;padding:14px 0 0px 0;}
+      .quick_search input[type=text]{text-align:left;height:22px;width:88%;color:#ccc;padding-left:2%;padding-top:5px;background:#fff url(../images/icn_search.png) no-repeat;background-position:10px 6px;}
+      .toggleLink{display:inline;float:none;margin-left:2%}
+      html ul.tabs li.active,html ul.tabs li.active a:hover{background:#ccc;}
+      input[type=submit].btn_post_message{background:url(../images/post_message.png) no-repeat;}
+      fieldset input[type=text]{margin-left:-10px;}
+      fieldset select{margin-left:-10px}
+      fieldset textarea{margin-left:-10px;}
+    </style>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-      <script type="text/javascript">
+    <script type="text/javascript">
       $(document).ready(function()
           {
               $(".tablesorter").tablesorter();
@@ -15,91 +29,59 @@
       );
       $(document).ready(function() {
 
-      //When page loads...
-      $(".tab_content").hide(); //Hide all content
-      $("ul.tabs li:first").addClass("active").show(); //Activate first tab
-      $(".tab_content:first").show(); //Show first tab content
+        //When page loads...
+        $(".tab_content").hide(); //Hide all content
+        $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+        $(".tab_content:first").show(); //Show first tab content
 
-      //On Click Event
-      $("ul.tabs li").click(function() {
+        //On Click Event
+        $("ul.tabs li").click(function() {
 
-        $("ul.tabs li").removeClass("active"); //Remove any "active" class
-        $(this).addClass("active"); //Add "active" class to selected tab
-        $(".tab_content").hide(); //Hide all tab content
+          $("ul.tabs li").removeClass("active"); //Remove any "active" class
+          $(this).addClass("active"); //Add "active" class to selected tab
+          $(".tab_content").hide(); //Hide all tab content
 
-        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-        $(activeTab).fadeIn(); //Fade in the active ID content
-        return false;
-      });
-
-    });
-        </script>
-        <script type="text/javascript">
-        $(function(){
-            $('.column').equalHeight();
+          var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+          $(activeTab).fadeIn(); //Fade in the active ID content
+          return false;
         });
+
+      });
     </script>
+    <script type="text/javascript">
+      $(function(){
+          $('.column').equalHeight();
+      });
+    </script>
+    <%= yield :javascript %>
+  </head>
 
-    </head>
+  <body>
+    <header id="header">
+      <hgroup>
+        <h1 class="site_title">
+          <a href="/">
+            <span style="font-size:16px">&nbsp;</span>
+          </a>
+        </h1>
+        <h2 class="section_title"><%= content_for?(:title) ? yield(:title) : "Eastern League Sport Kite Association" %></h2>
+      </hgroup>
+    </header> <!-- end of header bar -->
 
-<body>
+    <section id="secondary_bar">
+      <div class="user">
+        <p>John Doe (<a href="#">Edit My Profile</a>)</p>
+      </div>
+      <div class="breadcrumbs_container"></div>
+    </section><!-- end of secondary bar -->
+    <%= render :partial => "layouts/sidebar" %>
 
+    <section id="main" class="column">
+      <%= render :partial => "layouts/flash", :locals => { :flash => flash } %>
 
-  <header id="header">
-    <hgroup>
-      <h1 class="site_title">
-        <a href="index.html">
-          <span style="font-size:16px">Eastern League Sport Kite Association</span>
-        </a>
-      </h1>
-      <h2 class="section_title">What's New</h2>
-    </hgroup>
-  </header> <!-- end of header bar -->
+      <%= yield %>
 
-  <section id="secondary_bar">
-    <div class="user">
-      <p>John Doe (<a href="#">Edit My Profile</a>)</p>
-    </div>
-    <div class="breadcrumbs_container"></div>
-  </section><!-- end of secondary bar -->
-
-  <aside id="sidebar" class="column">
-    <h3>Information</h3>
-    <ul>
-      <li class="icn_about"><a href="#">About the Eastern League</a></li>
-      <li class="icn_competitors"><a href="#">Competitors</a></li>
-      <li class="icn_organizers"><a href="#">Organizers</a></li>
-      <li class="icn_spectators"><a href="#">Spectators</a></li>
-      <li class="icn_newsletter"><a href="#">Newsletter Archives</a></li>
-      <li class="icn_link"><a href="#">Links</a></li>
-    </ul>
-    <h3>Competition</h3>
-    <ul>
-      <li class="icn_calendar"><a href="#">Calendar</a></li>
-      <li class="icn_event_results"><a href="#">Event Results</a></li>
-      <li class="icn_competitor_results"><a href="#">Competitor Results</a></li>
-      <li class="icn_standings"><a href="#">Current Standings</a></li>
-    </ul>
-
-    <h3>Admin</h3>
-    <ul>
-      <li class="icn_edit_profile"><a href="#">Edit my Profile</a></li>
-      <li class="icn_renew_membership"><a href="#">Renew my Membership</a></li>
-      <li class="icn_logoff"><a href="#">Logout</a></li>
-    </ul>
-
-
-    <footer>
-      <hr />
-      <p><strong>&copy; 2011 Eastern League Sport Kite Association</strong></p>
-      <p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
-    </footer>
-  </aside><!-- end of sidebar -->
-
-  <section id="main" class="column">
-    <%= render :partial => "layouts/flash", :locals => { :flash => flash } %>
-
-    <%= yield %>
-  </section>
-</body>
+      <div class="spacer"></div>
+    </section>
+  </body>
 </html>
