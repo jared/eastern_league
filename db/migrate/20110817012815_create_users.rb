@@ -36,6 +36,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean     :el_member
       t.boolean     :board_member
       t.boolean     :lifetime
+      t.boolean     :admin
 
       t.integer     :current_through_month
       t.integer     :current_through_year
