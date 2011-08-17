@@ -32,11 +32,12 @@ blockquote {
 }
 
 a:link, a:visited {
-color: #77BACE;
+color: #088;
 text-decoration: none;
 }
 
 a:hover {
+color: #858;
 text-decoration: underline;
 }
 
@@ -62,6 +63,10 @@ text-indent: 1.8%;
 line-height: 55px;
 color: #fff;
 text-shadow: 0 -1px 0 #000;
+}
+
+header#header h1.site_title {
+  text-indent: 0.9%;
 }
 
 header#header h1.site_title a {
@@ -494,6 +499,10 @@ float: left;
 width: 66%;
 margin-right: 0;
 float: left;
+}
+
+.contents {
+  float:right;margin-right: 0.75em;
 }
 
 /* Stats Module */

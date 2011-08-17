@@ -60,9 +60,7 @@
     <header id="header">
       <hgroup>
         <h1 class="site_title">
-          <a href="/">
-            <span style="font-size:16px">&nbsp;</span>
-          </a>
+          <%= link_to(image_tag("elbanner.png", :size => "220x52",:alt => "Eastern League"), root_path) %>
         </h1>
         <h2 class="section_title"><%= content_for?(:title) ? yield(:title) : "Eastern League Sport Kite Association" %></h2>
       </hgroup>
