@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8"/>
+    <title>Eastern League Sport Kite Association</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+      <script type="text/javascript">
+      $(document).ready(function()
+          {
+              $(".tablesorter").tablesorter();
+         }
+      );
+      $(document).ready(function() {
+
+      //When page loads...
+      $(".tab_content").hide(); //Hide all content
+      $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+      $(".tab_content:first").show(); //Show first tab content
+
+      //On Click Event
+      $("ul.tabs li").click(function() {
+
+        $("ul.tabs li").removeClass("active"); //Remove any "active" class
+        $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+
+        var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+      });
+
+    });
+        </script>
+        <script type="text/javascript">
+        $(function(){
+            $('.column').equalHeight();
+        });
+    </script>
+
+    </head>
+
+<body>
+
+
+  <header id="header">
+    <hgroup>
+      <h1 class="site_title">
+        <a href="index.html">
+          <span style="font-size:16px">Eastern League Sport Kite Association</span>
+        </a>
+      </h1>
+      <h2 class="section_title">What's New</h2>
+    </hgroup>
+  </header> <!-- end of header bar -->
+
+  <section id="secondary_bar">
+    <div class="user">
+      <p>John Doe (<a href="#">Edit My Profile</a>)</p>
+    </div>
+    <div class="breadcrumbs_container"></div>
+  </section><!-- end of secondary bar -->
+
+  <aside id="sidebar" class="column">
+    <h3>Information</h3>
+    <ul>
+      <li class="icn_about"><a href="#">About the Eastern League</a></li>
+      <li class="icn_competitors"><a href="#">Competitors</a></li>
+      <li class="icn_organizers"><a href="#">Organizers</a></li>
+      <li class="icn_spectators"><a href="#">Spectators</a></li>
+      <li class="icn_newsletter"><a href="#">Newsletter Archives</a></li>
+      <li class="icn_link"><a href="#">Links</a></li>
+    </ul>
+    <h3>Competition</h3>
+    <ul>
+      <li class="icn_calendar"><a href="#">Calendar</a></li>
+      <li class="icn_event_results"><a href="#">Event Results</a></li>
+      <li class="icn_competitor_results"><a href="#">Competitor Results</a></li>
+      <li class="icn_standings"><a href="#">Current Standings</a></li>
+    </ul>
+
+    <h3>Admin</h3>
+    <ul>
+      <li class="icn_edit_profile"><a href="#">Edit my Profile</a></li>
+      <li class="icn_renew_membership"><a href="#">Renew my Membership</a></li>
+      <li class="icn_logoff"><a href="#">Logout</a></li>
+    </ul>
+
+
+    <footer>
+      <hr />
+      <p><strong>&copy; 2011 Eastern League Sport Kite Association</strong></p>
+      <p>Theme by <a href="http://www.medialoot.com">MediaLoot</a></p>
+    </footer>
+  </aside><!-- end of sidebar -->
+
+  <section id="main" class="column">
+    <%= yield %>
+  </section>
+</body>
+</html>
