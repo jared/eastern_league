@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20110817012815) do
     t.string   "state"
     t.string   "zip"
     t.string   "phone_number"
+    t.boolean  "admin"
     t.boolean  "el_member"
     t.boolean  "board_member"
     t.boolean  "lifetime"

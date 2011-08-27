@@ -68,7 +68,11 @@
 
     <section id="secondary_bar">
       <div class="user">
-        <p>John Doe (<a href="#">Edit My Profile</a>)</p>
+        <% if current_user %>
+          <p><%= current_user.full_name %> (<%= link_to("Edit", edit_user_path(current_user)) %>)</p>
+        <% else %>
+          <p><%= link_to("Join the Eastern League!", new_user_path) %></p>
+        <% end %>
       </div>
       <div class="breadcrumbs_container"></div>
     </section><!-- end of secondary bar -->

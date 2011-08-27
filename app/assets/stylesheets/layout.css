@@ -310,49 +310,10 @@ color: #444444;
 
 /* Sidebar Icons */
 
-#sidebar li.icn_new_article a {
-background: url(/assets/icons/icn_new_article.png) no-repeat center left;
-}
-#sidebar li.icn_edit_article a {
-background: url(/assets/icons/icn_edit_article.png) no-repeat center left;
-}
-#sidebar li.icn_categories a {
-background: url(/assets/icons/icn_categories.png) no-repeat center left;
-}
-#sidebar li.icn_tags a {
-background: url(/assets/icons/icn_tags.png) no-repeat center left;
-}
-#sidebar li.icn_add_user a {
-background: url(/assets/icons/icn_add_user.png) no-repeat center left;
-}
-#sidebar li.icn_view_users a {
-background: url(/assets/icons/icn_view_users.png) no-repeat center left;
-}
-#sidebar li.icn_profile a {
-background: url(/assets/icons/icn_profile.png) no-repeat center left;
-}
-#sidebar li.icn_folder a {
-background: url(/assets/icons/icn_folder.png) no-repeat center left;
-}
-#sidebar li.icn_photo a {
-background: url(/assets/icons/icn_photo.png) no-repeat center left;
-}
-#sidebar li.icn_audio a {
-background: url(/assets/icons/icn_audio.png) no-repeat center left;
-}
-#sidebar li.icn_video a {
-background: url(/assets/icons/icn_video.png) no-repeat center left;
-}
-#sidebar li.icn_settings a {
-background: url(/assets/icons/icn_settings.png) no-repeat center left;
-}
-#sidebar li.icn_security a {
-background: url(/assets/icons/icn_security.png) no-repeat center left;
-}
-#sidebar li.icn_jump_back a {
-background: url(/assets/icons/icn_jump_back.png) no-repeat center left;
-}
 /* Eastern Leage Icons */
+#sidebar li.icn_login a {
+  background: url(/assets/icons/key.png) no-repeat center left;
+}
 #sidebar li.icn_about a {
 background: url(/assets/icons/book_open.png) no-repeat center left;
 }
@@ -796,7 +757,7 @@ background-position: 10px 6px;
 margin: 0;
 display: block;
 float: left;
-width: 96%;
+width: 92%;
 margin: 0 10px;
 }
 

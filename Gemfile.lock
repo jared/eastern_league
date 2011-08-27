@@ -56,6 +56,10 @@ GEM
     erubis (2.7.0)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    factory_girl (2.0.5)
+    factory_girl_rails (1.1.0)
+      factory_girl (~> 2.0.0)
+      railties (>= 3.0.0)
     hike (1.2.0)
     i18n (0.6.0)
     jquery-rails (1.0.13)
@@ -137,6 +141,7 @@ DEPENDENCIES
   authlogic!
   bcrypt-ruby
   coffee-rails (~> 3.1.0.rc)
+  factory_girl_rails
   jquery-rails
   rails (= 3.1.0.rc5)
   rspec-rails

@@ -1,4 +1,11 @@
 <aside id="sidebar" class="column">
+  <% if !current_user %>
+    <h3>Log In</h3>
+    <ul>
+      <li class="icn_login"><%= link_to "Log In!", login_path %></li>
+    </ul>
+  <% end %>
+
   <h3>Information</h3>
   <ul>
     <li class="icn_about"><%= link_to "About the Eastern League", about_path %></li>
@@ -16,13 +23,14 @@
     <li class="icn_standings"><a href="#">Current Standings</a></li>
   </ul>
 
-  <h3>Admin</h3>
-  <ul>
-    <li class="icn_edit_profile"><a href="#">Edit my Profile</a></li>
-    <li class="icn_renew_membership"><a href="#">Renew my Membership</a></li>
-    <li class="icn_logoff"><a href="#">Logout</a></li>
-  </ul>
-
+  <% if current_user %>
+    <h3>Admin</h3>
+    <ul>
+      <li class="icn_edit_profile"><%= link_to "Edit my Profile", edit_user_path(current_user) %></li>
+      <li class="icn_renew_membership"><a href="#">Renew my Membership</a></li>
+      <li class="icn_logoff"><%= link_to("Logout", user_session_path, :method => :delete) %></li>
+    </ul>
+  <% end %>
 
   <footer>
     <hr />

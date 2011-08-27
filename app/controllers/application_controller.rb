@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :current_user_session, :current_user
 
 protected
 
@@ -15,7 +16,6 @@ protected
 
   def require_user
     unless current_user
-      store_location
       flash[:notice] = "You must be logged in to access this page"
       redirect_to login_path
       return false
@@ -24,7 +24,6 @@ protected
 
   def require_no_user
     if current_user
-      store_location
       flash[:notice] = "You must be logged out to access this page"
       redirect_to root_url
       return false

@@ -33,10 +33,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string      :zip
       t.string      :phone_number
 
-      t.boolean     :el_member
-      t.boolean     :board_member
-      t.boolean     :lifetime
-      t.boolean     :admin
+      t.boolean     :admin,             :default => false
+      t.boolean     :el_member,         :default => false
+      t.boolean     :board_member,      :default => false
+      t.boolean     :lifetime,          :default => false
 
       t.integer     :current_through_month
       t.integer     :current_through_year
@@ -45,7 +45,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.datetime    :member_since
 
-      t.boolean     :former_member
+      t.boolean     :former_member,     :default => false
 
       t.timestamps
     end

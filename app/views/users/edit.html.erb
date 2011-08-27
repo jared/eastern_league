@@ -1,0 +1,14 @@
+<% title("Edit my Profile") %>
+
+<article class="module width_full">
+  <header><h3>Update your Eastern League Account</h3></header>
+  <%= form_for @user do |f| %>
+    <%= render :partial => "user_form", :locals => { :f => f } %>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Save", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>

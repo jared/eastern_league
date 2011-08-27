@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Login successful!"
-      redirect_back_or_default root_url
+      redirect_to root_url
     else
       flash[:error] = "Login failed. Please check your email address and password, then try again."
       render :action => :new
@@ -21,6 +21,6 @@ class UserSessionsController < ApplicationController
   def destroy
     current_user_session.destroy
     flash[:notice] = "Logout successful!"
-    redirect_back_or_default new_user_session_url
+    redirect_to login_path
   end
 end
