@@ -1,0 +1,25 @@
+<fieldset>
+  <%= f.label :store_affiliation %>
+  <%= f.text_field :store_affiliation %>
+  <div class="clear"><br /></div>
+  <%= f.label :member_since %>
+  <%= f.text_field :member_since, :value => @user.member_since.to_date.to_s(:db) %>
+  <div class="clear"><br /></div>
+  <%= f.label :notes %>
+  <%= f.text_area :notes %>
+  <div class="clear"><br /></div>
+  <%= f.label :board_member %>
+  <%= f.check_box :board_member %>
+  <div class="clear"><br /></div>
+  <%= f.label :lifetime %>
+  <%= f.check_box :lifetime %>
+  <div class="clear"><br /></div>
+  <%= f.label :admin %>
+  <%= f.check_box :admin %>
+  <div class="clear"><br /></div>
+  <%= f.label :former_member %>
+  <%= f.check_box :former_member %>
+  <div class="clear"><br /></div>
+
+</fieldset>
+<div class="clear"></div>

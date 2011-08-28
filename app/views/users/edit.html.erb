@@ -3,7 +3,12 @@
 <article class="module width_full">
   <header><h3>Update your Eastern League Account</h3></header>
   <%= form_for @user do |f| %>
-    <%= render :partial => "user_form", :locals => { :f => f } %>
+    <div class="module_content">
+      <%= render :partial => "user_form", :locals => { :f => f } %>
+      <% if current_user.admin? %>
+        <%= render :partial => "admin_form", :locals => { :f => f } %>
+      <% end %>
+    </div>
     <footer>
       <div class="submit_link">
         <%= f.submit "Save", :class => "alt_btn" %>

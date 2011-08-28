@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
 
+  def member_since_date
+    self[:member_since].to_s(:db)
+  end
+
 private
 
   def set_full_name
