@@ -5,6 +5,9 @@
   <%= f.label :member_since %>
   <%= f.text_field :member_since, :value => @user.member_since.to_date.to_s(:db) %>
   <div class="clear"><br /></div>
+  <%= f.label :current_through %>
+  <%= f.text_field :current_through_date %>
+  <div class="clear"><br /></div>
   <%= f.label :notes %>
   <%= f.text_area :notes %>
   <div class="clear"><br /></div>

@@ -8,8 +8,13 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
 
-  def member_since_date
-    self[:member_since].to_s(:db)
+  def current_through_date=(date)
+    self[:current_through_year] = date.year
+    self[:current_through_month] = date.month
+  end
+
+  def current_through_date
+    Date.new(self[:current_through_year], self[:current_through_month], 1).end_of_month
   end
 
 private
