@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       flash[:notice] = "You have successfully created an account"
       redirect_to root_url
     else
+      flash[:error] = "Unable to create your account.  See explanation below"
       render :action => :new
     end
   end
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Update successful!"
       redirect_to root_path
     else
-      flash[:error] = "An error occurred."
+      flash[:error] = "Unable to save your changes.  See explanation below"
       render :action => :edit
     end
   end

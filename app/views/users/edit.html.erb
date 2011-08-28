@@ -4,6 +4,7 @@
   <header><h3>Update your Eastern League Account</h3></header>
   <%= form_for @user do |f| %>
     <div class="module_content">
+      <%= render "shared/error_messages", :target => @user %>
       <%= render :partial => "user_form", :locals => { :f => f } %>
       <% if current_user.admin? %>
         <%= render :partial => "admin_form", :locals => { :f => f } %>

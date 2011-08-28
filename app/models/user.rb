@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
 
-  def current_through_date=(date)
+  def current_through_date=(date_string)
+    date = Date.parse(date_string)
     self[:current_through_year] = date.year
     self[:current_through_month] = date.month
   end

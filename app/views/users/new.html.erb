@@ -2,15 +2,16 @@
 
 <article class="module width_full">
   <header><h3>Create an Eastern League Account</h3></header>
-  <div class="module_content">
-    <%= form_for @user do |f| %>
+  <%= form_for @user do |f| %>
+    <div class="module_content">
+      <%= render "shared/error_messages", :target => @user %>
       <%= render :partial => "user_form", :locals => { :f => f } %>
-      <footer>
-        <div class="submit_link">
-          <%= f.submit "Sign Up", :class => "alt_btn" %>
-          or <%= link_to "Cancel", request.referer %>
-        </div>
-      </footer>
-    <% end %>
-  </div>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Sign Up", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
 </article>
