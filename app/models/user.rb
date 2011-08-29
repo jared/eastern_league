@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
 
+  has_many :memberships
+
   def current_through_date=(date_string)
     date = Date.parse(date_string)
     self[:current_through_year] = date.year
@@ -16,6 +18,10 @@ class User < ActiveRecord::Base
 
   def current_through_date
     Date.new(self[:current_through_year], self[:current_through_month], 1).end_of_month
+  end
+
+  def name_with_email
+    "#{self[:full_name]}, #{self[:email].gsub(/@.*/, '@' + '*' * 7)}"
   end
 
 private

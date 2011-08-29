@@ -812,6 +812,15 @@ border: 1px solid #77BACE;
 box-shadow: inset 0 2px 2px #ccc, 0 0 10px #ADDCE6;
 }
 
+fieldset legend {
+  color: #666666;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 13px;
+  margin: 8px 0px;
+
+}
+
 .submit_link {
 float: right;
 margin-right: 3%;
