@@ -35,7 +35,7 @@ class ApiController < ApplicationController
     else
       @order.update_attributes(:status => "Conflicted", :paypal_status => @notify.status)
       raise "Payment not acknowledged."
-
+    end
   end
 
 end
