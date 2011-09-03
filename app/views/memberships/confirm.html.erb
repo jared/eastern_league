@@ -10,29 +10,28 @@
         <%= f.hidden_field :membership_plan_id %>
         <p class="clear" style="padding-left: 1em;">
           <%= @user.full_name %><br />
-          <%= @membership.membership_plan.name %>
+          <em><%= @membership.membership_plan.name %></em>
         </p>
       </fieldset>
       <% unless @additional_members.empty? %>
         <fieldset>
           <legend>Additional Members</legend>
           <%= hidden_field_tag 'family_plan_id', @family_plan.id %>
-          <% @additional_members.each do |member| %>
+          <% @additional_members.each_with_index do |member, index| %>
             <% if member.new_record? %>
               <p class="clear" style="padding-left: 1em;">
-                We could not find a membership record for <%= member.full_name %>. Please complete the following fields to add this <%= @family_plan.name %> membership.  <strong>All fields are required, and email addresses cannot be shared by Eastern League members.</strong>
+                We could not find a membership record for <%= member.full_name %>. Please complete the following fields to add this <%= @family_plan.name %> membership.  <strong>Each Eastern League member must have his/her own email address.</strong>
               </p>
               <%= label_tag :full_name %>
-              <%= text_field_tag "new_additional_members[][full_name]", member.full_name %>
+              <%= text_field_tag "new_additional_members[][full_name]", member.full_name, :class => "required" %>
               <div class="clear"><br /></div>
               <%= label_tag :email %>
-              <%= text_field_tag "new_additional_members[][email]", '', :placeholder => 'member@easternleague.net' %>
+              <%= email_field_tag "new_additional_members[][email]", '', :class => "required email",:id => "new_additional_members__email_#{index}" %>
               <div class="clear"><br /></div>
             <% else %>
               <p class="clear" style="padding-left: 1em;">
                 <%= select_tag("additional_members[]", options_from_collection_for_select(User.find_all_by_full_name(member.full_name), :id, :name_with_email), :style => "width: 50%") %>
                 <%= @family_plan.name %>
-                <a href="#" onclick="$(this).closest('p').remove();return false;">X</a>
               </p>
             <% end %>
           <% end %>
@@ -40,7 +39,8 @@
       <% end %>
       <fieldset>
         <%= label_tag "Total Due" %>
-        <%= number_to_currency(@amount) %>
+        <span class="total_due"><%= number_to_currency(@amount) %></span>
+        <p style="margin-left: 1em;">Click the <strong>Purchase</strong> link below to finalize your membership application/renewal.  You will then be prompted to go to PayPal to complete your purchase.</p>
       </fieldset>
     </div>
     <footer>

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :full_name
 
   has_many :memberships
+  has_many :orders
 
   def current_through_date=(date_string)
     date = Date.parse(date_string)

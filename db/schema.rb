@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828143118) do
+ActiveRecord::Schema.define(:version => 20110903190707) do
+
+  create_table "line_items", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "purchasable_id"
+    t.string   "purchasable_type"
+    t.decimal  "amount",           :precision => 8, :scale => 2
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "membership_plans", :force => true do |t|
     t.string   "name"
@@ -29,6 +39,18 @@ ActiveRecord::Schema.define(:version => 20110828143118) do
     t.boolean  "primary_member",     :default => true
     t.integer  "primary_user_id"
     t.boolean  "paid",               :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",                        :precision => 8, :scale => 2
+    t.string   "state",                                                       :default => "new"
+    t.string   "paypal_status"
+    t.string   "paypal_transaction_identifier"
+    t.decimal  "paypal_fee",                    :precision => 8, :scale => 2
+    t.text     "encrypted_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

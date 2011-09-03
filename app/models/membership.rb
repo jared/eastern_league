@@ -3,6 +3,8 @@ class Membership < ActiveRecord::Base
   belongs_to :user
   belongs_to :membership_plan
 
+  has_many :line_items, :as => :purchasable
+
   before_create :set_expires_at
 
   validates_presence_of :membership_plan_id

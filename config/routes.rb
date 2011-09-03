@@ -19,6 +19,8 @@ EasternLeague::Application.routes.draw do
   match 'login'   => 'user_sessions#new',      :as => :login
   match 'logout'  => 'user_sessions#destroy',  :as => :logout, :method => :delete
 
+  match 'api/ipn' => 'api#ipn', :as => :ipn
+
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resource :user_session
