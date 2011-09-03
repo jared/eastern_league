@@ -21,7 +21,7 @@ describe UsersController do
 
     describe "with valid parameters" do
       before(:each) do
-        @params[:user] = { :first_name => "Test", :last_name => "User", :email => "test@example.com", :password => "test"}
+        @params[:user] = { :full_name => "Test User", :email => "test@example.com", :password => "test"}
       end
 
       it "should create a user" do
@@ -102,9 +102,9 @@ describe UsersController do
       describe "editing his own profile" do
         describe "with valid attributes" do
           it "should update the user" do
-            put :update, :id => @user.id, :user => { :first_name => "Updated" }
+            put :update, :id => @user.id, :user => { :full_name => "Test Updated" }
             assigns(:user).should be_valid
-            assigns(:user).first_name.should == "Updated"
+            assigns(:user).full_name.should == "Test Updated"
           end
         end
 
@@ -121,7 +121,7 @@ describe UsersController do
       describe "editing someone else's profile" do
         it "should not allow non-admin to edit" do
           @other_user = Factory(:user)
-          put :update, :id => @other_user.id, :user => { :first_name => "Updated" }
+          put :update, :id => @other_user.id, :user => { :full_name => "Test Updated" }
           flash[:error].should == "You may only edit your own account."
           response.should redirect_to edit_user_path(@user)
         end

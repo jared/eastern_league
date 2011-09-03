@@ -1,0 +1,37 @@
+<% title("Membership") %>
+
+<article class="module width_3_quarter">
+  <header><h3>Choose a Membership Plan</h3></header>
+  <%= form_for [@user, @membership], :url => confirm_new_user_membership_path(@user) do |f| %>
+    <div class="module_content">
+      <%= render "shared/error_messages", :target => @membership %>
+      <fieldset>
+        <%= f.label :membership_plan %>
+        <%= f.collection_select :membership_plan_id, MembershipPlan.primary.visible, :id, :name, :prompt => "Select a plan" %>
+        <div class="clear"><br /></div>
+      </fieldset>
+      <p>You may add additional family members to your Eastern League Membership.  (<span class="family_price">$8.00/$12.00</span> each.)  If your membership already includes other family members, they will be shown below.</p>
+      <p>If you do not wish to add additional family members, please leave this section blank.</p>
+      <fieldset class="additional_members">
+        <%= label_tag "Additional Members" %>
+        <%= text_field_tag "additional_members[]" %>
+        <%= link_to("Add Another", "#", :class => "add_another") %>
+      </fieldset>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Create", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>
+
+<article class="module width_quarter">
+  <header><h3>Membership Info</h3></header>
+  <div class="module_content">
+    <p>Any sport kite competitor who wishes to be included in Eastern League standings and eligible for League honors must be a member in good standing at the time he or she competes.</p>
+    <p><strong>One year</strong>: $15 per individual, plus $8 for each additional family member.</p>
+    <p><strong>Two years</strong>: $25 per individual, plus $12 for each additional family member.</p>
+  </div>
+</article>

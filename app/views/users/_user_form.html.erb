@@ -1,9 +1,9 @@
-<fieldset style="width:48%; float:left; margin-right: 3%;"> <!-- to make two field float next to one another, adjust values accordingly -->
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
+<fieldset style="width:48%; float:left; margin-right: 3%;">
+  <%= f.label :full_name, "What is your full name?" %>
+  <%= f.text_field :full_name %>
   <div class="clear"><br /></div>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
+  <%= f.label :nickname, "What should we call you?" %>
+  <%= f.text_field :nickname %>
   <div class="clear"><br /></div>
   <%= f.label :email %>
   <%= f.text_field :email %>
@@ -16,7 +16,7 @@
   <div class="clear"><br /></div>
 
 </fieldset>
-<fieldset style="width:48%; float:left;"> <!-- to make two field float next to one another, adjust values accordingly -->
+<fieldset style="width:48%; float:left;">
   <%= f.label :street_address_1 %>
   <%= f.text_field :street_address_1 %>
   <div class="clear"><br /></div>

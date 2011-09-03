@@ -19,9 +19,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string      :last_login_ip
 
       # Legacy Fields
-      t.string      :last_name
-      t.string      :first_name
       t.string      :full_name
+      t.string      :nickname
       t.string      :mailing_name
       t.string      :additional_members
 

@@ -4,9 +4,7 @@ class User < ActiveRecord::Base
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt
   end
 
-  before_create :set_full_name
-
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :full_name
 
   has_many :memberships
 
@@ -22,12 +20,6 @@ class User < ActiveRecord::Base
 
   def name_with_email
     "#{self[:full_name]}, #{self[:email].gsub(/@.*/, '@' + '*' * 7)}"
-  end
-
-private
-
-  def set_full_name
-    self[:full_name] = "#{self[:first_name]} #{self[:last_name]}"
   end
 
 end

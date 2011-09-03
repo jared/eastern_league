@@ -18,15 +18,10 @@ end
 
 gem 'jquery-rails'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
+gem 'activemerchant'
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git', :ref => '0297e1c005c626c1e37b'
 gem 'bcrypt-ruby'
 
