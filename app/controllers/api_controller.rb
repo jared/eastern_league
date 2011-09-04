@@ -3,7 +3,7 @@ class ApiController < ApplicationController
 
   def ipn
     @notify = Paypal::Notification.new(request.raw_post)
-    # TODO: Turn off IPN logging when unnecessary.
+
     File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{request.raw_post}\n" }
     unless Order.count("*", :conditions => ["paypal_transaction_identifier = ?", @notify.transaction_id]).zero?
       logger.warn("Multiple Payments received for #{@notify.transaction_id}")
@@ -24,18 +24,19 @@ class ApiController < ApplicationController
           @order.update_attributes!(attrs)
         else
           @order.update_attribute(:paypal_status, @notify.status)
+          logger.warn("#{@notify.transaction_id} was not complete.")
           raise "Payment not completed."
         end
 
       rescue => e
         raise e
-      ensure
-        #make sure we logged everything we must
       end
     else
       @order.update_attributes(:status => "Conflicted", :paypal_status => @notify.status)
+      logger.warn("#{@notify.transaction_id} was not acknowledged.")
       raise "Payment not acknowledged."
     end
+    render :nothing => true
   end
 
 end
