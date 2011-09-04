@@ -25,12 +25,19 @@ EasternLeague::Application.routes.draw do
   #   resources :products
   resource :user_session
   resources :users do
+    resources :orders do
+      member do
+        get :purchase
+        get :thank_you
+      end
+    end
     resources :memberships do
       new do
         post :confirm
       end
     end
   end
+
 
   # Sample resource route with options:
   #   resources :products do

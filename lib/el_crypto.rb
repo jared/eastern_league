@@ -1,7 +1,7 @@
 module ElCrypto
 
   class EncryptedOrder
-
+    include Rails.application.routes.url_helpers
     attr_accessor :encrypted_data, :decrypted_data
 
     def initialize(order)
@@ -30,7 +30,7 @@ module ElCrypto
         :no_shipping    => "1",
 
         # Return specifies the location where a user is bounced back to after paying on Paypal's site.
-        :return         => "http://easternleague.net/",
+        :return         => thank_you_user_order_url(order.user, order, :host => RETURN_HOST),
 
         # TODO: Update these with more aesthetically pleasing values.
         :cpp_header_image     => "http://easternleague.net/images/ELNewLogo.gif", # Large format logo

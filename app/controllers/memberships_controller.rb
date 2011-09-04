@@ -64,6 +64,7 @@ class MembershipsController < ApplicationController
       end
     end
     @order.save
+    redirect_to purchase_user_order_path(@user, @order)
   end
 
 private

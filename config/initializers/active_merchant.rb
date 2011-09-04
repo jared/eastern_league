@@ -12,6 +12,8 @@ if Rails.env.production?
   PAYPAL_CERTIFICATE  = "#{Rails.root}/config/paypal/sandbox_paypal_cert.pem"
   PAYPAL_CERT_ID      = "92RX5FFSRK354"
   PAYPAL_USER_ACCOUNT = "elsell_1315075565_biz@gmail.com"
+
+  RETURN_HOST         = "easternleague.net"
 else
   ActiveMerchant::Billing::Base.gateway_mode = :test
   ActiveMerchant::Billing::Base.integration_mode = :test
@@ -26,4 +28,6 @@ else
   PAYPAL_CERTIFICATE  = "#{Rails.root}/config/paypal/sandbox_paypal_cert.pem"
   PAYPAL_CERT_ID      = "92RX5FFSRK354"
   PAYPAL_USER_ACCOUNT = "elsell_1315075565_biz@gmail.com"
+
+  RETURN_HOST         = "localhost:3000"
 end
