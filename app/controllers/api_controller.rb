@@ -15,10 +15,10 @@ class ApiController < ApplicationController
       begin
         if @notify.complete?
           attrs = {
-            :status => "IPN Received",
+            :state                         => "IPN Received",
             :paypal_transaction_identifier => @notify.transaction_id,
-            :paypal_status => @notify.status,
-            :paypal_fee    => @notify.fee
+            :paypal_status                 => @notify.status,
+            :paypal_fee                    => @notify.fee
           }
           # TODO: 'complete' membership record by setting expirations, updating user, etc
           @order.update_attributes!(attrs)
