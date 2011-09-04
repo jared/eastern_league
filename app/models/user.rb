@@ -9,6 +9,14 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :orders
 
+  def activate_membership!(member_record)
+    self.el_member = true
+    self.current_through_date = member_record.expires_at.to_date.to_s
+    self.former_member = false
+    self.member_since ||= Time.now.utc
+    self.save!
+  end
+
   def current_through_date=(date_string)
     date = Date.parse(date_string)
     self[:current_through_year] = date.year

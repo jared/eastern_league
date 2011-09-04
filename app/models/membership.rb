@@ -5,14 +5,15 @@ class Membership < ActiveRecord::Base
 
   has_many :line_items, :as => :purchasable
 
-  before_create :set_expires_at
-
   validates_presence_of :membership_plan_id
 
-private
-
-  def set_expires_at
-    self[:expires_at] = Date.today.end_of_month + self.membership_plan.renewal_period.months
+  def activate!
+    attrs = {
+      :expires_at => membership_plan.renewal_period.months.from_now.end_of_month,
+      :paid       => true
+    }
+    self.update_attributes!(attrs)
+    user.activate_membership!(self)
   end
 
 end

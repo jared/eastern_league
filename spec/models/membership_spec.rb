@@ -1,5 +1,36 @@
 require 'spec_helper'
 
 describe Membership do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "#activate!" do
+    before(:each) do
+      @user = Factory :user
+      @user.stub!(:activate_membership!).and_return(true)
+      @membership_plan = Factory :membership_plan, :name => "1 Year Individual", :renewal_period => 12
+
+      @membership = Factory :membership, :user => @user, :paid => false, :expires_at => nil, :membership_plan => @membership_plan
+    end
+
+    it "should save the membership" do
+      @membership.should_receive(:save!).and_return(true)
+      @membership.activate!
+    end
+
+    it "should set paid to true" do
+      @membership.activate!
+      @membership.paid.should be_true
+    end
+
+    it "should set the expires at" do
+      @membership.activate!
+      @membership.expires_at.should == 12.months.from_now.end_of_month
+    end
+
+    it "should update the user record" do
+      @user.should_receive(:activate_membership!).with(@membership).and_return(true)
+      @membership.activate!
+    end
+
+  end
+
 end

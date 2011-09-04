@@ -5,6 +5,7 @@ class ApiController < ApplicationController
     @notify = Paypal::Notification.new(request.raw_post)
 
     File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{request.raw_post}\n" }
+
     unless Order.count("*", :conditions => ["paypal_transaction_identifier = ?", @notify.transaction_id]).zero?
       logger.warn("Multiple Payments received for #{@notify.transaction_id}")
     end
@@ -20,7 +21,14 @@ class ApiController < ApplicationController
             :paypal_status                 => @notify.status,
             :paypal_fee                    => @notify.fee
           }
-          # TODO: 'complete' membership record by setting expirations, updating user, etc
+          @order.line_items.each do |line_item|
+            case line_item.purchasable.class
+            when Membership
+              line_item.purchasable.activate!
+            else
+              logger.warn("I don't know what to do with this line item #{line_item.id}")
+            end
+          end
           @order.update_attributes!(attrs)
         else
           @order.update_attribute(:paypal_status, @notify.status)
