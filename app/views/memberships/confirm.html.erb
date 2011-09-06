@@ -17,6 +17,9 @@
         <fieldset>
           <legend>Additional Members</legend>
           <%= hidden_field_tag 'family_plan_id', @family_plan.id %>
+          <% if @additional_members.any?{ |m| !m.new_record? } %>
+            <p class="clear" style="padding-left: 1em;">We have found one or more matching family members.  Use the dropdown(s) below to choose the correct family member whose membership you will be renewing.</p>
+          <% end %>
           <% @additional_members.each_with_index do |member, index| %>
             <% if member.new_record? %>
               <p class="clear" style="padding-left: 1em;">

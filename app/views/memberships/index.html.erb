@@ -1,0 +1,27 @@
+<% title("Membership") %>
+
+<article class="module width_full">
+  <header><h3>Membership Records</h3></header>
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Effective Date</th>
+        <th>Membership Type</th>
+        <th>Additional Members</th>
+        <th>Paid?</th>
+        <th>Expiration Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @memberships.each do |membership| %>
+        <tr id="<%= dom_id(membership) %>">
+          <td><%=l membership.created_at, :format => :membership_date %></td>
+          <td><%= membership.membership_plan.name %></td>
+          <td><%= raw(membership.family_memberships.map(&:user).map(&:full_name).join("<br />"))%></td>
+          <td><%= membership.paid? ? "Yes" : "No" %></td>
+          <td><%= l(membership.expires_at, :format => :membership_date) if membership.expires_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

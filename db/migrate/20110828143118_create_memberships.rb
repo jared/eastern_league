@@ -6,6 +6,7 @@ class CreateMemberships < ActiveRecord::Migration
       t.datetime  :expires_at
       t.boolean   :primary_member,      :default => true
       t.integer   :primary_user_id
+      t.integer   :primary_membership_id
       t.boolean   :paid,                :default => false
       t.timestamps
     end

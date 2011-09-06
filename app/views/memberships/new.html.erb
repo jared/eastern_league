@@ -14,8 +14,15 @@
       <p>If you do not wish to add additional family members, please leave this section blank.</p>
       <fieldset class="additional_members">
         <%= label_tag "Additional Members" %>
-        <%= text_field_tag "additional_members[]" %>
         <%= link_to("Add Another", "#", :class => "add_another") %>
+        <% @user.related_users.each do |family_member| %>
+          <div class="clear">
+            <%= text_field_tag "additional_members[]", family_member.full_name %>
+            <%= link_to_function("X", "$(this).closest('div').remove();return false;") %>
+            <br />
+          </div>
+        <% end %>
+        <%= text_field_tag "additional_members[]" %>
       </fieldset>
     </div>
     <footer>

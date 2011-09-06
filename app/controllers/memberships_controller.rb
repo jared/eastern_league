@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
 
   def index
     load_user
-    render :text => @memberships = @user.memberships
+    @memberships = @user.memberships.newest
   end
 
   def new
@@ -47,6 +47,7 @@ class MembershipsController < ApplicationController
                                   :password => am_params.map{|k,v|v}.<<(Time.now.to_i).join("")) # Set a temporary gibberish password to save the record.
         family_membership = family_user.memberships.create(:membership_plan_id => params[:family_plan_id],
                                                            :primary_user_id => @user.id,
+                                                           :primary_membership_id => @membership.id,
                                                            :primary_member => false)
         @additional_members << family_user
         @order.line_items.build(:purchasable => family_membership, :amount => family_membership.membership_plan.amount, :description => family_membership.membership_plan.name)
@@ -58,6 +59,7 @@ class MembershipsController < ApplicationController
         family_user = User.find(am_id)
         family_membership = family_user.memberships.create(:membership_plan_id => params[:family_plan_id],
                                                            :primary_user_id => @user.id,
+                                                           :primary_membership_id => @membership.id,
                                                            :primary_member => false)
         @additional_members << family_user
         @order.line_items.build(:purchasable => family_membership, :amount => family_membership.membership_plan.amount, :description => family_membership.membership_plan.name)

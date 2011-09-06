@@ -7,7 +7,13 @@ class User < ActiveRecord::Base
   validates_presence_of :full_name
 
   has_many :memberships
+  has_many :family_memberships, :class_name => "Membership", :foreign_key => "primary_user_id"
+
   has_many :orders
+
+  def related_users
+    self.family_memberships.map(&:user)
+  end
 
   def activate_membership!(member_record)
     self.el_member = true

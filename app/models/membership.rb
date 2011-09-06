@@ -2,10 +2,13 @@ class Membership < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :membership_plan
+  belongs_to :primary_user, :class_name => "User", :foreign_key => "primary_user_id"
 
-  has_many :line_items, :as => :purchasable
+  has_many :family_memberships, :class_name => "Membership", :foreign_key => "primary_membership_id"
 
   validates_presence_of :membership_plan_id
+
+  scope :newest, order("expires_at DESC")
 
   def activate!
     attrs = {
