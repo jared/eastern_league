@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110903190707) do
+ActiveRecord::Schema.define(:version => 20110906183802) do
+
+  create_table "disciplines", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.integer  "score_multiplier", :default => 1
+    t.boolean  "active",           :default => true
+    t.integer  "position",         :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "line_items", :force => true do |t|
     t.integer  "order_id"
@@ -53,6 +63,15 @@ ActiveRecord::Schema.define(:version => 20110903190707) do
     t.string   "paypal_transaction_identifier"
     t.decimal  "paypal_fee",                    :precision => 8, :scale => 2
     t.text     "encrypted_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "seasons", :force => true do |t|
+    t.string   "year"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "current",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

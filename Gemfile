@@ -37,6 +37,8 @@ gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git', :ref => '
 gem 'bcrypt-ruby'
 
 gem 'rspec-rails'
+gem 'seed-fu', :git => "git://github.com/mbleigh/seed-fu.git", :branch => "rails-3-1"
+
 
 group :test do
   # Pretty printed test output

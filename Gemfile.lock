@@ -7,6 +7,15 @@ GIT
       activerecord (>= 3.0.7)
       activerecord (>= 3.0.7)
 
+GIT
+  remote: git://github.com/mbleigh/seed-fu.git
+  revision: 29fe8c61ca6cc4408115ea7475fe2647081bd348
+  branch: rails-3-1
+  specs:
+    seed-fu (2.0.1.rails31)
+      activerecord (~> 3.1.0.rc4)
+      activesupport (~> 3.1.0.rc4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -177,6 +186,7 @@ DEPENDENCIES
   rails (~> 3.1.0)
   rspec-rails
   sass-rails (~> 3.1.0)
+  seed-fu!
   sqlite3
   therubyracer
   thin
