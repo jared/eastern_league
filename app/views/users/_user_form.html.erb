@@ -1,9 +1,9 @@
 <fieldset style="width:48%; float:left; margin-right: 3%;">
   <%= f.label :full_name, "What is your full name?" %>
-  <%= f.text_field :full_name %>
+  <%= f.text_field :full_name, :placeholder => "John Q. Kiteflier" %>
   <div class="clear"><br /></div>
   <%= f.label :nickname, "What should we call you?" %>
-  <%= f.text_field :nickname %>
+  <%= f.text_field :nickname, :placeholder => "John" %>
   <div class="clear"><br /></div>
   <%= f.label :email %>
   <%= f.email_field :email %>

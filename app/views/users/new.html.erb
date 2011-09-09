@@ -4,8 +4,10 @@
   <header><h3>Create an Eastern League Account</h3></header>
   <%= form_for @user do |f| %>
     <div class="module_content">
+      <p>Please complete the form below to begin creating an Eastern League account.  Eastern League members are eligible to compete in sanctioned competitions and may earn points towards end-of-season awards.</p>
       <%= render "shared/error_messages", :target => @user %>
       <%= render :partial => "user_form", :locals => { :f => f } %>
+      <p>By default, your email, phone number, and address are not shared with other users.  After creating your account, you may choose which information is displayed to other registered Eastern League Members.</p>
     </div>
     <footer>
       <div class="submit_link">
