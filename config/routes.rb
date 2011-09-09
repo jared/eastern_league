@@ -38,6 +38,8 @@ EasternLeague::Application.routes.draw do
     end
   end
 
+  resources :password_resets
+
 
   # Sample resource route with options:
   #   resources :products do

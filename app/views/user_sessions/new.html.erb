@@ -1,16 +1,17 @@
-<article class="module width_full">
+<article class="module width_3_quarter">
   <header><h3>Log In to your Eastern League Account</h3></header>
   <%= form_for @user_session, :url => user_session_path do |f| %>
     <div class="module_content">
       <fieldset>
         <%= f.label :email %>
         <%= f.email_field :email %>
-      <div class="clear"><br /></div>
+        <div class="clear"><br /></div>
         <%= f.label :password %>
         <%= f.password_field :password %>
-      <div class="clear"><br /></div>
+        <div class="clear"><br /></div>
       </fieldset>
       <div class="clear"></div>
+      <p><%= link_to "Lost/forgotten password?", new_password_reset_path %></p>
     </div>
     <footer>
       <div class="submit_link">
@@ -21,4 +22,11 @@
       </div>
     </footer>
   <% end %>
+</article>
+
+<article class="module width_quarter">
+  <header><h3>Join the Eastern League</h3></header>
+  <div class="module_content">
+    <p>If you are not already an Eastern League Member, please visit our <%= link_to "Sign Up Page", new_user_path %> to join.</p>
+  </div>
 </article>

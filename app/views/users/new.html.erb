@@ -1,6 +1,6 @@
 <% title("Sign Up") %>
 
-<article class="module width_full">
+<article class="module width_3_quarter">
   <header><h3>Create an Eastern League Account</h3></header>
   <%= form_for @user do |f| %>
     <div class="module_content">
@@ -14,4 +14,11 @@
       </div>
     </footer>
   <% end %>
+</article>
+
+<article class="module width_quarter">
+  <header><h3>Already a Member?</h3></header>
+  <div class="module_content">
+    <p>Are you already a member of the Eastern League?  <%= link_to("Sign In Here", login_path) %> to access your account.</p>
+  </div>
 </article>

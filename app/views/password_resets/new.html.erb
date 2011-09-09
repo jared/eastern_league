@@ -1,0 +1,28 @@
+<% title("Reset Password") %>
+
+<article class="module width_3_quarter">
+  <header><h3>Reset Your Password</h3></header>
+  <%= form_tag password_resets_path do %>
+    <div class="module_content">
+      <fieldset>
+        <%= label_tag :email %>
+        <%= email_field_tag :email %>
+      </fieldset>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= submit_tag "Reset My Password", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>
+
+<article class="module width_quarter">
+  <header><h3>Instructions</h3></header>
+  <div class="module_content">
+    <p>
+      Enter your email address in this form.  We'll mail you a link that will allow you to reset your password and log in.  If your email address is not on file (or if you receive an error message after completing this form), please email the <%= mail_to "elcommissioner@gmail.com", "Eastern League Commissioner", :subject => "Password Reset Help" %> for assistance.
+    </p>
+  </div>
+</article>

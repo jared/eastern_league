@@ -48,5 +48,8 @@ class CreateUsers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :users, :email
+    add_index :users, :perishable_token
   end
 end

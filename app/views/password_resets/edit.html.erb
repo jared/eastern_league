@@ -1,0 +1,28 @@
+<% title("Reset Password") %>
+
+<article class="module width_3_quarter">
+  <header><h3>Change Your Password</h3></header>
+  <%= form_for @user, :url => password_reset_path, :method => :put do |f| %>
+    <div class="module_content">
+      <%= render "shared/error_messages", :target => @user %>
+      <fieldset>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </fieldset>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Update my Password", :class => "alt_btn" %>
+      </div>
+    </footer>
+  <% end %>
+</article>
+
+<article class="module width_quarter">
+  <header><h3>Instructions</h3></header>
+  <div class="module_content">
+    <p>
+      Choose a new password and enter it in the form to the left.  This will update your Eastern League account and log you in.  If you receive an error message after completing this form, please email the <%= mail_to "elcommissioner@gmail.com", "Eastern League Commissioner", :subject => "Password Change Help" %> for assistance.
+    </p>
+  </div>
+</article>
