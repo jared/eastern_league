@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909005854) do
+ActiveRecord::Schema.define(:version => 20110911023001) do
 
   create_table "disciplines", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,30 @@ ActiveRecord::Schema.define(:version => 20110909005854) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.integer  "organizer_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "season_id"
+    t.string   "location"
+    t.string   "acronym"
+    t.string   "contact_name"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+    t.string   "url"
+    t.string   "status"
+    t.boolean  "fee_received",          :default => false
+    t.boolean  "results_available",     :default => false
+    t.boolean  "online_registration",   :default => true
+    t.datetime "registration_deadline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["season_id"], :name => "index_events_on_season_id"
+  add_index "events", ["start_date"], :name => "index_events_on_start_date"
 
   create_table "line_items", :force => true do |t|
     t.integer  "order_id"
