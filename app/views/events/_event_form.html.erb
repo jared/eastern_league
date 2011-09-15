@@ -1,0 +1,58 @@
+<fieldset style="width:48%; float:left; margin-right: 3%;">
+  <%= f.label :name, "Full name of the event" %>
+  <%= f.text_field :name, :placeholder => "2011 Holly Springs Sport Kite Competition" %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :acronym, "Short name of the event" %>
+  <%= f.text_field :acronym, :placeholder => "HSSKC" %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :season %>
+  <%= f.collection_select :season_id, Season.all, :id, :year %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :start_date %>
+  <%= f.text_field :start_date %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :end_date %>
+  <%= f.text_field :end_date %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :location %>
+  <%= f.text_field :location, :placeholder => "Holly Springs, NC" %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :contact_name %>
+  <%= f.text_field :contact_name, :placeholder => "Jared Haworth" %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :contact_phone %>
+  <%= f.text_field :contact_phone, :placeholder => "919-555-1212" %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :contact_email %>
+  <%= f.email_field :contact_email, :placeholder => "jared@example.com" %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :url %>
+  <%= f.url_field :url, :placeholder => "http://easternleauge.net/events/HSSKC" %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :registration_deadline %>
+  <%= f.text_field :registration_deadline %>
+  <div class="clear"><br /></div>
+
+
+</fieldset>
+
+<fieldset style="width:48%; float:left;">
+  <%= f.label :discipline_ids, "Disciplines offered" %>
+  <div class="clear"><br /></div>
+
+  <% Discipline.ordered.active.each do |discipline| %>
+    <%= check_box_tag "event[discipline_ids][]", discipline.id, @event.discipline_ids.include?(discipline.id) %>
+    <span class="discipline"><%= discipline.name %></span>
+    <div class="clear"><br /></div>
+  <% end %>
+</fieldset>

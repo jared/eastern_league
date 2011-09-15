@@ -6,3 +6,6 @@ en:
   time:
     formats:
       membership_date: '%b %e, %Y'
+  date:
+    formats:
+      event_date: '%b %e, %Y'

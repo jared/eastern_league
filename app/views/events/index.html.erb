@@ -1,0 +1,33 @@
+<% title("Events") %>
+
+<article class="module width_full">
+  <header>
+    <h3 class="tabs_involved">Eastern League Events</h3>
+    <ul class="tabs">
+        <li><%= link_to("Create Event", new_event_path) %></li>
+    </ul>
+  </header>
+
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>Name</th>
+        <th>Season</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr id="<%= dom_id(event) %>">
+          <td><%=l event.start_date, :format => :event_date %></td>
+          <td><%= event.name %></td>
+          <td><%= event.season.year %></td>
+          <td><%= event.status  %></td>
+          <td><%= link_to(image_tag("icons/icn_edit.png"), edit_event_path(event)) %><%= link_to(image_tag("icons/icn_trash.png"), event_path(event), :method => :delete) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

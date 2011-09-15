@@ -21,8 +21,6 @@ EasternLeague::Application.routes.draw do
 
   match 'api/ipn' => 'api#ipn', :as => :ipn
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
   resource :user_session
   resources :users do
     resources :orders do
@@ -37,6 +35,8 @@ EasternLeague::Application.routes.draw do
       end
     end
   end
+
+  resources :events
 
   resources :password_resets
 
