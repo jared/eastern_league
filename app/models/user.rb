@@ -11,6 +11,12 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
+  has_one :competitor
+
+  before_create :setup_competitor_record
+  
+  accepts_nested_attributes_for :competitor
+
   def related_users
     self.family_memberships.map(&:user)
   end
@@ -40,6 +46,12 @@ class User < ActiveRecord::Base
   def deliver_password_reset_instructions!
     reset_perishable_token!
     UserMailer.password_reset_instructions(self).deliver
+  end
+
+private
+
+  def setup_competitor_record
+    self.build_competitor
   end
 
 end

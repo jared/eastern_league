@@ -1,0 +1,46 @@
+<% title("Calendar") %>
+
+<article class="module width_full">
+  <header>
+    <h3><%= @season.start_date.year %> - <%= @season.end_date.year %> Season</h3>
+  </header>
+
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Event Dates</th>
+        <th>Status</th>
+        <th>Event<br />(Location)</th>
+        <th>Contact</th>
+        <th>Results</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr id="<%= dom_id(event) %>">
+          <td><%= event.event_dates %></td>
+          <td><%= event.status %></td>
+          <td>
+            <strong><%= event.acronym %></strong>: <%= link_to(event.name, event.url) %><br />
+            (<%= event.location %>)
+          </td>
+          <td>
+            <%= event.contact_name  %><br />
+            <%= event.contact_phone %><br />
+            <%= mail_to(event.contact_email) %>
+          </td>
+          <td>N/A</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>
+<div class="clear"></div>
+
+<article class="module width_full">
+  <header><h3>A note on Status</h3></header>
+  <div class="module_content">
+    <p>To keep its Eastern League sanctioning, each event must pay a nonrefundable $100 sanctioning fee by 2 months prior to its scheduled dates. A status of <span class="red">Sanctioning Approved</span> indicates that the fee has been received by the League.</p>
+    <p>However, <strong>BEFORE YOU MAKE UNCHANGEABLE TRAVEL PLANS TO ATTEND ANY PARTICULAR EVENT, IT IS STRONGLY ADVISED THAT YOU CHECK WITH THE EVENT'S CONTACT PERSON DIRECTLY TO CONFIRM ITS STATUS.</strong></p>
+  </div>
+</article>

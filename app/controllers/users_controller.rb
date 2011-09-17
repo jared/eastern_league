@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
 
-  before_filter :require_user, :except => [:new, :create]
+  before_filter :require_user, :except => [:show, :new, :create]
+
+  def show
+    @user = User.find(params[:id])
+  end
 
   def new
     @user = User.new
   end
 
   def edit
-    if current_user.admin? || current_user.id.to_s == params[:id]
-      @user = User.find(params[:id])
-    else
-      flash[:error] = "You may only edit your own account."
-      redirect_to edit_user_path(current_user)
-    end
+    @user = User.find(params[:id])
+    authorize! :update, @user, :message => "You may only edit your own account."
   end
 
   def create
@@ -28,16 +28,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.admin? || current_user.id.to_s == params[:id]
-      @user = User.find(params[:id])
-    else
-      flash[:error] = "You may only edit your own account."
-      redirect_to edit_user_path(current_user) and return
-    end
+    @user = User.find(params[:id])
+    authorize! :update, @user, :message => "You may only edit your own account."
+    
     @user.attributes = params[:user]
+    if params[:remove_avatar]
+      @user.competitor.avatar = nil
+    end
     if @user.save
       flash[:notice] = "Update successful!"
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       flash[:error] = "Unable to save your changes.  See explanation below"
       render :action => :edit

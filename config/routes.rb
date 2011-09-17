@@ -21,6 +21,7 @@ EasternLeague::Application.routes.draw do
 
   match 'api/ipn' => 'api#ipn', :as => :ipn
 
+  resource :calendar
   resource :user_session
   resources :users do
     resources :orders do

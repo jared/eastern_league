@@ -17,7 +17,7 @@
   </ul>
   <h3>Competition</h3>
   <ul>
-    <li class="icn_calendar"><a href="#">Calendar</a></li>
+    <li class="icn_calendar"><%= link_to "Calendar", calendar_path %></li>
     <li class="icn_event_results"><a href="#">Event Results</a></li>
     <li class="icn_competitor_results"><a href="#">Competitor Results</a></li>
     <li class="icn_standings"><a href="#">Current Standings</a></li>
@@ -27,7 +27,7 @@
     <h3>Admin</h3>
     <ul>
       <li class="icn_edit_profile"><%= link_to "Edit my Profile", edit_user_path(current_user) %></li>
-      <li class="icn_renew_membership"><a href="#">Renew my Membership</a></li>
+      <li class="icn_renew_membership"><%= link_to "Renew my Membership", new_user_membership_path(current_user) %></li>
       <li class="icn_logoff"><%= link_to("Logout", user_session_path, :method => :delete) %></li>
     </ul>
   <% end %>

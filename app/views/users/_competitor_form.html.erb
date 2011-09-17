@@ -1,0 +1,18 @@
+<fieldset>
+  <legend>Competitor Details</legend>
+  <p style="margin-left: 1em;">Tell us a bit about your background.  This information may be used by event announcers, or displayed in event programs distributed to spectators.</p>
+  <%= f.label :avatar, "Competitor Picture" %>
+  <%= f.file_field :avatar %>
+  <% if @user.competitor.avatar? %>
+    <p style="padding-left: 1em;">
+      <%= image_tag(@user.competitor.avatar.url(:thumb)) %>
+      <%= check_box_tag :remove_avatar, :value => true %>
+      Remove Picture?
+    </p>
+  <% end %>
+  <div class="clear"><br /></div>
+  <%= f.label :bio, "Competitor Biography" %>
+  <%= f.text_area :bio %>
+  <div class="clear"></div>
+</fieldset>
+<div class="clear"></div>

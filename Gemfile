@@ -35,6 +35,9 @@ gem 'heroku'
 gem 'activemerchant'
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git', :ref => '0297e1c005c626c1e37b'
 gem 'bcrypt-ruby'
+gem 'cancan'
+
+gem 'paperclip', '~> 2.4'
 
 gem 'rspec-rails'
 gem 'seed-fu', :git => "git://github.com/mbleigh/seed-fu.git", :branch => "rails-3-1"

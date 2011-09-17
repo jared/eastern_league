@@ -2,10 +2,17 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
   time:
     formats:
       membership_date: '%b %e, %Y'
   date:
     formats:
       event_date: '%b %e, %Y'
+  unauthorized:
+    manage:
+      all: "You do not have permission to %{action} this %{subject}."
+    create:
+      event: "You do not have permission to create events."
+    update:
+      event: "You do not have permission to update this event."
+      

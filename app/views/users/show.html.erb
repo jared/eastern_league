@@ -1,0 +1,45 @@
+<% title(@user.full_name) %>
+
+
+<article class="module width_3_quarter">
+  <header><h3>Competitor Biography</h3></header>
+  <div class="module_content">
+    <% if @user.competitor.bio.blank? %>
+      <p>This user has not filled out a biography yet.</p>
+    <% else %>
+      <p><%= @user.competitor.bio %></p>
+    <% end %>
+    <% if @user.competitor.avatar? %>
+      <%= image_tag(@user.competitor.avatar.url(:medium)) %>
+    <% end %>
+  </div>
+</article>
+
+<article class="module width_quarter">
+  <header><h3>Contact Details</h3></header>
+  <div class="module_content">
+    <h4></h4>
+    <% if current_user %>
+      <% if @user.share_email %>
+        <p><%= image_tag('icons/email.png', :style => "vertical-align: bottom;") %> <%= mail_to(@user.email) %></p>
+      <% end %>
+      <% if @user.share_phone %>
+        <p><%= image_tag('icons/phone.png') %> <%= @user.phone_number %></p>
+      <% end %>
+      <% if @user.share_address %>
+        <p>
+          <%= image_tag('icons/map.png') %>
+          <%= @user.full_name %><br />
+          <span style="padding-left: 20px;"><%= @user.street_address_1 %></span><br />
+            <% unless @user.street_address_2.blank? %>
+              <span style="padding-left: 20px;"><%= @user.street_address_2 %></span><br />
+            <% end %>
+            <span style="padding-left: 20px;"><%= @user.city %> <%= @user.state %></span><br />
+            <span style="padding-left: 20px;"><%= @user.zip %></span>
+        </p>
+      <% end %>
+    <% else %>
+      <h4 class="alert_warning">Only logged-in users may view this information</h4>
+    <% end %>
+  </div>
+</article>
