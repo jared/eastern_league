@@ -39,8 +39,8 @@ FactoryGirl.define do
     url           "http://example.com"
     status        "Sanctioning Approved"
     fee_received  true
-    assocation    :organizer
-    assocation    :season
+    association    :organizer
+    association    :season
     registration_deadline Date.new(2011, 8, 1)
   end
 

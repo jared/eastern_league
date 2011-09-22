@@ -71,7 +71,7 @@ describe UsersController do
           @other_user = Factory(:user)
           get :edit, :id => @other_user.id
           flash[:error].should == "You may only edit your own account."
-          response.should redirect_to edit_user_path(@user)
+          response.should redirect_to root_path
         end
       end
     end
@@ -123,7 +123,7 @@ describe UsersController do
           @other_user = Factory(:user)
           put :update, :id => @other_user.id, :user => { :full_name => "Test Updated" }
           flash[:error].should == "You may only edit your own account."
-          response.should redirect_to edit_user_path(@user)
+          response.should redirect_to root_path
         end
       end
     end
