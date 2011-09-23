@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe Season do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe ".current" do
+    before(:each) do
+      @current_season = Factory :season
+      2.times { |i| Factory :season, :current => false, :year => i}
+    end
+    
+    it "should return the current season" do
+      Season.current.should == @current_season
+    end
+  end
 end

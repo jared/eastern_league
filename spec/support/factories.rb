@@ -6,6 +6,26 @@ FactoryGirl.define do
     sequence(:email) { |n| "email#{n * Time.now.to_i}@example.com" }
     password 'test'
   end
+  
+  factory :competitor do
+    association :user
+    bio "This is my competitor biography."
+  end
+  
+  factory :pair, :parent => :competitor do
+    pair true
+    name "Dueling Sabers"
+  end
+  
+  factory :team, :parent => :competitor do
+    team true
+    name "Rusty Sabers"
+  end
+  
+  factory :team_member do
+    association :competitor
+    association :team
+  end
 
   factory :membership_plan do
     name           '1 Year Individual'
@@ -18,6 +38,16 @@ FactoryGirl.define do
     association :membership_plan
     expires_at  1.year.from_now.end_of_month
     paid        true
+  end
+  
+  factory :order do
+    association :user
+  end
+  
+  factory :line_item do
+    association :order
+    description "A Description"
+    amount  15.00
   end
 
   factory :season do

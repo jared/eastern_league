@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20110917194143) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.decimal  "amount",                        :precision => 8, :scale => 2
-    t.string   "state",                                                       :default => "new"
+    t.string   "state",                         :default => "new"
     t.string   "paypal_status"
     t.string   "paypal_transaction_identifier"
     t.decimal  "paypal_fee",                    :precision => 8, :scale => 2
