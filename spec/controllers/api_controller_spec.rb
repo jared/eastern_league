@@ -12,7 +12,7 @@ describe ApiController do
     describe "successful" do
       before(:each) do
         @ipn_params.merge!(:acknowledge => "true")
-        mock_notify
+        mock_notify(@ipn_params)
       end
       
       it "should process an update the order state" do
@@ -81,15 +81,12 @@ def ipn_setup_order
      }
 end
 
-def mock_notify
-  @notify = mock()
+def mock_notify(ipn)
+  @notify = mock(:transaction_id  => ipn[:txn_id],
+                 :complete?       => true,
+                 :status          => ipn[:payment_status],
+                 :fee             => ipn[:payment_fee],
+                 :invoice         => ipn[:invoice],
+                 :acknowledge     => ipn[:acknowledge])
   Paypal::Notification.stub!(:new).and_return(@notify)
-  @ipn_params.each do |key, value|
-    @notify.stub!(key).and_return(value)
-  end
-  
-  @notify.stub!(:transaction_id).and_return(@ipn_params[:txn_id])
-  @notify.stub!(:complete?).and_return(true)
-  @notify.stub!(:status).and_return(@ipn_params[:payment_status])
-  @notify.stub!(:fee).and_return(@ipn_params[:payment_fee])
 end
