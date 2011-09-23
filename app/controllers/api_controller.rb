@@ -3,7 +3,6 @@ class ApiController < ApplicationController
 
   def ipn
     @notify = Paypal::Notification.new(request.raw_post)
-
     File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{request.raw_post}\n" }
 
     unless Order.count("*", :conditions => ["paypal_transaction_identifier = ?", @notify.transaction_id]).zero?
@@ -22,8 +21,8 @@ class ApiController < ApplicationController
             :paypal_fee                    => @notify.fee
           }
           @order.line_items.each do |line_item|
-            case line_item.purchasable.class
-            when Membership
+            case line_item.purchasable.class.name
+            when "Membership"
               line_item.purchasable.activate!
             else
               logger.warn("I don't know what to do with this line item #{line_item.id}")
@@ -40,7 +39,7 @@ class ApiController < ApplicationController
         raise e
       end
     else
-      @order.update_attributes(:status => "Conflicted", :paypal_status => @notify.status)
+      @order.update_attributes(:state => "Conflicted", :paypal_status => @notify.status)
       logger.warn("#{@notify.transaction_id} was not acknowledged.")
       raise "Payment not acknowledged."
     end
