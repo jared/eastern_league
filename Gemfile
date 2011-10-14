@@ -25,8 +25,7 @@ end
 gem 'jquery-rails'
 gem 'therubyracer'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 gem 'thin'
 
