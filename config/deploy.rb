@@ -11,6 +11,9 @@ role :web, "50.57.149.168"                          # Your HTTP server, Apache/e
 role :app, "50.57.149.168"                          # This may be the same as your `Web` server
 role :db,  "50.57.149.168", :primary => true # This is where Rails migrations will run
 
+
+default_run_options[:pty] = true
+
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
