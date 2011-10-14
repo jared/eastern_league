@@ -1,0 +1,48 @@
+<% title("Score Entry") %>
+
+<article class="module width_full">
+  <header><h3>Enter Event Scores for <%= @event.name %></h3></header>
+  <%= form_tag event_scores_path(@event) do %>
+    <div class="module_content">
+      <fieldset>
+        <%= label_tag :discipline %>
+        <%= select_tag(:event_discipline_id, options_from_collection_for_select(@event.event_disciplines, :id, :name)) %>
+        <table id="score_table">
+          <thead>
+            <tr>
+              <th>Competitor</th>
+              <th>Place</th>
+              <th>Score</th>
+              <th>Tie-Breaker</th>
+              <th>DQ?</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td colspan="5" style="text-align: center;"><a href="#" id="addrow">Enter Another Score</a></td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr class="score">
+              <td><%= select_tag("scores[][competitor_id]", options_from_collection_for_select(Competitor.all, :id, :name), :include_blank => true) %></td>
+              <td><%= text_field_tag("scores[][rank]") %></td>
+              <td><%= text_field_tag("scores[][score]") %></td>
+              <td><%= text_field_tag("scores[][tie_breaker]") %></td>
+              <td><%= check_box_tag("scores[][disqualified]") %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="score_block">
+          
+        </div>
+      </fieldset>
+
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= submit_tag "Save", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>

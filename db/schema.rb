@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110917194143) do
+ActiveRecord::Schema.define(:version => 20111006213255) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "user_id"
@@ -103,13 +103,25 @@ ActiveRecord::Schema.define(:version => 20110917194143) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.decimal  "amount",                        :precision => 8, :scale => 2
-    t.string   "state",                         :default => "new"
+    t.string   "state",                                                       :default => "new"
     t.string   "paypal_status"
     t.string   "paypal_transaction_identifier"
     t.decimal  "paypal_fee",                    :precision => 8, :scale => 2
     t.text     "encrypted_data"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "scores", :force => true do |t|
+    t.integer  "competitor_id"
+    t.integer  "event_discipline_id"
+    t.decimal  "score",               :precision => 5, :scale => 2
+    t.boolean  "disqualified"
+    t.integer  "rank"
+    t.string   "tie_breaker"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "points"
   end
 
   create_table "seasons", :force => true do |t|

@@ -52,14 +52,4 @@ EasternLeague::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  ActionMailer::Base.smtp_settings = {
-    :tls => true,
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => "gmail.com",
-    :authentication => :plain,
-    :user_name => "elcommissioner@gmail.com",
-    :password => "password1"
-  }
-
 end

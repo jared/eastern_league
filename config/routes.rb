@@ -23,6 +23,7 @@ EasternLeague::Application.routes.draw do
 
   resource :calendar
   resource :user_session
+  
   resources :users do
     resources :orders do
       member do
@@ -37,7 +38,9 @@ EasternLeague::Application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events do
+    resources :scores
+  end
 
   resources :password_resets
 

@@ -1,4 +1,6 @@
 .bundle
+config/initializers/active_merchant.rb
+config/initializers/setup_mail.rb
 db/*.sqlite3
 log/*.log
 tmp/

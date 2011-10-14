@@ -1,10 +1,14 @@
 class EventsController < ApplicationController
 
-  before_filter :require_user
+  before_filter :require_user, :except => :show
 
   def index
     @events = Event.all(:order => "start_date DESC")
     authorize! :manage, Event
+  end
+  
+  def show
+    @event = Event.find(params[:id])
   end
 
   def new

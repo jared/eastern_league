@@ -1,0 +1,36 @@
+<% title(@event.name) %>
+
+<% if can? :create, Score %>
+  <article class="module width_full">
+    <header><h3>Admin Tools</h3></header>
+    <div class="module_content">
+      <%= link_to "Enter Event Scores", new_event_score_path(@event) %>
+    </div>
+  </article>
+<% end %>
+
+<% @event.event_disciplines.each do |ed| %>
+  <article class="module width_3_quarter">
+    <header><h3><%= ed.name %> (<%= ed.discipline.abbreviation %>)</h3></header>
+    <table class="tablesorter">
+      <thead> 
+				<tr> 
+   					<th>Rank</th> 
+    				<th>Competitor</th> 
+    				<th>Score</th> 
+    				<th>Points</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+			  <% ed.scores.ranked.each do |score| %>
+          <tr>
+            <td><%= score.rank %></td>
+            <td><%= score.competitor.name %></td>
+            <td><%= score.score %></td>
+            <td><%= score.points %></td>
+          </tr>
+        <% end %>
+			</tbody>
+    </table>
+  </article>
+<% end %>

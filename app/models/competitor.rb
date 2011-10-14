@@ -11,6 +11,9 @@ class Competitor < ActiveRecord::Base
   has_many :teams, :through => :inverse_team_members, :conditions => { :team => true }
   has_many :pairs, :through => :inverse_team_members, :conditions => { :pair => true }, :source => :team
   
+  has_many :event_disciplines
+  has_many :scores
+  
   scope :teams, where(:team => true)
   scope :pairs, where(:pair => true)
   

@@ -22,7 +22,7 @@
       <% @events.each do |event| %>
         <tr id="<%= dom_id(event) %>">
           <td><%=l event.start_date, :format => :event_date %></td>
-          <td><%= event.name %></td>
+          <td><%= link_to(event.name, event) %></td>
           <td><%= event.season.year %></td>
           <td><%= event.status  %></td>
           <td><%= link_to(image_tag("icons/icn_edit.png"), edit_event_path(event)) %><%= link_to(image_tag("icons/icn_trash.png"), event_path(event), :method => :delete) %></td>
