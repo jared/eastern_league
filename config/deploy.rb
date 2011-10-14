@@ -2,6 +2,9 @@ set :application, "eastern_league"
 set :repository,  "git@github.com:jared/eastern_league.git"
 
 set :scm, :git
+
+set :user, "deploy"  # The server's user for deploys
+
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "50.57.149.168"                          # Your HTTP server, Apache/etc
