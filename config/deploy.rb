@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 load 'deploy/assets'
 
 set :application, "eastern_league"
