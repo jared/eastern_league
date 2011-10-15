@@ -1,3 +1,5 @@
+load 'deploy/assets'
+
 set :application, "eastern_league"
 set :repository,  "git@github.com:jared/eastern_league.git"
 
