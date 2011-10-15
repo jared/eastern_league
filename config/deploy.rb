@@ -21,8 +21,14 @@ default_run_options[:pty] = true
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
-# If you are using Passenger mod_rails uncomment this:
+after "deploy:update_code", "deploy:copy_configuration_files"
+
 namespace :deploy do
+  task :copy_configuration_files do
+    run "cp #{shared_dir}/secure/*.rb #{release_path}/config/initializers"
+    run "cp #{shared_dir}/secure/database.yml #{release_path}/config"
+  end
+  
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
