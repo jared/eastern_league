@@ -47,7 +47,7 @@ text-decoration: underline;
 header#header {
 height: 55px;
 width: 100%;
-background: #222222 url(/assets/layout/header_bg.png) repeat-x;
+background: #222222 url(<%= asset_path 'layout/header_bg.png' %>) repeat-x;
 }
 
 header#header h1.site_title, header#header h2.section_title {
@@ -78,7 +78,7 @@ header#header h2.section_title {
 text-align: center;
 text-indent: 4.5%;
 width: 68%;
-background: url(/assets/layout/header_shadow.png) no-repeat left top;
+background: url(<%= asset_path 'layout/header_shadow.png'%>) no-repeat left top;
 }
 
 .btn_view_site {
@@ -91,7 +91,7 @@ display: block;
 margin-top: 12px;
 width: 91px;
 height: 27px;
-background: url(/assets/layout/btn_view_site.png) no-repeat;
+background: url(<%= asset_path 'layout/btn_view_site.png'%>) no-repeat;
 text-align: center;
 line-height: 29px;
 color: #fff;
@@ -107,7 +107,7 @@ background-position: 0 -27px;
 section#secondary_bar {
 height: 38px;
 width: 100%;
-background: #F1F1F4 url(/assets/layout/secondary_bar.png) repeat-x;
+background: #F1F1F4 url(<%= asset_path 'layout/secondary_bar.png'%>) repeat-x;
 }
 
 section#secondary_bar .user {
@@ -128,7 +128,7 @@ height: 35px;
 line-height: 35px;
 text-indent: 25px;
 text-shadow: 0 1px 0 #fff;
-background: url(/assets/icons/icn_user.png) no-repeat center left;
+background: url(<%= asset_path 'icons/icn_user.png'%>) no-repeat center left;
 margin-left: 6%;
 }
 
@@ -146,7 +146,7 @@ display: block;
 width: 16px;
 height: 35px;
 text-indent: -5000px;
-background: url(/assets/icons/icn_logout.png) center no-repeat;
+background: url(<%= asset_path 'icons/icn_logout.png' %>) center no-repeat;
 }
 
 /* Breadcrumbs */
@@ -154,7 +154,7 @@ background: url(/assets/icons/icn_logout.png) center no-repeat;
 section#secondary_bar .breadcrumbs_container {
 float: left;
 width: 77%;
-background: url(/assets/layout/secondary_bar_shadow.png) no-repeat left top;
+background: url(<%= asset_path 'layout/secondary_bar_shadow.png'%>) no-repeat left top;
 height: 38px;
 }
 
@@ -200,7 +200,7 @@ color: #222222;
 display: inline-block;
 width: 12px;
 height: 24px;
-background: url(/assets/layout/breadcrumb_divider.png) no-repeat;
+background: url(<%= asset_path 'layout/breadcrumb_divider.png'%>) no-repeat;
 float: left;
 margin: 0 5px;
 }
@@ -209,7 +209,7 @@ margin: 0 5px;
 
 aside#sidebar {
 width: 23%;
-background: #E0E0E3 url(/assets/layout/sidebar.png) repeat;
+background: #E0E0E3 url(<%= asset_path 'layout/sidebar.png'%>) repeat;
 float: left;
 min-height: 500px;
 margin-top: -4px;
@@ -218,7 +218,7 @@ margin-top: -4px;
 #sidebar hr {
 border: none;
 outline: none;
-background: url(/assets/layout/sidebar_divider.png) repeat-x;
+background: url(<%= asset_path 'layout/sidebar_divider.png'%>) repeat-x;
 display: block;
 width: 100%;
 height: 2px;}
@@ -243,7 +243,7 @@ color: #ccc;
 -moz-box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
 box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
 text-indent: 30px;
-background: #fff url(/assets/icons/icn_search.png) no-repeat;
+background: #fff url(<%= asset_path 'icons/icn_search.png'%>) no-repeat;
 background-position: 10px 6px;
 }
 
@@ -312,48 +312,48 @@ color: #444444;
 
 /* Eastern League Icons */
 #sidebar li.icn_login a {
-  background: url(/assets/icons/key.png) no-repeat center left;
+  background: url(<%= asset_path 'icons/key.png'%>) no-repeat center left;
 }
 #sidebar li.icn_about a {
-background: url(/assets/icons/book_open.png) no-repeat center left;
+background: url(<%= asset_path 'icons/book_open.png'%>) no-repeat center left;
 }
 #sidebar li.icn_competitors a {
-background: url(/assets/icons/group.png) no-repeat center left;
+background: url(<%= asset_path 'icons/group.png'%>) no-repeat center left;
 }
 #sidebar li.icn_organizers a {
-background: url(/assets/icons/chart_organisation.png) no-repeat center left;
+background: url(<%= asset_path 'icons/chart_organisation.png'%>) no-repeat center left;
 }
 #sidebar li.icn_spectators a {
-background: url(/assets/icons/find.png) no-repeat center left;
+background: url(<%= asset_path 'icons/find.png'%>) no-repeat center left;
 }
 #sidebar li.icn_newsletter a {
-background: url(/assets/icons/newspaper.png) no-repeat center left;
+background: url(<%= asset_path 'icons/newspaper.png'%>) no-repeat center left;
 }
 #sidebar li.icn_link a {
-background: url(/assets/icons/link.png) no-repeat center left;
+background: url(<%= asset_path 'icons/link.png'%>) no-repeat center left;
 }
 
 #sidebar li.icn_calendar a {
-background: url(/assets/icons/calendar.png) no-repeat center left;
+background: url(<%= asset_path 'icons/calendar.png'%>) no-repeat center left;
 }
 #sidebar li.icn_event_results a {
-background: url(/assets/icons/table_edit.png) no-repeat center left;
+background: url(<%= asset_path 'icons/table_edit.png'%>) no-repeat center left;
 }
 #sidebar li.icn_competitor_results a {
-background: url(/assets/icons/award_star_gold_3.png) no-repeat center left;
+background: url(<%= asset_path 'icons/award_star_gold_3.png'%>) no-repeat center left;
 }
 #sidebar li.icn_standings a {
-background: url(/assets/icons/chart_curve.png) no-repeat center left;
+background: url(<%= asset_path 'icons/chart_curve.png'%>) no-repeat center left;
 }
 
 #sidebar li.icn_edit_profile a {
-background: url(/assets/icons/user_edit.png) no-repeat center left;
+background: url(<%= asset_path 'icons/user_edit.png'%>) no-repeat center left;
 }
 #sidebar li.icn_renew_membership a {
-background: url(/assets/icons/creditcards.png) no-repeat center left;
+background: url(<%= asset_path 'icons/creditcards.png'%>) no-repeat center left;
 }
 #sidebar li.icn_logoff a {
-background: url(/assets/icons/cancel.png) no-repeat center left;
+background: url(<%= asset_path 'icons/cancel.png'%>) no-repeat center left;
 }
 
 
@@ -383,7 +383,7 @@ margin-top: 20%;
 section#main {
 width: 77%;
 min-height: 500px;
-background: url(/assets/layout/sidebar_shadow.png) repeat-y left top;
+background: url(<%= asset_path 'layout/sidebar_shadow.png'%>) repeat-y left top;
 float: left;
 margin-top: -2px;
 }
@@ -418,7 +418,7 @@ float: left;
 .module header {
 height: 38px;
 width: 100%;
-background: #F1F1F4 url(/assets/layout/secondary_bar.png) repeat-x;
+background: #F1F1F4 url(<%= asset_path 'layout/secondary_bar.png'%>) repeat-x;
 -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px;
 -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px;
 border-top-left-radius: 5px; border-top-right-radius: 5px;
@@ -428,7 +428,7 @@ border-top-left-radius: 5px; border-top-right-radius: 5px;
 height: 32px;
 width: 100%;
 border-top: 1px solid #9CA1B0;
-background: #F1F1F4 url(/assets/layout/module_footer_bg.png) repeat-x;
+background: #F1F1F4 url(<%= asset_path 'layout/module_footer_bg.png'%>) repeat-x;
 -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px;
 -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px;
 -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px;
@@ -525,7 +525,7 @@ border-bottom: 1px dotted #ccc;
 
 .tablesorter thead tr {
 height: 34px;
-background: url(/assets/layout/table_sorter_header.png) repeat-x;
+background: url(<%= asset_path 'layout/table_sorter_header.png'%>) repeat-x;
 text-align: left;
 text-indent: 10px;
 cursor: pointer;
@@ -608,7 +608,7 @@ border-bottom: 1px dotted #cccccc;
 }
 
 input[type=submit] {
-background: #D0D1D4 url(/assets/layout/btn_submit.png) repeat-x;
+background: #D0D1D4 url(<%= asset_path 'layout/btn_submit.png'%>) repeat-x;
 border: 1px solid #A8A9A8;
 -webkit-box-shadow: 0 1px 0 #fff;
 -moz-box-shadow: 0 1px 0 #fff;
@@ -629,7 +629,7 @@ color: #333333;
 }
 
 input[type=submit].alt_btn {
-background: #D0D1D4 url(/assets/layout/btn_submit_2.png) repeat-x;
+background: #D0D1D4 url(<%= asset_path 'layout/btn_submit_2.png'%>) repeat-x;
 border: 1px solid#30B0C8;
 -webkit-box-shadow: 0 1px 0 #fff;
 -moz-box-shadow: 0 1px 0 #fff;
@@ -650,7 +650,7 @@ color: #001217;
 }
 
 input[type=submit].btn_post_message {
-background: #D0D1D4 url(/assets/icons/post_message.png) no-repeat;
+background: #D0D1D4 url(<%= asset_path 'icons/post_message.png'%>) no-repeat;
 display: block;
 width: 37px;
 border: none;
@@ -886,7 +886,7 @@ margin-top: 20px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
-background: #B5E5EF url(/assets/icons/icn_alert_info.png) no-repeat;
+background: #B5E5EF url(<%= asset_path 'icons/icn_alert_info.png'%>) no-repeat;
 background-position: 10px 10px;
 border: 1px solid #77BACE;
 color: #082B33;
@@ -902,7 +902,7 @@ margin-top: 20px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
-background: #F5F3BA url(/assets/icons/icn_alert_warning.png) no-repeat;
+background: #F5F3BA url(<%= asset_path 'icons/icn_alert_warning.png'%>) no-repeat;
 background-position: 10px 10px;
 border: 1px solid #C7A20D;
 color: #796616;
@@ -918,7 +918,7 @@ margin-top: 20px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
-background: #F3D9D9 url(/assets/icons/icn_alert_error.png) no-repeat;
+background: #F3D9D9 url(<%= asset_path 'icons/icn_alert_error.png'%>) no-repeat;
 background-position: 10px 10px;
 border: 1px solid #D20009;
 color: #7B040F;
@@ -934,7 +934,7 @@ margin-top: 20px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
-background: #E2F6C5 url(/assets/icons/icn_alert_success.png) no-repeat;
+background: #E2F6C5 url(<%= asset_path 'icons/icn_alert_success.png'%>) no-repeat;
 background-position: 10px 10px;
 border: 1px solid #79C20D;
 color: #32510F;
