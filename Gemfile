@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1.0'
+gem 'rails', '~> 3.1.1'
 
 gem 'rake', '0.8.7'
 
@@ -10,7 +10,7 @@ group :production do
   gem 'mysql'
 end
 
-
+gem 'sprockets'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
