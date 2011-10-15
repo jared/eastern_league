@@ -22,11 +22,16 @@ default_run_options[:pty] = true
 # these http://github.com/rails/irs_process_scripts
 
 after "deploy:update_code", "deploy:copy_configuration_files"
+after 'deploy:update_code', 'deploy:precompile_those_assets'
 
 namespace :deploy do
   task :copy_configuration_files do
     run "cp #{shared_path}/secure/*.rb #{release_path}/config/initializers"
     run "cp #{shared_path}/secure/database.yml #{release_path}/config"
+  end
+  
+  task :precompile_those_assets do
+    run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
   end
   
   task :start do ; end
