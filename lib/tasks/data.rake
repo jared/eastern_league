@@ -42,4 +42,21 @@ namespace :data do
     
   end
   
+  desc "Load Pair and Team data from CSV file"
+  task :team_load => :environment do
+    arr_of_arrs = CSV.read("#{Rails.root}/tmp/tblTeamQueryText.csv")
+    arr_of_arrs.each do |row|
+      next if row[0] == "tblMember_MemberID"
+      obj = Competitor.find_or_initialize_by_id(row[0])
+      if obj.new_record?
+        obj.id = row[0]
+        obj.name = row[1]
+        obj.team = row[6]
+        obj.pair = row[7]
+        obj.save
+      end
+      TeamMember.create(:team_id => row[2], :competitor_id => row[3], :captain => row[4], :sub => row[5])
+    end
+  end
+  
 end

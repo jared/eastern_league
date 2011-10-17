@@ -17,9 +17,11 @@ class Competitor < ActiveRecord::Base
   scope :teams, where(:team => true)
   scope :pairs, where(:pair => true)
   
+  scope :alphabetical, includes(:user).order("users.full_name ASC, name ASC")
+  
   def name
     return self[:name] if team? || pair?
-    self.user.full_name
+    self.user.try(:full_name)
   end
 
 end
