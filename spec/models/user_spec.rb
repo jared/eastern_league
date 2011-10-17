@@ -56,36 +56,6 @@ describe User do
 
   end
 
-  describe "#current_through_date=" do
-    before(:each) do
-      @user = Factory :user
-    end
-
-    it "should set the current_through_month" do
-      @user.current_through_date = "2011-09-03"
-      @user.current_through_month.should == 9
-    end
-
-    it "should set the current_through_year" do
-      @user.current_through_date = "2011-09-03"
-      @user.current_through_year.should == 2011
-    end
-  end
-
-  describe "#current_through_date" do
-    before(:each) do
-      @user = Factory :user, :current_through_month => 9, :current_through_year => 2011
-    end
-
-    it "should return a Date" do
-      @user.current_through_date.should be_kind_of(Date)
-    end
-
-    it "should calculate the end of the month" do
-      @user.current_through_date.should == Date.new(2011, 9, 30)
-    end
-  end
-
   describe "#name_with_email" do
     before(:each) do
       @user = Factory :user, :full_name => "Test User", :email => "testuser@example.com"

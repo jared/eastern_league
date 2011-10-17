@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006213255) do
+ActiveRecord::Schema.define(:version => 20111015144340) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "user_id"
@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20111006213255) do
     t.boolean  "share_email",           :default => false
     t.boolean  "share_phone",           :default => false
     t.boolean  "share_address",         :default => false
+    t.date     "current_through_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

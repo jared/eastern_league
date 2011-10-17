@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
 
   has_one :competitor
 
-  before_create :setup_competitor_record
+  # before_create :setup_competitor_record
+  before_create :set_current_through_date
   
   accepts_nested_attributes_for :competitor
 
@@ -29,16 +30,6 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  def current_through_date=(date_string)
-    date = Date.parse(date_string)
-    self[:current_through_year] = date.year
-    self[:current_through_month] = date.month
-  end
-
-  def current_through_date
-    Date.new(self[:current_through_year], self[:current_through_month], 1).end_of_month
-  end
-
   def name_with_email
     "#{self[:full_name]}, #{self[:email].gsub(/@.*/, '@' + '*' * 7)}"
   end
@@ -52,6 +43,12 @@ private
 
   def setup_competitor_record
     self.build_competitor
+  end
+  
+  def set_current_through_date
+    if self[:current_through_month].to_i > 0 && self[:current_through_year].to_i > 0
+      self[:current_through_date] = Date.new(self[:current_through_year].to_i, self[:current_through_month].to_i, 1).end_of_month
+    end
   end
 
 end
