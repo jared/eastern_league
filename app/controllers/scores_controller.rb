@@ -10,10 +10,12 @@ class ScoresController < ApplicationController
     @event = Event.find(params[:event_id])
     scores = []
     params[:scores].each do |score_attrs|
-      scores << Score.create(score_attrs.merge(:event_discipline_id => params[:event_discipline_id]))
+      scores << Score.create(score_attrs.merge(:event_discipline_id => params[:event_discipline_id], :season_id => @event.season.id))
     end
     
-    # magic here to calculate points
+    @event_discipline = EventDiscipline.find(params[:event_discipline_id])
+    
+    Score.calculate_points(@event_discipline, %w(EPP EPB MPP MPB ETP ETB MTP MTB OTT).include?(@event_discipline.discipline.abbreviation))
     
     redirect_to @event
   end
