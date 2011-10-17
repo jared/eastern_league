@@ -20,7 +20,7 @@ class Score < ActiveRecord::Base
       next if score.disqualified?
       
       # Only Active EL members earn points
-      next if !score.competitor.user.el_member?
+      next if !score.competitor.user.el_member? && !group
       
       # Start from zero, apply a base point score according to rank
       tmp_points = 0
