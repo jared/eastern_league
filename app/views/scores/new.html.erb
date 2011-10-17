@@ -24,7 +24,7 @@
           </tfoot>
           <tbody>
             <tr class="score">
-              <td><%= select_tag("scores[][competitor_id]", options_from_collection_for_select(Competitor.all, :id, :name), :include_blank => true) %></td>
+              <td><%= select_tag("scores[][competitor_id]", options_from_collection_for_select(Competitor.alphabetical.all, :id, :name), :include_blank => true) %></td>
               <td><%= text_field_tag("scores[][rank]") %></td>
               <td><%= text_field_tag("scores[][score]") %></td>
               <td><%= text_field_tag("scores[][tie_breaker]") %></td>
