@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   has_one :competitor
 
-  # before_create :setup_competitor_record
+  before_create :setup_competitor_record
   before_create :set_current_through_date
   
   accepts_nested_attributes_for :competitor
