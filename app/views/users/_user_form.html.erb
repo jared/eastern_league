@@ -27,7 +27,7 @@
   <%= f.text_field :city %>
   <div class="clear"><br /></div>
   <%= f.label :state %>
-  <%= f.select :state, options_for_select( [[ "Select a State", "" ]] + State::NAMES ) %>
+  <%= f.select :state, options_for_select( ([[ "Select a State", "" ]] + State::NAMES), @user.state ) %>
   <div class="clear"><br /></div>
   <%= f.label :zip %>
   <%= f.text_field :zip %>
