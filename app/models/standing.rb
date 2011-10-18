@@ -13,7 +13,7 @@ class Standing < ActiveRecord::Base
         eligible_points = scores.map(&:points).sort.reverse[0..4]
         d_array << Standing.create(:competitor => competitor, :discipline => discipline, :season => season, :points => eligible_points.sum, :competition_count => scores.size)
       end
-      d_array.sort { |elem| elem.points }.each_with_index do |standing, i|
+      d_array.sort { |elem| elem.points }.reverse.each_with_index do |standing, i|
         standing.update_attribute(:rank, i+1)
       end
     end
