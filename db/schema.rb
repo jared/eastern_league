@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017190319) do
+ActiveRecord::Schema.define(:version => 20111018005038) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "user_id"
@@ -130,6 +130,18 @@ ActiveRecord::Schema.define(:version => 20111017190319) do
     t.date     "start_date"
     t.date     "end_date"
     t.boolean  "current",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "standings", :force => true do |t|
+    t.integer  "competitor_id"
+    t.integer  "season_id"
+    t.integer  "discipline_id"
+    t.integer  "points"
+    t.integer  "rank"
+    t.integer  "competition_count"
+    t.string   "tie_breaker"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -38,6 +38,8 @@ EasternLeague::Application.routes.draw do
     end
   end
 
+  resources :standings
+
   resources :events do
     resources :scores
   end

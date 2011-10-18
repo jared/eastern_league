@@ -5,6 +5,8 @@ class Discipline < ActiveRecord::Base
   has_many :event_disciplines
   has_many :events, :through => :event_disciplines
 
+  has_many :standings
+
   scope :ordered, order('position ASC')
   scope :active, where(:active => true)
 

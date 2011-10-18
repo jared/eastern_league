@@ -7,6 +7,10 @@ class Score < ActiveRecord::Base
   belongs_to :competitor
   
   scope :ranked, order("rank ASC")
+
+  def discipline
+    event_discipline.discipline
+  end
   
   def self.calculate_points(event_discipline, group=false)
     scores = event_discipline.scores.ranked

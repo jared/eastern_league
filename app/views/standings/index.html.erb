@@ -1,0 +1,29 @@
+<% title("Current Eastern League Standings") %>
+
+<% @standings.each do |discipline, standings| %>
+  <article class="module width_3_quarter">
+    <header><h3><%= discipline.name %> (<%= discipline.abbreviation %>)</h3></header>
+    <table class="tablesorter">
+      <thead> 
+				<tr> 
+   					<th>Rank</th> 
+    				<th>Competitor</th> 
+    				<th>Points</th> 
+    				<th>Tie Breaker</th> 
+    				<th>Times Competed</th>
+				</tr> 
+			</thead> 
+			<tbody> 
+			  <% standings.sort_by(&:rank) do |standing| %>
+          <tr>
+            <td><%= standing.rank %></td>
+            <td><%= standing.competitor.name %></td>
+            <td><%= standing.points %></td>
+            <td><%= standing.tie_breaker %></td>
+            <td><%= standing.competition_count %></td>
+          </tr>
+        <% end %>
+			</tbody>
+    </table>
+  </article>
+<% end %>
