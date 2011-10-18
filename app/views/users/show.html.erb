@@ -7,7 +7,7 @@
     <% if @user.competitor.bio.blank? %>
       <p>This user has not filled out a biography yet.</p>
     <% else %>
-      <p><%= @user.competitor.bio %></p>
+      <p><%=raw @user.competitor.bio %></p>
     <% end %>
     <% if @user.competitor.avatar? %>
       <%= image_tag(@user.competitor.avatar.url(:medium)) %>
