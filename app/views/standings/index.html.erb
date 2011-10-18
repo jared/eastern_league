@@ -14,7 +14,7 @@
 				</tr> 
 			</thead> 
 			<tbody> 
-			  <% standings.sort_by(&:rank) do |standing| %>
+			  <% standings.sort_by(&:rank).each do |standing| %>
           <tr>
             <td><%= standing.rank %></td>
             <td><%= standing.competitor.name %></td>
