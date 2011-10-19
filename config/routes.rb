@@ -25,6 +25,7 @@ EasternLeague::Application.routes.draw do
   resource :user_session
   
   resources :users do
+    resources :messages
     resources :orders do
       member do
         get :purchase

@@ -1,0 +1,22 @@
+<%= title("Send Message") %>
+
+<article class="module width_3_quarter">
+  <header><h3>Send an Email Message</h3></header>
+    <%= form_tag new_user_message_path(@user) do %>
+      <div class="module_content">
+        <p>
+          Send an email message to another Eastern League member!  Your email address will be visible to the member, and that member will be able to respond to you directly.
+        </p>
+        <fieldset>
+          <%= label_tag :message %>
+          <%= text_area_tag :message %>
+        </fieldset>
+      </div>
+      <footer>
+        <div class="submit_link">
+          <%= submit_tag "Send Message", :class => "alt_btn" %>
+          or <%= link_to "Cancel", request.referer %>
+        </div>
+      </footer>
+  <% end %>
+</article>

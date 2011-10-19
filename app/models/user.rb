@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
   def name_with_email
     "#{self[:full_name]}, #{self[:email].gsub(/@.*/, '@' + '*' * 7)}"
   end
+  
+  def temporary_email?
+    self.email =~ /example.com/
+  end
 
   def deliver_password_reset_instructions!
     reset_perishable_token!

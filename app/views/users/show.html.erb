@@ -18,28 +18,73 @@
 <article class="module width_quarter">
   <header><h3>Contact Details</h3></header>
   <div class="module_content">
-    <h4></h4>
+    <h4><%= @user.full_name %></h4>
     <% if current_user %>
-      <% if @user.share_email %>
-        <p><%= image_tag('icons/email.png', :style => "vertical-align: bottom;") %> <%= mail_to(@user.email) %></p>
-      <% end %>
-      <% if @user.share_phone %>
-        <p><%= image_tag('icons/phone.png') %> <%= @user.phone_number %></p>
-      <% end %>
-      <% if @user.share_address %>
-        <p>
-          <%= image_tag('icons/map.png') %>
-          <%= @user.full_name %><br />
-          <span style="padding-left: 20px;"><%= @user.street_address_1 %></span><br />
-            <% unless @user.street_address_2.blank? %>
-              <span style="padding-left: 20px;"><%= @user.street_address_2 %></span><br />
-            <% end %>
-            <span style="padding-left: 20px;"><%= @user.city %> <%= @user.state %></span><br />
-            <span style="padding-left: 20px;"><%= @user.zip %></span>
+      <p>
+        <%= image_tag('icons/email.png', :style => "vertical-align: bottom;") %> 
+        <% if @user.share_email %>
+          <%= mail_to(@user.email) %>
+        <% else %>
+          <%= link_to "Send Message", new_user_message_path(@user) %>
+        <% end %>
+      </p>
+      
+      <p>
+        <%= image_tag('icons/phone.png') %> 
+        <% if @user.share_phone %>
+          <%= @user.phone_number %>
+        <% else %>
+          Private Phone Number
+          <% if @user == current_user %>
+            (<%= link_to "Edit", edit_user_path(@user) %>)
+          <% end %>
+        <% end %>
         </p>
-      <% end %>
+      <p>
+        <%= image_tag('icons/map.png') %>
+        <%= @user.full_name %><br />
+        <% if @user.share_address %>
+          <span style="padding-left: 20px;"><%= @user.street_address_1 %></span><br />
+          <% unless @user.street_address_2.blank? %>
+            <span style="padding-left: 20px;"><%= @user.street_address_2 %></span><br />
+          <% end %>
+          <span style="padding-left: 20px;"><%= @user.city %> <%= @user.state %></span><br />
+          <span style="padding-left: 20px;"><%= @user.zip %></span>
+        <% else %>
+          Private Address
+          <% if @user == current_user %>
+            (<%= link_to "Edit", edit_user_path(@user) %>)
+          <% end %>
+        <% end %>
+      </p>
     <% else %>
       <h4 class="alert_warning">Only logged-in users may view this information</h4>
     <% end %>
   </div>
 </article>
+
+<% @user.competitor.scores.season.group_by(&:discipline).each do |discipline, scores| %>
+  <article class="module width_3_quarter">
+    <header><h3><%= discipline.name %> (<%= discipline.abbreviation %>)</h3></header>
+    <table class="tablesorter" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Place</th>
+          <th>Score</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% scores.each do |score| %>
+          <tr>
+            <td><%= score.event_discipline.event.acronym %></td>
+            <td><%= score.rank %></td>
+            <td><%= score.score %></td>
+            <td><%= score.points %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </article>
+<% end %>
