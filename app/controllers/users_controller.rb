@@ -2,6 +2,11 @@ class UsersController < ApplicationController
 
   before_filter :require_user, :except => [:show, :new, :create]
 
+  def index
+    @users = User.all
+    authorize! :manage, User.new, :message => "Only an administrator may view the list of users"
+  end
+
   def show
     @user = User.find(params[:id])
   end

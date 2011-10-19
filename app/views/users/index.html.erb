@@ -1,0 +1,25 @@
+<% title("All Users") %>
+
+<article class="module width_full">
+  <header><h3>List All Users</h3></header>
+  <table class="tablesorter">
+    <thead> 
+			<tr> 
+ 					<th>ID</th> 
+  				<th>Full Name</th> 
+  				<th>E-mail</th> 
+  				<th>&nbsp;</th>
+			</tr> 
+		</thead> 
+		<tbody> 
+		  <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.full_name, user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to "Edit", edit_user_path(user) %></td>
+        </tr>
+      <% end %>
+		</tbody>
+  </table>
+</article>

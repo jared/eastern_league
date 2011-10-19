@@ -18,7 +18,8 @@
    					<th>Rank</th> 
     				<th>Competitor</th> 
     				<th>Score</th> 
-    				<th>Points</th> 
+    				<th>Points</th>
+    				<th>TieBreaker</th>
 				</tr> 
 			</thead> 
 			<tbody> 
@@ -28,9 +29,12 @@
             <td><%= score.competitor.name %></td>
             <td><%= score.score %></td>
             <td><%= score.points %></td>
+            <td><%= score.tie_breaker %></td>
           </tr>
         <% end %>
 			</tbody>
     </table>
   </article>
 <% end %>
+
+<div class="clear"></div>

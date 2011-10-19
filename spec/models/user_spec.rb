@@ -38,8 +38,8 @@ describe User do
     it "should set the current_through variables" do
       new_expiration_date = 12.months.from_now.end_of_month
       @user.activate_membership!(@membership)
-      @user.current_through_month.should == new_expiration_date.month
-      @user.current_through_year.should == new_expiration_date.year
+      @user.current_through_date.month.should == new_expiration_date.month
+      @user.current_through_date.year.should == new_expiration_date.year
     end
 
     it "should set former_member to false" do
