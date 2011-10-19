@@ -19,7 +19,7 @@
     				<th>Competitor</th> 
     				<th>Score</th> 
     				<th>Points</th>
-    				<th>TieBreaker</th>
+    				<th>Tie Breaker</th>
 				</tr> 
 			</thead> 
 			<tbody> 
@@ -29,12 +29,26 @@
             <td><%= score.competitor.name %></td>
             <td><%= score.score %></td>
             <td><%= score.points %></td>
-            <td><%= score.tie_breaker %></td>
+            <td><%= link_toscore.tie_breaker, "#tiebreakers" %></td>
           </tr>
         <% end %>
 			</tbody>
     </table>
   </article>
 <% end %>
+
+<div class="clear"></div>
+
+<article class="module_width_3_quarter">
+  <header><h3><a name="tiebreakers"></a>Tie Breaker Criteria</h3></header>
+  <div class="module_content">
+    <h4>Ballet Tiebreakers</h4>
+    <ul>
+      <li><strong>Tiebreaker 1:</strong> (Using 3 scores) Use average total choreography score.</li>
+      <li><strong>Tiebreaker 2:</strong> (Adding in dropped scores, if any) Use total score.</li>
+      <li><strong>Tiebreaker 3:</strong> (Adding in dropped scores, if any) Use average total choreography score.</li>
+    </ul>
+  </div>
+</article>
 
 <div class="clear"></div>
