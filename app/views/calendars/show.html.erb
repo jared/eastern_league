@@ -12,16 +12,17 @@
         <th>Status</th>
         <th>Event<br />(Location)</th>
         <th>Contact</th>
-        <th>Results</th>
       </tr>
     </thead>
     <tbody>
       <% @events.each do |event| %>
         <tr id="<%= dom_id(event) %>">
           <td><%= event.event_dates %></td>
-          <td><%= event.status %></td>
           <td>
-            <strong><%= event.acronym %></strong>: <%= link_to(event.name, event.url) %><br />
+            <%= status_name_and_link(event) %>
+          </td>
+          <td>
+            <strong><%= event.acronym %></strong>: <%= link_to(event.name, event_path(event)) %><br />
             (<%= event.location %>)
           </td>
           <td>
@@ -29,7 +30,6 @@
             <%= event.contact_phone %><br />
             <%= mail_to(event.contact_email) %>
           </td>
-          <td>N/A</td>
         </tr>
       <% end %>
     </tbody>

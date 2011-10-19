@@ -13,6 +13,10 @@ class Score < ActiveRecord::Base
     event_discipline.discipline
   end
   
+  def event
+    event_discipline.event
+  end
+  
   def self.calculate_points(event_discipline, group=false)
     scores = event_discipline.scores.ranked
     max_bonus = [scores.size, 20].min

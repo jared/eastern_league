@@ -7,6 +7,10 @@
   <%= f.text_field :acronym, :placeholder => "HSSKC" %>
   <div class="clear"><br /></div>
 
+  <%= f.label :status %>
+  <%= f.select :status, ["Tentative", "Sanctioning Approved", "Registration Open", "Registration Closed", "Results Available"] %>
+  <div class="clear"><br /></div>
+
   <%= f.label :season %>
   <%= f.collection_select :season_id, Season.all, :id, :year %>
   <div class="clear"><br /></div>

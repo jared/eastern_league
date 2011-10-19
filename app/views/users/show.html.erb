@@ -78,7 +78,7 @@
       <tbody>
         <% scores.each do |score| %>
           <tr>
-            <td><%= score.event_discipline.event.acronym %></td>
+            <td><%= link_to(score.event.acronym, score.event) %></td>
             <td><%= score.rank %></td>
             <td><%= score.score %></td>
             <td><%= score.points %></td>
@@ -88,3 +88,5 @@
     </table>
   </article>
 <% end %>
+
+<div class="clear"><br /></div>
