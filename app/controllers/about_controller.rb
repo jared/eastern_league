@@ -15,4 +15,7 @@ class AboutController < ApplicationController
   def links
   end
 
+  def contact
+  end
+
 end

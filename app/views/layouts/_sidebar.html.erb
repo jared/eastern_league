@@ -1,4 +1,11 @@
 <aside id="sidebar" class="column">
+  <% if current_user && current_user.el_member? %>
+    <%= form_tag search_users_path, :method => :get, :class => "quick_search" do %>
+      <%= text_field_tag :q, "Member Search", :onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;" %>
+  	<% end %>
+  <% end %>
+	<hr/>
+  
   <% if !current_user %>
     <h3>Log In</h3>
     <ul>
@@ -14,6 +21,7 @@
     <li class="icn_spectators"><%= link_to "Spectators", spectators_path %></a></li>
     <!-- li class="icn_newsletter"><a href="#">Newsletter Archives</a></li -->
     <li class="icn_link"><%= link_to "Links", links_path %></li>
+    <li class="icn_contact"><%= link_to "Contact Us", contact_path %></li>
   </ul>
   <h3>Competition</h3>
   <ul>

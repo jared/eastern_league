@@ -10,6 +10,7 @@
 <% end %>
 
 <% @event.event_disciplines.each do |ed| %>
+  <% next if ed.scores.empty? %>
   <article class="module width_3_quarter">
     <header><h3><%= ed.name %> (<%= ed.discipline.abbreviation %>)</h3></header>
     <table class="tablesorter">

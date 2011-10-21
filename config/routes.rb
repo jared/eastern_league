@@ -13,6 +13,7 @@ EasternLeague::Application.routes.draw do
   match 'competitors' => 'about#competitors', :as => :competitors
   match 'organizers'  => 'about#organizers',  :as => :organizers
   match 'spectators'  => 'about#spectators',  :as => :spectators
+  match 'contact'     => 'about#contact',     :as => :contact
 
   match 'links'       => 'about#links',       :as => :links
 
@@ -36,6 +37,9 @@ EasternLeague::Application.routes.draw do
       new do
         post :confirm
       end
+    end
+    collection do
+      get :search
     end
   end
 

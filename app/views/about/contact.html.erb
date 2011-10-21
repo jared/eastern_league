@@ -1,0 +1,24 @@
+<%= title("Contact Us") %>
+
+<article class="module width_3_quarter">
+  <header><h3>For more information, contact</h3></header>
+  <div class="module_content">
+    <p>
+      <%= image_tag('icons/map.png') %>
+      Jared Haworth<br />
+      <span style="padding-left: 20px;">Eastern League Commissioner</span><br />
+      <span style="padding-left: 20px;">212 Hazelmere Dr</span><br />
+      <span style="padding-left: 20px;">Holly SPrings, NC 27540</span><br />
+    </p>
+
+    <p>
+      <%= image_tag('icons/phone.png') %> 
+      919/637-3041
+    </p>
+
+    <p>
+      <%= image_tag('icons/email.png', :style => "vertical-align: bottom;") %> 
+      <%= mail_to("elcommissioner@gmail.com") %>
+    </p>
+  </div>
+</article>

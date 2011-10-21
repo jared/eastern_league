@@ -1,0 +1,25 @@
+<% title("User Search") %>
+
+<article class="module width_full">
+  <header><h3>Users Matching "<%= params[:q] %>"</h3></header>
+  <% if @users.empty? %>
+    <div class="module_content">
+      <p>No users matching "<%= params[:q] %>" could be found.</p>
+    </div>
+  <% else %>
+    <table class="tablesorter">
+      <thead> 
+  			<tr> 
+    				<th>Full Name</th> 
+  			</tr> 
+  		</thead> 
+  		<tbody>
+  		  <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.full_name, user_path(user) %></td>
+          </tr>
+        <% end %>
+  		</tbody>
+    </table>
+  <% end %>
+</article>

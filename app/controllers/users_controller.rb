@@ -6,6 +6,12 @@ class UsersController < ApplicationController
     @users = User.all
     authorize! :manage, User.new, :message => "Only an administrator may view the list of users"
   end
+  
+  def search
+    authorize! :search, User.new, :message => "Only current Eastern League members may use the search function."
+    search_term = "%#{params[:q]}%"
+    @users = User.where("users.full_name like ?", search_term).order("full_name ASC")
+  end
 
   def show
     @user = User.find(params[:id])

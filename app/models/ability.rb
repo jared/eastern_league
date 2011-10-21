@@ -11,6 +11,7 @@ class Ability
     else
       can :read, :all
       can :message, User if user.el_member?
+      can :search, User if user.el_member?
       can :manage, User, :id => user.id
       can :manage, Event, :organizer_id => user.id
       cannot :create, Event
