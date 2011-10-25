@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     authorize! :message, User.new, :message => "Only current Eastern League members can send messages."
-    UserMailer.message(@user, current_user, params[:message]).deliver
+    UserMailer.user_message(@user, current_user, params[:message]).deliver
     flash[:notice] = "Your message to #{@user.full_name} has been sent."
     redirect_to user_path(@user)
   end

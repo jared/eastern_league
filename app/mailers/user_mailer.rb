@@ -7,10 +7,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Password Reset Instructions")
   end
   
-  def message(user, sender, message)
+  def user_message(user, sender, message_text)
     @user = user
     @sender = sender
-    @message = message
+    @message = message_text
     mail(:to => @user.email, :from => sender.email, :subject => "#{sender.full_name} has sent you a message via EasternLeague.net")
   end
   
