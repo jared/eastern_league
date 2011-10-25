@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
   end
   
   def membership_purchased(membership)
-    @membership = @membership
+    @membership = membership
     @user = @membership.user
     mail(:to => @user.email, :subject => "Your Eastern League Membership Purchase")
   end
