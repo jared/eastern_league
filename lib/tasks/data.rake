@@ -61,7 +61,7 @@ namespace :data do
   
   desc "Load membership data for initial records"
   task :memberships => :environment do
-    arr_of_arrs = CSV.read("#{Rails.root}/tmp/tblTeamQueryText.csv")
+    arr_of_arrs = CSV.read("#{Rails.root}/tmp/tblMembershipQueryRecent.csv")
     arr_of_arrs.each do |row|
       u = User.find_by_id(row[0])
       attrs = {}
@@ -98,7 +98,7 @@ namespace :data do
         
         membership = u.memberships.build(attrs)
         if membership.save
-          u.update_attribute(:el_member, (row[5].to_i == 1 ? true : false ))
+          u.update_attributes(:el_member => (row[5].to_i == 1 ? true : false ), :current_through_date => membership.expires_at)
           puts "Created Membership for #{u.full_name}"
         else
           puts "Error: #{membership.errors.full_messages.to_sentence}"

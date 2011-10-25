@@ -43,6 +43,15 @@ class User < ActiveRecord::Base
     UserMailer.password_reset_instructions(self).deliver
   end
 
+  def primary_member?
+    newest_membership = self.memberships.newest.first
+    if newest_membership
+      newest_membership.primary_member?
+    else
+      true
+    end
+  end
+
 private
 
   def setup_competitor_record

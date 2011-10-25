@@ -9,6 +9,10 @@ class MembershipsController < ApplicationController
 
   def new
     load_user
+    unless @user.primary_member?
+      flash[:error] = "Your membership type must be renewed by the primary member.  Please ask #{@user.memberships.newest.first.primary_user.full_name} to renew on your behalf."
+      redirect_to root_path and return
+    end
     @membership = @user.memberships.build
   end
 

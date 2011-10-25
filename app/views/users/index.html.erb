@@ -2,12 +2,12 @@
 
 <article class="module width_full">
   <header><h3>List All Users</h3></header>
-  <table class="tablesorter">
+  <table class="tablesorter" cellspacing="0">
     <thead> 
 			<tr> 
  					<th>ID</th> 
   				<th>Full Name</th> 
-  				<th>E-mail</th> 
+  				<th>Expiration</th>
   				<th>&nbsp;</th>
 			</tr> 
 		</thead> 
@@ -16,7 +16,7 @@
         <tr>
           <td><%= user.id %></td>
           <td><%= link_to user.full_name, user_path(user) %></td>
-          <td><%= user.email %></td>
+          <td><%= user.current_through_date %></td>
           <td><%= link_to "Edit", edit_user_path(user) %></td>
         </tr>
       <% end %>
