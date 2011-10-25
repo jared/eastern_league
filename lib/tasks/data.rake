@@ -59,4 +59,52 @@ namespace :data do
     end
   end
   
+  desc "Load membership data for initial records"
+  task :memberships => :environment do
+    arr_of_arrs = CSV.read("#{Rails.root}/tmp/tblTeamQueryText.csv")
+    arr_of_arrs.each do |row|
+      u = User.find_by_id(row[0])
+      attrs = {}
+      if u
+        start_time = Time.utc(2011, 8, 1)
+        attrs[:paid] = true
+        attrs[:expires_at] = Date.new(row[4].to_i, row[2].to_i, -1).to_time.end_of_day
+        if (attrs[:expires_at] - start_time) > 1.year
+          two_years = true
+        else
+          two_years = false
+        end
+        
+        if row[3].blank?
+          # Primary Member
+          attrs[:primary_member] = true
+          attrs[:primary_user_id] = nil
+          if two_years
+            attrs[:membership_plan_id] = 4
+          else
+            attrs[:membership_plan_id] = 2
+          end
+
+        else
+          # Family Member
+          attrs[:primary_member] = false
+          attrs[:primary_user_id] = row[3]
+          if two_years
+            attrs[:membership_plan_id] = 3
+          else
+            attrs[:membership_plan_id] = 1
+          end
+        end
+        
+        membership = u.memberships.build(attrs)
+        if membership.save
+          u.update_attribute(:el_member, (row[5].to_i == 1 ? true : false ))
+          puts "Created Membership for #{u.full_name}"
+        else
+          puts "Error: #{membership.errors.full_messages.to_sentence}"
+        end
+      end
+    end
+  end
+  
 end
