@@ -1,0 +1,19 @@
+<p>Hi <%= @user.nickname %>,</p>
+<p>
+  Thank you for your purchase of an Eastern League Sport Kite Association Membership.
+  
+  <% if @membership.primary_member? %>
+    You have purchased the <%= @membership.membership_plan.name %> membership plan.
+  <% else %>
+    <%= @membership.primary_user.full_name %> has purchased a <%= @membership.membership_plan.name %> membership plan on your behalf.
+  <% end %>
+</p>
+
+<p>Your new expiration date is <%=l @membership.expires_at, :format => :membership_date %></p>
+
+<p>Thank you for your support of the Eastern League!</p>
+
+<p>
+  Jared Haworth<br />
+  Commissioner
+</p>

@@ -17,6 +17,7 @@ class Membership < ActiveRecord::Base
     }
     self.update_attributes!(attrs)
     user.activate_membership!(self)
+    UserMailer.membership_purchased(self).deliver unless self.user.temporary_email?
   end
 
 end

@@ -80,9 +80,9 @@ namespace :data do
           attrs[:primary_member] = true
           attrs[:primary_user_id] = nil
           if two_years
-            attrs[:membership_plan_id] = 4
+            attrs[:membership_plan_id] = 3
           else
-            attrs[:membership_plan_id] = 2
+            attrs[:membership_plan_id] = 1
           end
 
         else
@@ -90,9 +90,9 @@ namespace :data do
           attrs[:primary_member] = false
           attrs[:primary_user_id] = row[3]
           if two_years
-            attrs[:membership_plan_id] = 3
+            attrs[:membership_plan_id] = 4
           else
-            attrs[:membership_plan_id] = 1
+            attrs[:membership_plan_id] = 2
           end
         end
         

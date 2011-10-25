@@ -13,5 +13,11 @@ class UserMailer < ActionMailer::Base
     @message = message
     mail(:to => @user.email, :from => sender.email, :subject => "#{sender.full_name} has sent you a message via EasternLeague.net")
   end
+  
+  def membership_purchased(membership)
+    @membership = @membership
+    @user = @membership.user
+    mail(:to => @user.email, :subject => "Your Eastern League Membership Purchase")
+  end
 
 end

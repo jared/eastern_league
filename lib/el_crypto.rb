@@ -33,9 +33,9 @@ module ElCrypto
         :return         => thank_you_user_order_url(order.user, order, :host => RETURN_HOST),
 
         # TODO: Update these with more aesthetically pleasing values.
-        :cpp_header_image     => "http://easternleague.net/images/ELNewLogo.gif", # Large format logo
-        :image_url            => "http://easternleague.net/images/ELNewLogo.gif", # Small format logo
-        :cpp_headerback_color => "F7F8F8",                                  # Header background color
+        :cpp_header_image     => "http://easternleague.net/assets/elbanner.png", # Large format logo
+        :image_url            => "http://easternleague.net/assets/elbanner.png", # Small format logo
+        :cpp_headerback_color => "202020",                                  # Header background color
         :cbt                  => "Return to the Eastern League",            # Button text when payment is complete, to return to INSERT_BRAND_NAME
       }
       @encrypted_data = encrypt_data(@decrypted_data)

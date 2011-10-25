@@ -21,6 +21,7 @@ namespace :deploy do
   task :copy_configuration_files do
     run "cp #{shared_path}/secure/*.rb #{release_path}/config/initializers"
     run "cp #{shared_path}/secure/database.yml #{release_path}/config"
+    run "cp #{shared_path}/secure/*.pem #{release_path}/config/paypal"
   end
   
   task :start do ; end

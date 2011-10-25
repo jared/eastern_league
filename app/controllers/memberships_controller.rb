@@ -39,7 +39,7 @@ class MembershipsController < ApplicationController
     load_user
     @order = @user.orders.build
     @membership = @user.memberships.create(params[:membership])
-    @order.line_items.build(:purchasable => @membership, :amount => @membership.membership_plan.amount, :description => @membership.membership_plan.name)
+    @order.line_items.build(:purchasable => @membership, :amount => @membership.membership_plan.amount, :description => "#{@membership.membership_plan.name} for #{@membership.user.full_name}")
 
     @additional_members = []
 
@@ -54,7 +54,7 @@ class MembershipsController < ApplicationController
                                                            :primary_membership_id => @membership.id,
                                                            :primary_member => false)
         @additional_members << family_user
-        @order.line_items.build(:purchasable => family_membership, :amount => family_membership.membership_plan.amount, :description => family_membership.membership_plan.name)
+        @order.line_items.build(:purchasable => family_membership, :amount => family_membership.membership_plan.amount, :description => "#{family_membership.membership_plan.name} for #{family_user.full_name}")
       end
     end
 
@@ -66,7 +66,7 @@ class MembershipsController < ApplicationController
                                                            :primary_membership_id => @membership.id,
                                                            :primary_member => false)
         @additional_members << family_user
-        @order.line_items.build(:purchasable => family_membership, :amount => family_membership.membership_plan.amount, :description => family_membership.membership_plan.name)
+        @order.line_items.build(:purchasable => family_membership, :amount => family_membership.membership_plan.amount, :description => "#{family_membership.membership_plan.name} for #{family_user.full_name}")
       end
     end
     @order.save

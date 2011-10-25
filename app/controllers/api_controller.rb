@@ -3,7 +3,7 @@ class ApiController < ApplicationController
 
   def ipn
     @notify = Paypal::Notification.new(request.raw_post)
-    File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{request.raw_post}\n" }
+    File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{Time.now.to_s(:db)}: #{request.raw_post}\n" }
 
     unless Order.count("*", :conditions => ["paypal_transaction_identifier = ?", @notify.transaction_id]).zero?
       logger.warn("Multiple Payments received for #{@notify.transaction_id}")
