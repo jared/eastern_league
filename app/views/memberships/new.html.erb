@@ -1,5 +1,7 @@
 <% title("Membership") %>
 
+<%= display_renewal_date(@user) %>
+
 <article class="module width_3_quarter">
   <header><h3>Choose a Membership Plan</h3></header>
   <%= form_for [@user, @membership], :url => confirm_new_user_membership_path(@user) do |f| %>

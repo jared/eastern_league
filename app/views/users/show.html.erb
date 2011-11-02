@@ -63,7 +63,7 @@
   </div>
 </article>
 
-<% @user.competitor.scores.season.group_by(&:discipline).each do |discipline, scores| %>
+<% @user.competitor.scores.season(Season.current).group_by(&:discipline).each do |discipline, scores| %>
   <article class="module width_3_quarter">
     <header><h3><%= discipline.name %> (<%= discipline.abbreviation %>)</h3></header>
     <table class="tablesorter" cellspacing="0">

@@ -51,7 +51,7 @@ FactoryGirl.define do
   end
 
   factory :season do
-    year        "2011"
+    year        "2012"
     start_date  Date.new(2011, 8, 1)
     end_date    Date.new(2012, 7, 31)
     current     true
