@@ -1,0 +1,48 @@
+<% title("#{@event.name} Scores") %>
+
+<% @event.event_disciplines.each do |ed| %>
+  <% next if ed.scores.empty? %>
+  <article class="module width_3_quarter">
+    <header><h3><%= ed.name %> (<%= ed.discipline.abbreviation %>)</h3></header>
+    <table class="tablesorter" cellspacing="0">
+      <thead> 
+				<tr> 
+   					<th>Rank</th> 
+    				<th>Competitor</th> 
+    				<th>Score</th> 
+    				<th>Points</th>
+    				<th>Tie Breaker</th>
+				</tr> 
+			</thead> 
+			<tbody> 
+			  <% ed.scores.ranked.each do |score| %>
+          <tr>
+            <td><%= score.rank %></td>
+            <td>
+              <%= score_name_and_link(score) %>
+            </td>
+            <td><%= score.score %></td>
+            <td><%= score.points %></td>
+            <td><%= link_to score.tie_breaker, "#tiebreakers" %></td>
+          </tr>
+        <% end %>
+			</tbody>
+    </table>
+  </article>
+<% end %>
+
+<div class="clear"></div>
+
+<article class="module width_3_quarter">
+  <header><h3><a name="tiebreakers"></a>Tie Breaker Criteria</h3></header>
+  <div class="module_content">
+    <h4>Ballet Tiebreakers</h4>
+    <ul>
+      <li><strong>Tiebreaker 1:</strong> (Using 3 scores) Use average total choreography score.</li>
+      <li><strong>Tiebreaker 2:</strong> (Adding in dropped scores, if any) Use total score.</li>
+      <li><strong>Tiebreaker 3:</strong> (Adding in dropped scores, if any) Use average total choreography score.</li>
+    </ul>
+  </div>
+</article>
+
+<div class="clear"></div>

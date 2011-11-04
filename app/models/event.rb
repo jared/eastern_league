@@ -7,6 +7,10 @@ class Event < ActiveRecord::Base
   has_many :disciplines, :through => :event_disciplines
   has_many :scores, :through => :event_disciplines
   
+  has_one :event_detail
+  
+  accepts_nested_attributes_for :event_detail
+  
   validates_presence_of :name, :season_id, :location
   validate :validate_date_escalation, :if => Proc.new { |event| !event.start_date.blank? && !event.end_date.blank? }
   

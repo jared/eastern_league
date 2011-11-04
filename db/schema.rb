@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018005038) do
+ActiveRecord::Schema.define(:version => 20111102202518) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "user_id"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(:version => 20111018005038) do
     t.integer  "score_multiplier", :default => 1
     t.boolean  "active",           :default => true
     t.integer  "position",         :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_details", :force => true do |t|
+    t.integer  "event_id"
+    t.text     "general_information"
+    t.text     "competitor_information"
+    t.text     "directions"
+    t.text     "accommodations"
+    t.text     "banquet"
+    t.text     "auction"
+    t.text     "sponsors"
+    t.text     "schedule"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

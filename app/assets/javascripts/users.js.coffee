@@ -5,3 +5,4 @@
 $(document).ready ->
   $("#user_member_since").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
   $("#user_current_through_date").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
+  $('textarea.competitor_bio').tinymce({theme: 'simple'});

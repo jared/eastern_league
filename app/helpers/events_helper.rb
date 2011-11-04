@@ -17,4 +17,16 @@ module EventsHelper
     end
   end
   
+  def event_detail_links(event_detail)
+    output = []
+    sections = %w(competitor_information schedule directions accommodations banquet auction sponsors)
+    sections.each do |section|
+      link = content_tag(:li) do
+        content_tag(:a, section.humanize.titleize, :href => "##{section}")
+      end
+      output << link unless event_detail.send(section.to_sym).blank?
+    end
+    output.join("\n")
+  end
+  
 end

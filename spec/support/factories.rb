@@ -73,5 +73,10 @@ FactoryGirl.define do
     association    :season
     registration_deadline Date.new(2011, 8, 1)
   end
+  
+  factory :event_detail do
+    association :event
+    general_information "Some general event info"
+  end
 
 end

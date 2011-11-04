@@ -7,7 +7,10 @@
       <%= render "shared/error_messages", :target => @event %>
       <%= render :partial => "event_form", :locals => { :f => f } %>
       <div class="clear"></div>
-
+      <p>Use the fields below to share details about the event.  If there is no information for a particular section (for instance, there will not be a banquet), just leave that section blank.</p>
+      <%= f.fields_for :event_detail do |event_detail| %>
+        <%= render :partial => "event_detail_form", :locals => { :event_detail => event_detail } %>
+      <% end %>      
     </div>
     <footer>
       <div class="submit_link">

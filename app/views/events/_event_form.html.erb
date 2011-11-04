@@ -7,6 +7,10 @@
   <%= f.text_field :acronym, :placeholder => "HSSKC" %>
   <div class="clear"><br /></div>
 
+  <%= f.label :organizer %>
+  <%= f.collection_select :organizer_id, User.order("full_name ASC").all, :id, :full_name, :include_blank => true %>
+  <div class="clear"><br /></div>
+
   <%= f.label :status %>
   <%= f.select :status, ["Tentative", "Sanctioning Approved", "Registration Open", "Registration Closed", "Results Available"] %>
   <div class="clear"><br /></div>

@@ -1,5 +1,10 @@
 <% title(@event.name) %>
 
+<% unless @event.scores.empty? %>
+  <h4 class="alert_info"><%= link_to("Scores for #{@event.name}", event_scores_path(@event)) %> have been posted!</h4>
+<% end %>
+
+
 <% if can? :create, Score %>
   <article class="module width_full">
     <header><h3>Admin Tools</h3></header>
@@ -9,64 +14,39 @@
   </article>
 <% end %>
 
-<% if @event.scores.empty? %>
-  <article class="module width_3_quarter">
-    <header><h3>Event Details</h3></header>
-    <div class="module_content">
+<article class="module width_3_quarter">
+  <header><h3>Event Details</h3></header>
+  <div class="module_content">
+    <% unless @event.event_detail.general_information.blank? %>
+      <%= raw(@event.event_detail.general_information) %>
+    <% else %>
       <p>Sorry, we don't have any information available yet about <%= @event.name %>.  Please check back soon, or contact the event organizer listed below for more details.</p>
-      <p>
-        <%= @event.contact_name  %><br />
-        <%= mail_to(@event.contact_email) %><br />
-        <%= @event.contact_phone %><br />
-      </p>
-    </div>
-  </article>
-<% else %>
+    <% end %>
+    <h4>Event Organizer</h4>
+    <p>
+      <%= @event.contact_name  %><br />
+      <%= mail_to(@event.contact_email) %><br />
+      <%= @event.contact_phone %><br />
+    </p>
+  </div>
+</article>
 
-  <% @event.event_disciplines.each do |ed| %>
-    <% next if ed.scores.empty? %>
-    <article class="module width_3_quarter">
-      <header><h3><%= ed.name %> (<%= ed.discipline.abbreviation %>)</h3></header>
-      <table class="tablesorter">
-        <thead> 
-  				<tr> 
-     					<th>Rank</th> 
-      				<th>Competitor</th> 
-      				<th>Score</th> 
-      				<th>Points</th>
-      				<th>Tie Breaker</th>
-  				</tr> 
-  			</thead> 
-  			<tbody> 
-  			  <% ed.scores.ranked.each do |score| %>
-            <tr>
-              <td><%= score.rank %></td>
-              <td>
-                <%= score_name_and_link(score) %>
-              </td>
-              <td><%= score.score %></td>
-              <td><%= score.points %></td>
-              <td><%= link_to score.tie_breaker, "#tiebreakers" %></td>
-            </tr>
-          <% end %>
-  			</tbody>
-      </table>
-    </article>
-  <% end %>
+<article class="module width_quarter">
+  <header><h3>Quick Links</h3></header>
+  <div class="module_content">
+    <ul>
+      <%=raw event_detail_links(@event.event_detail) %>
+    </ul>
+  </div>
+</article>
 
-  <div class="clear"></div>
+<%= render(:partial => "event_detail_field", :locals => { :detail_title => "competitor_information", :detail =>  @event.event_detail.competitor_information }) unless @event.event_detail.competitor_information.blank? %>
+<%= render(:partial => "event_detail_field", :locals => { :detail_title => "schedule", :detail => @event.event_detail.schedule }) unless @event.event_detail.schedule.blank? %>
 
-  <article class="module width_3_quarter">
-    <header><h3><a name="tiebreakers"></a>Tie Breaker Criteria</h3></header>
-    <div class="module_content">
-      <h4>Ballet Tiebreakers</h4>
-      <ul>
-        <li><strong>Tiebreaker 1:</strong> (Using 3 scores) Use average total choreography score.</li>
-        <li><strong>Tiebreaker 2:</strong> (Adding in dropped scores, if any) Use total score.</li>
-        <li><strong>Tiebreaker 3:</strong> (Adding in dropped scores, if any) Use average total choreography score.</li>
-      </ul>
-    </div>
-  </article>
+<%= render(:partial => "event_detail_field", :locals => { :detail_title => "directions", :detail => @event.event_detail.directions }) unless @event.event_detail.directions.blank? %>
+<%= render(:partial => "event_detail_field", :locals => { :detail_title => "accommodations", :detail => @event.event_detail.accommodations }) unless @event.event_detail.accommodations.blank? %>
 
-  <div class="clear"></div>
-<% end %>
+<%= render(:partial => "event_detail_field", :locals => { :detail_title => "banquet", :detail => @event.event_detail.banquet }) unless @event.event_detail.banquet.blank? %>
+<%= render(:partial => "event_detail_field", :locals => { :detail_title => "auction", :detail => @event.event_detail.auction }) unless @event.event_detail.auction.blank? %>
+
+<%= render(:partial => "event_detail_field", :locals => { :detail_title => "sponsors", :detail => @event.event_detail.sponsors }) unless @event.event_detail.sponsors.blank? %>

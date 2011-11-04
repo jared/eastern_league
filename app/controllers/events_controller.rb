@@ -9,15 +9,18 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
+    @event.event_detail ||= EventDetail.new
   end
 
   def new
     @event = Event.new(:season => Season.current)
+    @event.build_event_detail
     authorize! :create, Event
   end
 
   def edit
     @event = Event.find(params[:id])
+    @event.build_event_detail unless @event.event_detail
     authorize! :update, @event
   end
 

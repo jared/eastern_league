@@ -6,3 +6,13 @@ $(document).ready ->
   $("#event_start_date").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
   $("#event_end_date").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
   $("#event_registration_deadline").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
+
+  $('textarea.general_information').tinymce({theme: 'advanced'});
+  $('textarea.competitor_information').tinymce({theme: 'advanced'});
+  $('textarea.schedule').tinymce({theme: 'advanced'});
+  $('textarea.directions').tinymce({theme: 'advanced'});
+  $('textarea.accomodations').tinymce({theme: 'advanced'});
+  $('textarea.accomodations').tinymce({theme: 'advanced'});
+  $('textarea.banquet').tinymce({theme: 'advanced'});
+  $('textarea.auction').tinymce({theme: 'advanced'});
+  $('textarea.sponsors').tinymce({theme: 'advanced'});
