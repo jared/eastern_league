@@ -11,8 +11,7 @@ $(document).ready ->
   $('textarea.competitor_information').tinymce({theme: 'advanced'});
   $('textarea.schedule').tinymce({theme: 'advanced'});
   $('textarea.directions').tinymce({theme: 'advanced'});
-  $('textarea.accomodations').tinymce({theme: 'advanced'});
-  $('textarea.accomodations').tinymce({theme: 'advanced'});
+  $('textarea.accommodations').tinymce({theme: 'advanced'});
   $('textarea.banquet').tinymce({theme: 'advanced'});
   $('textarea.auction').tinymce({theme: 'advanced'});
   $('textarea.sponsors').tinymce({theme: 'advanced'});

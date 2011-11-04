@@ -78,7 +78,7 @@
       <tbody>
         <% scores.each do |score| %>
           <tr>
-            <td><%= link_to(score.event.acronym, score.event) %></td>
+            <td><%= link_to(score.event.acronym, event_scores_path(score.event)) %></td>
             <td><%= score.rank %></td>
             <td><%= score.score %></td>
             <td><%= score.points %></td>
