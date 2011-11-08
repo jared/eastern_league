@@ -1,0 +1,23 @@
+<fieldset>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <div class="clear"><br /></div>
+  
+  <%= f.label :link_type %>
+  <%= f.select :link_type, ['webpage', 'email'] %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :url, "Sponsor Website or Email" %>
+  <%= f.text_field :url %>
+  <div class="clear"><br /></div>
+  
+  <%= f.label :logo, "Sponsor Logo" %>
+  <%= f.file_field :logo %>
+  <% if f.object.logo? %>
+    <p style="padding-left: 1em;">
+      <%= image_tag(f.object.logo.url(:thumb)) %>
+    </p>
+  <% end %>
+  
+  <div class="clear"><br /></div>
+</fieldset>

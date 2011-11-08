@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @event.build_event_detail unless @event.event_detail
+    @event.event_sponsors.build if @event.event_sponsors.empty?
     authorize! :update, @event
   end
 
@@ -41,7 +42,7 @@ class EventsController < ApplicationController
     authorize! :update, @event
     if @event.update_attributes(params[:event])
       flash[:notice] = "This event has been updated."
-      redirect_to events_path and return
+      redirect_to event_path(@event) and return
     else
       flash[:error] = "Unable to update this event in the database."
       render :action => :edit

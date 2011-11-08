@@ -49,5 +49,19 @@
 <%= render(:partial => "event_detail_field", :locals => { :detail_title => "banquet", :detail => @event.event_detail.banquet }) unless @event.event_detail.banquet.blank? %>
 <%= render(:partial => "event_detail_field", :locals => { :detail_title => "auction", :detail => @event.event_detail.auction }) unless @event.event_detail.auction.blank? %>
 
-<%= render(:partial => "event_detail_field", :locals => { :detail_title => "sponsors", :detail => @event.event_detail.sponsors }) unless @event.event_detail.sponsors.blank? %>
+<article class="module width_3_quarter">
+  <header><h3><a name="Sponsors"></a>Sponsors &nbsp;(<a href="#">Top</a>)</h3></header>
+  <div class="module_content">
+    <% @event.event_sponsors.each do |sponsor| %>
+      <% if sponsor.logo? %>
+        <% if sponsor.link_type == "webpage" %>
+          <%= link_to(image_tag(sponsor.logo.url(:thumb), :alt => sponsor.name, :title => sponsor.name), sponsor.url) %>
+        <% else %>
+          <%= mail_to(sponsor.url, image_tag(sponsor.logo.url(:thumb), :alt => sponsor.name, :title => sponsor.name)) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</article>
+
 <div class="clear"><br /></div>

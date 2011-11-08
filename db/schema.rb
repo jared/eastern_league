@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102202518) do
+ActiveRecord::Schema.define(:version => 20111108223515) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "user_id"
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(:version => 20111102202518) do
   create_table "event_disciplines", :force => true do |t|
     t.integer  "event_id"
     t.integer  "discipline_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_sponsors", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "name"
+    t.string   "link_type"
+    t.text     "url"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

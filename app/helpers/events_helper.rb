@@ -19,13 +19,14 @@ module EventsHelper
   
   def event_detail_links(event_detail)
     output = []
-    sections = %w(competitor_information schedule directions accommodations banquet auction sponsors)
+    sections = %w(competitor_information schedule directions accommodations banquet auction)
     sections.each do |section|
       link = content_tag(:li) do
         content_tag(:a, section.humanize.titleize, :href => "##{section}")
       end
       output << link unless event_detail.send(section.to_sym).blank?
     end
+    output << content_tag(:li, content_tag(:a, "Sponsors", :href => "#sponsors")) unless event_detail.event.event_sponsors.empty?
     output.join("\n")
   end
   

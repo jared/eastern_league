@@ -7,3 +7,4 @@ log/*.log
 tmp/
 .sass-cache/
 public/system/avatars/*
+public/system/logos/*
