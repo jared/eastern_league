@@ -1,5 +1,7 @@
 class Order < ActiveRecord::Base
   require 'el_crypto'
+  
+  attr_accessor :description
 
   belongs_to :user
 

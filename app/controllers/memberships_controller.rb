@@ -37,7 +37,7 @@ class MembershipsController < ApplicationController
 
   def create
     load_user
-    @order = @user.orders.build
+    @order = @user.orders.build(:description => "Eastern League Membership")
     @membership = @user.memberships.create(params[:membership])
     @order.line_items.build(:purchasable => @membership, :amount => @membership.membership_plan.amount, :description => "#{@membership.membership_plan.name} for #{@membership.user.full_name}")
 

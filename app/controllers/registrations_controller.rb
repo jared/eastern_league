@@ -53,7 +53,7 @@ class RegistrationsController < ApplicationController
     if @event_registration.save
       if @event_registration.amount > 0
         # Build Order
-        @order = current_user.orders.build
+        @order = current_user.orders.build(:description => "#{@event.acronym} Registration for #{current_user.full_name}")
         @order.line_items.build(:purchasable => @event_registration, :amount => @event_registration.amount, :description => "#{@event.acronym} Registration for #{current_user.full_name}")
       
         @order.save

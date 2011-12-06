@@ -9,14 +9,14 @@ module ElCrypto
 
       @decrypted_data = {
         # Item name and number are displayed to the user making the payment, and can be customized.
-        :item_name      => "Eastern League Membership",
+        :item_name      => order.description,
         :item_number    => order.id,
 
         :amount         => order.amount,
 
         # Custom and Invoice are fields which are sent BACK to our API through the IPN call.
         # Invoice is essential, as it is used to look up the invoice to mark as paid (or any other status)
-        :custom         => "Membership successfully purchased.",
+        :custom         => "#{order.description} successfully purchased.",
         :invoice        => order.id,
 
         # Paypal-required values, edit constants in config/initializers/active_merchant.rb
