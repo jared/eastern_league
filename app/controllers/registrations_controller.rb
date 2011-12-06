@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
-
+  before_filter :require_user
+  
   def index
     load_event
     redirect_to new_event_registration_path(@event)
