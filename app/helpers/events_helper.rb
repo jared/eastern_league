@@ -4,6 +4,8 @@ module EventsHelper
     case event.status
     when "Results Available"
       link_to event.status, event_path(event)
+    when "Registration Open"
+      link_to event.status, new_event_registration_path(event)
     else
       event.status
     end
