@@ -24,7 +24,7 @@ class UserMailer < ActionMailer::Base
     @event_registration = event_registration
     @user = @event_registration.competitor.user
     @event = @event_registration.event
-    mail(:to => @user.email, :bcc => ["elcommissioner@gmail.com", @event.contact_email] :subject => "Your Event Registration Confirmation")
+    mail(:to => @user.email, :bcc => ["elcommissioner@gmail.com", @event.contact_email], :subject => "Your Event Registration Confirmation")
   end
 
 end
