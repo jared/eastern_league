@@ -1,0 +1,74 @@
+<% title("Event Registration") %>
+
+<article class="module width_full">
+  <header><h3>Register for <%= @event.name %></h3></header>
+  <%= form_for @event_registration, :url => event_registrations_path(@event), :html => { :id => "event_registration_form" } do |f| %>
+    <div class="module_content">
+      <fieldset style="width:48%; float:left; margin-right: 3%;">
+        <%= label_tag "Competitor Name" %>
+        <%= current_user.full_name %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "Street Address" %>
+        <%= text_field_tag "users[street_address_1]", @user.street_address_1 %>
+        <div class="clear"><br /></div>
+        
+        <%= label_tag "City" %>
+        <%= text_field_tag "users[city]", @user.city %>
+        <div class="clear"><br /></div>
+        
+        <%= label_tag "State" %>
+        <%= text_field_tag "users[state]", @user.state %>
+        <div class="clear"><br /></div>
+        
+        <%= label_tag "ZIP Code" %>
+        <%= text_field_tag "users[zip]", @user.zip %>
+        <div class="clear"><br /></div>
+        
+        <%= label_tag "Phone" %>
+        <%= text_field_tag "users[phone_number]", @user.phone_number %>
+        <div class="clear"><br /></div>
+        
+        <%= label_tag "Email" %>
+        <%= text_field_tag "users[email]", @user.email %>
+        <div class="clear"><br /></div>
+      </fieldset>
+      
+      <fieldset style="width:48%; float:left;">
+        <%= f.check_box :volunteer_judge %>
+        <%= f.label :volunteer_judge, "Volunteer as Judge" %>
+        <div class="clear"><br /></div>
+        <%= f.check_box :volunteer_field_staff %>
+        <%= f.label :volunteer_field_staff, "Volunteer as Field Staff" %>
+        <div class="clear"><br /></div>
+        <%= f.check_box :volunteer_setup_crew %>
+        <%= f.label :volunteer_setup_crew, "Volunteer as Setup Crew" %>
+        <div class="clear"><br /></div>
+        
+        <hr style="width: 75%; color: #ccc;"/>
+        
+        <%= f.check_box :first_time_competitor %>
+        <%= f.label :first_time_competitor, "I am a First Time Competitor" %>
+      </fieldset>
+      <div class="clear"></div>
+      <fieldset class="disciplines">
+        <% @event.disciplines.group_by(&:discipline_group).each do |group_name, disciplines| %>
+          <h4><%= group_name %></h4>
+          <% group_prefix = group_name.downcase.gsub(/[^a-z]/, '_') %>
+          <% disciplines.each do |discipline| %>
+            <%= label_tag discipline.abbreviation, nil, :class => "abbrev" %>
+            <%= check_box_tag "event_registration[disciplines][]", discipline.id, false, :class => "abbrev #{group_prefix}_checkbox", :onclick => %{$('.#{group_prefix}_team_name').toggleClass('required');$('.#{group_prefix}_team_members').toggleClass('required');} %>
+          <% end %>
+          <div class="clear"><br /></div>
+          <%= raw team_name_and_members(group_name) %>
+        <% end %>
+      </fieldset>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= submit_tag "Register", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>

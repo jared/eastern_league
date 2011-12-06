@@ -1,9 +1,12 @@
-<% title("Membership") %>
+<% title("Payment") %>
 
 <article class="module width_3_quarter">
-  <header><h3>Pay for your Eastern League Membership</h3></header>
+  <header><h3>Pay for your Eastern League Purchase</h3></header>
   <div class="module_content">
-    <p>There's just one step left: pay for your Eastern League membership on PayPal.  Clicking the button below will bring you to the PayPal website to complete payment.</p>
+    <p>There's just one step left: pay for your Eastern League purchase on PayPal.  Clicking the button below will bring you to the PayPal website to complete payment.</p>
+    <p>
+      Prefer to pay by check?  Print this page out and mail a copy, along with a check to the address below:
+    </p>
   </div>
   <table class="tablesorter" cellspacing="0">
     <thead>
@@ -32,19 +35,47 @@
       <% @order.line_items.each do |line_item| %>
         <tr id="<%= dom_id(line_item) %>">
           <td>1</td>
-          <td><%= line_item.description %></td>
+          <td>
+            <%= line_item.description %>
+            <% if line_item.purchasable_type == "EventRegistration" %>
+              <ul>
+                <% line_item.purchasable.registration_disciplines.each do |rd| %>
+                  <li>
+                    <%= rd.event_discipline.discipline.abbreviation %>
+                    <% if rd.group_name %>
+                      (<%= rd.group_name %>: <%= rd.group_members %>)
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </td>
           <td><%= number_to_currency(line_item.amount) %></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <% if line_item.purchasable.event_id == 1001 %>
+              Paying by check?  Make the check out to <strong>Robbie Boerth</strong> and mail to:<br />
+              Robbie Boerth<br />
+              TISKC<br />
+              1020 Silcox Branch Cir.<br />
+              Oviedo, FL 32765<br />
+            <% end %>
+            
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </article>
 
-<article class="module width_quarter">
-  <header><h3>Membership Info</h3></header>
-  <div class="module_content">
-    <p>Any sport kite competitor who wishes to be included in Eastern League standings and eligible for League honors must be a member in good standing at the time he or she competes.</p>
-    <p><strong>One year</strong>: $15 per individual, plus $8 for each additional family member.</p>
-    <p><strong>Two years</strong>: $25 per individual, plus $12 for each additional family member.</p>
-  </div>
-</article>
+<% if @order.line_items.any? {|li| li.purchasable_type == "Membership" } %>
+  <article class="module width_quarter">
+    <header><h3>Membership Info</h3></header>
+    <div class="module_content">
+      <p>Any sport kite competitor who wishes to be included in Eastern League standings and eligible for League honors must be a member in good standing at the time he or she competes.</p>
+      <p><strong>One year</strong>: $15 per individual, plus $8 for each additional family member.</p>
+      <p><strong>Two years</strong>: $25 per individual, plus $12 for each additional family member.</p>
+    </div>
+  </article>
+<% end %>

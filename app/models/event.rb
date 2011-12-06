@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
   has_many :event_disciplines
   has_many :event_sponsors
   
+  has_many :event_registrations
+  
   has_many :disciplines, :through => :event_disciplines
   has_many :scores, :through => :event_disciplines
   

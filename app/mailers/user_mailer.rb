@@ -19,5 +19,12 @@ class UserMailer < ActionMailer::Base
     @user = @membership.user
     mail(:to => @user.email, :subject => "Your Eastern League Membership Purchase")
   end
+  
+  def event_registration(event_registration)
+    @event_registration = event_registration
+    @user = @event_registration.competitor.user
+    @event = @event_registration.event
+    mail(:to => @user.email, :subject => "Your Event Registration Confirmation")
+  end
 
 end

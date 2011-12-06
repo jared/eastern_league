@@ -5,11 +5,11 @@
 <% end %>
 
 
-<% if can? :create, Score %>
+<% if @event.status.downcase == "registration open" %>
   <article class="module width_full">
-    <header><h3>Admin Tools</h3></header>
+    <header><h3>Register!</h3></header>
     <div class="module_content">
-      <%= link_to "Enter Event Scores", new_event_score_path(@event) %>
+      <strong><%= link_to "Online Registration for #{@event.name}", new_event_registration_path(@event) %></strong> is now open!
     </div>
   </article>
 <% end %>
@@ -36,6 +36,13 @@
   <div class="module_content">
     <ul>
       <%=raw event_detail_links(@event.event_detail) %>
+      <% if can? :create, Score %>
+        <li><%= link_to "Enter Event Scores", new_event_score_path(@event) %></li>
+      <% end %>
+
+      <% if can? :update, @event %>
+        <li><%= link_to "Edit Event Details", edit_event_path(@event) %></li>
+      <% end %>
     </ul>
   </div>
 </article>

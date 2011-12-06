@@ -14,6 +14,8 @@ class Competitor < ActiveRecord::Base
   has_many :event_disciplines
   has_many :scores
 
+  has_many :event_registrations
+
   has_many :standings
   
   scope :teams, where(:team => true)

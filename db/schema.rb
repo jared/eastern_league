@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108223515) do
+ActiveRecord::Schema.define(:version => 20111201143512) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20111108223515) do
     t.integer  "position",         :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "discipline_group"
   end
 
   create_table "event_details", :force => true do |t|
@@ -56,6 +57,21 @@ ActiveRecord::Schema.define(:version => 20111108223515) do
     t.integer  "discipline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "event_registrations", :force => true do |t|
+    t.integer  "competitor_id"
+    t.integer  "event_id"
+    t.decimal  "amount",                :precision => 7, :scale => 2
+    t.boolean  "paid",                                                :default => false
+    t.boolean  "first_time_competitor",                               :default => false
+    t.boolean  "accepted_terms",                                      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "volunteer_judge",                                     :default => false
+    t.boolean  "volunteer_field_staff",                               :default => false
+    t.boolean  "volunteer_setup_crew",                                :default => false
+    t.string   "team_member_names"
   end
 
   create_table "event_sponsors", :force => true do |t|
@@ -135,6 +151,15 @@ ActiveRecord::Schema.define(:version => 20111108223515) do
     t.string   "paypal_transaction_identifier"
     t.decimal  "paypal_fee",                    :precision => 8, :scale => 2
     t.text     "encrypted_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "registration_disciplines", :force => true do |t|
+    t.integer  "event_discipline_id"
+    t.integer  "event_registration_id"
+    t.string   "group_name"
+    t.text     "group_members"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -2,6 +2,39 @@ require 'csv'
 
 namespace :data do
   
+  desc "Add groupings to disciplines"
+  task :group_disciplines => :environment do
+    Discipline.find(1).update_attribute(:discipline_group, "Individual Dual-line Precision")
+    Discipline.find(2).update_attribute(:discipline_group, "Individual Dual-line Ballet")
+    Discipline.find(3).update_attribute(:discipline_group, "Individual Dual-line Precision")
+    Discipline.find(4).update_attribute(:discipline_group, "Individual Dual-line Ballet")
+    Discipline.find(5).update_attribute(:discipline_group, "Individual Dual-line Precision")
+    Discipline.find(6).update_attribute(:discipline_group, "Individual Dual-line Ballet")
+    Discipline.find(7).update_attribute(:discipline_group, "Individual Multi-line Precision")
+    Discipline.find(8).update_attribute(:discipline_group, "Individual Multi-line Ballet")
+    Discipline.find(9).update_attribute(:discipline_group, "Individual Multi-line Precision")
+    Discipline.find(10).update_attribute(:discipline_group, "Individual Multi-line Ballet")
+    Discipline.find(11).update_attribute(:discipline_group, "Individual Multi-line Precision")
+    Discipline.find(12).update_attribute(:discipline_group, "Individual Multi-line Ballet")
+    Discipline.find(13).update_attribute(:discipline_group, "Pairs Dual-line")
+    Discipline.find(14).update_attribute(:discipline_group, "Pairs Dual-line")
+    Discipline.find(15).update_attribute(:discipline_group, "Pairs Dual-line")
+    Discipline.find(16).update_attribute(:discipline_group, "Pairs Dual-line")
+    Discipline.find(17).update_attribute(:discipline_group, "Team Dual-line")
+    Discipline.find(18).update_attribute(:discipline_group, "Team Dual-line")
+    Discipline.find(19).update_attribute(:discipline_group, "Team Dual-line")
+    Discipline.find(20).update_attribute(:discipline_group, "Team Dual-line")
+    Discipline.find(21).update_attribute(:discipline_group, "Team Dual-line")
+    Discipline.find(22).update_attribute(:discipline_group, "Team Dual-line")
+    Discipline.find(23).update_attribute(:discipline_group, "Team Dual-line Train Ballet")
+    Discipline.find(24).update_attribute(:discipline_group, "Individual Freestyle")
+    Discipline.find(25).update_attribute(:discipline_group, "Individual Outdoor Unlimited")
+    Discipline.find(26).update_attribute(:discipline_group, "Team Multi-line")
+    Discipline.find(27).update_attribute(:discipline_group, "Team Multi-line")
+    Discipline.find(28).update_attribute(:discipline_group, "Pairs Multi-line")
+    Discipline.find(29).update_attribute(:discipline_group, "Pairs Multi-line")
+  end
+  
   desc "Load Member Data from CSV file"
   task :member_load => :environment do
     arr_of_arrs = CSV.read("#{Rails.root}/tmp/tblMemberQueryText.csv")

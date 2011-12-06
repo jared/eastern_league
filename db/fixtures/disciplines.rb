@@ -31,6 +31,10 @@ Discipline.seed(:id,
   {id: 25, name: "Open Individual Outdoor Unlimited", abbreviation: "OIOU", position: 25},
 
   {id: 26, name: "Open Team Multi-line Precision", abbreviation: "OTMP", position: 26},
-  {id: 27, name: "Open Team Multi-line Ballet", abbreviation: "OTMB", position: 27}
+  {id: 27, name: "Open Team Multi-line Ballet", abbreviation: "OTMB", position: 27},
+  
+  {id: 28, name: "Open Pairs Multi-line Precision", abbreviation: "OPMP", position: 28},
+  {id: 29, name: "Open Pairs Multi-line Ballet", abbreviation: "OPMB", position: 29}
+  
 
 )

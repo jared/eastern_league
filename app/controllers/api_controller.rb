@@ -24,6 +24,9 @@ class ApiController < ApplicationController
             case line_item.purchasable.class.name
             when "Membership"
               line_item.purchasable.activate!
+            when "EventRegistration"
+              line_item.purchasable.update_attribute(:paid, true)
+              UserMailer.event_registration(line_item.purchasable).deliver unless line_item.purchasable.competitor.user.temporary_email?
             else
               logger.warn("I don't know what to do with this line item #{line_item.id}")
             end
