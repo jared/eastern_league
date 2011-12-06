@@ -1,7 +1,13 @@
 <% title("Event Registration") %>
-
 <article class="module width_full">
   <header><h3>Register for <%= @event.name %></h3></header>
+  <div class="module_content">
+    <%=raw @event.event_detail.registration_instructions %>
+  </div>
+</article>
+
+<article class="module width_full">
+  <header><h3>Online Registration</h3></header>
   <%= form_for @event_registration, :url => event_registrations_path(@event), :html => { :id => "event_registration_form" } do |f| %>
     <div class="module_content">
       <fieldset style="width:48%; float:left; margin-right: 3%;">

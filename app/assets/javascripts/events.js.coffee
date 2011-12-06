@@ -15,3 +15,4 @@ $(document).ready ->
   $('textarea.banquet').tinymce({theme: 'advanced'});
   $('textarea.auction').tinymce({theme: 'advanced'});
   $('textarea.sponsors').tinymce({theme: 'advanced'});
+  $('textarea.registration_instructions').tinymce({theme: 'advanced'});
