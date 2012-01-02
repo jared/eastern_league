@@ -42,14 +42,14 @@ class RegistrationsController < ApplicationController
 
     tmp_amount = 0.0
     unless @event_registration.first_time_competitor?
-      tmp_amount += 10.0 # Base registration
+      tmp_amount += 20.0 # Base registration
       @event_registration.registration_disciplines.each do |rd|
-        tmp_amount += 10.0 # 10 dollars per discipline
+        tmp_amount += 20.0 # 20 dollars per discipline
       end
     end
     
     # Test against early, flat-rate fee
-    @event_registration.amount = (tmp_amount > 40.0) ? 40.0 : tmp_amount
+    # @event_registration.amount = (tmp_amount > 40.0) ? 40.0 : tmp_amount
     
     if @event_registration.save
       if @event_registration.amount > 0
