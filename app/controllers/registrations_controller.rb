@@ -50,6 +50,7 @@ class RegistrationsController < ApplicationController
     
     # Test against early, flat-rate fee
     # @event_registration.amount = (tmp_amount > 40.0) ? 40.0 : tmp_amount
+    @event_registration.amount = tmp_amount
     
     if @event_registration.save
       if @event_registration.amount > 0
