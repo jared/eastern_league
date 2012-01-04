@@ -40,6 +40,7 @@ gem 'paperclip', '~> 2.4'
 gem 'rspec-rails'
 gem 'seed-fu', :git => "git://github.com/mbleigh/seed-fu.git", :branch => "rails-3-1"
 
+gem 'exception_notification'
 
 group :test do
   # Pretty printed test output

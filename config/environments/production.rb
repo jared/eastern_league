@@ -53,3 +53,9 @@ EasternLeague::Application.configure do
   config.active_support.deprecation = :notify
 
 end
+
+EasternLeague::Application.config.middleware.use ExceptionNotifier,
+  :email_prefix => "[ELSKA] ",
+  :sender_address => %{"EL Website" <elcommissioner@gmail.com>},
+  :exception_recipients => %w{jared@alloycode.com}
+
