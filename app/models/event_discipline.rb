@@ -7,5 +7,9 @@ class EventDiscipline < ActiveRecord::Base
   def name
     discipline.name
   end
+  
+  def abbreviation
+    discipline.abbreviation
+  end
 
 end

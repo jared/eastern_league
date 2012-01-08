@@ -9,6 +9,10 @@ class Order < ActiveRecord::Base
 
   after_create  :calculate_amount, :encrypt_payment_data
 
+  def amount_collected
+    self.amount - self.paypal_fee.to_f
+  end
+
 private
 
   def calculate_amount

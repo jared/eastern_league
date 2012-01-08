@@ -3,7 +3,8 @@ class RegistrationsController < ApplicationController
   
   def index
     load_event
-    redirect_to new_event_registration_path(@event)
+    authorize! :manage, @event
+    @event_registrations = @event.event_registrations
   end
 
   def new

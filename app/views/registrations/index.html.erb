@@ -1,0 +1,37 @@
+<% title("Event Registrations") %>
+
+<article class="module width_full">
+  <header><h3>Event Registrations for <%= @event.acronym %></h3></header>
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Competitor</th>
+        <th>Disciplines</th>
+        <th>Amount Paid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @event_registrations.each do |registration| %>
+        <tr id="<%= dom_id(registration) %>">
+          <td><%= registration.competitor.name %></td>
+          <td>
+            <% registration.registration_disciplines.each do |rd| %>
+              <% rd.abbrev_and_members.each do |str| %>
+                <%= str %>
+                <br />
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if registration.paid? %>
+              <% order = registration.line_item.order  %>
+              <%= number_to_currency(order.amount_collected) %>
+            <% else %>
+              Payment not processed via PayPal
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>
