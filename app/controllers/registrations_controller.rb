@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
   
   def index
     load_event
-    authorize! :manage, @event
+    authorize! :update, @event
     @event_registrations = @event.event_registrations
   end
 
