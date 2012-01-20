@@ -16,7 +16,7 @@
 			</thead> 
 			<tbody> 
 			  <% ed.scores.ranked.each do |score| %>
-          <tr>
+          <tr id="<%= dom_id(score) %>">
             <td><%= score.rank %></td>
             <td>
               <%= score_name_and_link(score) %>
