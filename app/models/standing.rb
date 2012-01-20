@@ -11,7 +11,10 @@ class Standing < ActiveRecord::Base
       d_array = []
       d_scores.group_by(&:competitor).each do |competitor, scores|
         eligible_points = scores.map(&:points).sort.reverse[0..4]
-        d_array << Standing.create(:competitor => competitor, :discipline => discipline, :season => season, :points => eligible_points.sum, :competition_count => scores.size)
+        standing = Standing.find_or_initialize_by_competitor_id_and_discipline_id_and_season_id(competitor.id, discipline.id, season.id)
+        standing.attributes(:points => eligible_points.sum, :competition_count => scores.size)
+        standing.save
+        d_array << standing
       end
       d_array.sort_by { |elem| elem.points }.reverse.each_with_index do |standing, i|
         standing.update_attribute(:rank, i+1)
