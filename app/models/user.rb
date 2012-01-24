@@ -52,14 +52,13 @@ class User < ActiveRecord::Base
     end
   end
   
-  def membership_expired?
-    self.el_member && (self.current_through_date < Date.today)
+  def membership_status
+    return nil if !self.el_member?
+    return "active" if self.membership_valid? || self.board_member? || self.lifetime_member?
+    return "expiring_soon" if self.membership_expiring_soon?
+    return "expired" if self.membership_expired?
   end
-  
-  def membership_valid?
-    self.el_member? && (self.current_through_date >= Date.today)
-  end
-
+    
 private
 
   def setup_competitor_record
@@ -72,4 +71,15 @@ private
     end
   end
 
+  def membership_expired?
+    self.current_through_date < Date.today
+  end
+  
+  def membership_valid?
+    self.current_through_date >= 30.days.from_now
+  end
+  
+  def membership_expiring_soon?
+    self.current_through_date.between(Date.today..29.days.from_now)
+  end
 end
