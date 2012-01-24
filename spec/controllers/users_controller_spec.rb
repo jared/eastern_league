@@ -2,6 +2,17 @@ require 'spec_helper'
 
 describe UsersController do
 
+  describe "#show" do
+    before(:each) do
+      @user = Factory :active_user
+    end
+    it "should show a user's profile page" do
+      get :show, :id => @user.id
+      response.should be_success
+    end
+    
+  end
+
   describe "#new" do
     it "should not require login" do
       get :new

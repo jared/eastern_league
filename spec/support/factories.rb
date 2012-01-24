@@ -7,8 +7,33 @@ FactoryGirl.define do
     password 'test'
   end
   
+  factory :active_user, :parent => :user do
+    el_member true
+    current_through_date 6.months.from_now.to_date
+  end
+  
+  factory :expired_user, :parent => :user do
+    el_member true
+    current_through_date 1.month.ago.to_date
+  end
+  
+  factory :expiring_soon_user, :parent => :user do
+    el_member true
+    current_through_date 15.days.from_now.to_date
+  end
+  
+  factory :board_member_user, :parent => :user do
+    el_member true
+    board_member true
+  end
+  
+  factory :lifetime_member_user, :parent => :user do
+    el_member true
+    lifetime true
+  end
+  
   factory :competitor do
-    association :user
+    association :user, :factory => :active_user
     bio "This is my competitor biography."
   end
   

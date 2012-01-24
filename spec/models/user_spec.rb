@@ -53,7 +53,6 @@ describe User do
       @user.member_since.should == Time.now.utc
       Timecop.return
     end
-
   end
 
   describe "#name_with_email" do
@@ -64,7 +63,33 @@ describe User do
     it "should list the full name and obfuscated email address" do
       @user.name_with_email.should == "Test User, testuser@*******"
     end
+  end
+  
+  describe "#membership_status" do
+    it "should return 'active' for an active user'" do
+      @user = Factory :active_user
+      @user.membership_status.should == 'active'
+    end
+    
+    it "should return 'active' for a board member" do
+      @user = Factory :board_member_user
+      @user.membership_status.should == 'active'
+    end
 
+    it "should return 'active' for a lifetime member" do
+      @user = Factory :lifetime_member_user
+      @user.membership_status.should == 'active'
+    end
+    
+    it "should return 'expired' for an expired user" do
+      @user = Factory :expired_user
+      @user.membership_status.should == 'expired'
+    end
+    
+    it "should return 'expiring_soon' for a user whose membership will expire inside of 30 days" do
+      @user = Factory :expiring_soon_user
+      @user.membership_status.should == 'expiring_soon'
+    end
   end
 
 end

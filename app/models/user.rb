@@ -53,10 +53,10 @@ class User < ActiveRecord::Base
   end
   
   def membership_status
-    return nil if !self.el_member?
-    return "active" if self.membership_valid? || self.board_member? || self.lifetime_member?
-    return "expiring_soon" if self.membership_expiring_soon?
-    return "expired" if self.membership_expired?
+    return nil if !el_member?
+    return "active" if  board_member? || lifetime? || membership_valid?
+    return "expiring_soon" if membership_expiring_soon?
+    return "expired" if membership_expired?
   end
     
 private
@@ -76,10 +76,10 @@ private
   end
   
   def membership_valid?
-    self.current_through_date >= 30.days.from_now
+    self.current_through_date >= 30.days.from_now.to_date
   end
   
   def membership_expiring_soon?
-    self.current_through_date.between(Date.today..29.days.from_now)
+    self.current_through_date.between?(Date.today,29.days.from_now.to_date)
   end
 end
