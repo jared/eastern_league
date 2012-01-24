@@ -51,6 +51,14 @@ class User < ActiveRecord::Base
       true
     end
   end
+  
+  def membership_expired?
+    self.el_member && (self.current_through_date < Date.today)
+  end
+  
+  def membership_valid?
+    self.el_member? && (self.current_through_date >= Date.today)
+  end
 
 private
 

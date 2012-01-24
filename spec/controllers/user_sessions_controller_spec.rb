@@ -31,7 +31,7 @@ describe UserSessionsController do
       it "should log the user in" do
         post :create, @params
         flash[:notice].should == "Login successful!"
-        response.should redirect_to(root_path)
+        response.should redirect_to(user_path(@user))
       end
     end
 
