@@ -3,7 +3,10 @@ module UsersHelper
   def membership_status_display(user)
     case user.membership_status
     when "active"
-      message = "Your Eastern League membership is in good standing.  Your membership is valid through #{l(user.current_through_date, :format => :membership_date)}."
+      message = "Your Eastern League membership is in good standing. "
+      message += "You have been granted a year of complimentary membership for your service on the Eastern League board. " if user.board_member?
+      message += "You are a lifetime member in the Eastern League. " if user.lifetime?
+      message += "Your membership is valid through #{l(user.current_through_date, :format => :membership_date)}." if !user.board_member? && !user.lifetime?
       class_name = "alert_info"
     when "expired"
       message = "Your Eastern League Membership has expired.  Your expiration date was #{l(user.current_through_date, :format => :membership_date)}.  #{link_to("Renew Eastern League Membership", new_user_membership_path(user))}"
