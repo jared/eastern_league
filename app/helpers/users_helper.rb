@@ -4,8 +4,8 @@ module UsersHelper
     case user.membership_status
     when "active"
       message = "Your Eastern League membership is in good standing. "
-      message += "You have been granted a year of complimentary membership for your service on the Eastern League board. " if user.board_member?
-      message += "You are a lifetime member in the Eastern League. " if user.lifetime?
+      message += "(Board Member)" if user.board_member?
+      message += "(Lifetime Member)" if user.lifetime?
       message += "Your membership is valid through #{l(user.current_through_date, :format => :membership_date)}." if !user.board_member? && !user.lifetime?
       class_name = "alert_info"
     when "expired"
