@@ -4,11 +4,11 @@
 en:
   time:
     formats:
-      membership_date: '%b %e, %Y'
+      membership_date: '%B %e, %Y'
   date:
     formats:
-      event_date: '%b %e, %Y'
-      membership_date: '%b %e, %Y'
+      event_date: '%B %e, %Y'
+      membership_date: '%B %e, %Y'
 
   unauthorized:
     manage:
