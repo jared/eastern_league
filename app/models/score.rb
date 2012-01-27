@@ -5,6 +5,7 @@ class Score < ActiveRecord::Base
   
   belongs_to :event_discipline
   belongs_to :competitor
+  belongs_to :season
   
   scope :ranked, order("rank ASC")
   scope :season, lambda { |season| where('season_id = ?', season.id) }

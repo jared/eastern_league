@@ -94,14 +94,39 @@ FactoryGirl.define do
     url           "http://example.com"
     status        "Sanctioning Approved"
     fee_received  true
-    association    :organizer
+    association    :organizer, :factory => :active_user
     association    :season
     registration_deadline Date.new(2011, 8, 1)
+  end
+  
+  factory :event_discipline do
+    association :event
+    association :discipline
   end
   
   factory :event_detail do
     association :event
     general_information "Some general event info"
+  end
+
+  factory :discipline do
+    name          "Masters Individual Ballet"
+    abbreviation  "MIB"
+  end
+  
+  factory :score do
+    association :season
+    association :competitor
+    association :event_discipline
+    disqualified false    
+  end
+
+  factory :standing do
+    association :competitor
+    association :discipline
+    competition_count 1
+    points            26
+    rank              1
   end
 
 end
