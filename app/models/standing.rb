@@ -31,8 +31,8 @@ class Standing < ActiveRecord::Base
   def self.calculate_rank(discipline, season)
     standings = season.standings.where(:discipline_id => discipline.id).order("points DESC")
     standings.each_with_index do |standing, i|
-      if standing.points == standings[i].points
-        standing.update_attribute(:rank, i)
+      if standing.points == standings[i-1].points
+        standing.update_attribute(:rank, standings[i-1].rank)
       else
         standing.update_attribute(:rank, i+1)
       end
