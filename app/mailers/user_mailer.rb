@@ -26,5 +26,11 @@ class UserMailer < ActionMailer::Base
     @event = @event_registration.event
     mail(:to => @user.email, :bcc => ["elcommissioner@gmail.com", @event.contact_email], :subject => "Your Event Registration Confirmation")
   end
+  
+  def time_to_renew(membership)
+    @membership = membership
+    @user = membership.user
+    mail(:to => @user.email, :subject => "Your Eastern League Membership is about to Expire!")
+  end
 
 end

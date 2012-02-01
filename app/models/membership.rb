@@ -10,6 +10,10 @@ class Membership < ActiveRecord::Base
 
   scope :newest, order("expires_at DESC")
 
+  def self.find_due(time = Time.now)
+    find(:all, :conditions => { :primary_member => true, :expires_at => (time..time.end_of_month)})
+  end
+
   def activate!
     attrs = {
       :expires_at => membership_plan.renewal_period.months.from_now.end_of_month,

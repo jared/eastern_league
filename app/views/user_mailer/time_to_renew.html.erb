@@ -1,0 +1,35 @@
+<p>Hello <%= @user.nickname %>,</p>
+
+<p>This is a reminder that your Eastern League membership will expire on <%= l(@membership.expires_at, :format => :membership_date) -%>.  Please send your renewal as soon as possible to keep your membership in good standing.</p>
+
+<% unless @user.related_users.empty? %>
+  <p>Our records show that you are the primary member for the following memberships:</p>
+  <ul>
+    <% @user.related_users.each do |user| %>
+      <li><%= user.full_name  %></li>
+    <% end %>
+  </ul>
+
+  <p>As primary member, you are responsible for renewing your membership and the associated family memberships linked to your account.  The website will guide you through this processes, and automatically apply the family member discount to any family members indicated.  You may also choose not to renew family memberships during your renewal process.</p>
+<% end %>
+
+<p>It's easy to renew!  All you have to do is log on to http://easternleague.net, click the link on the left that says "Renew my Membership", and fill out the form.  You can choose to renew for one or two years and pay your membership fee using PayPal.</p>
+
+<p>If you'd prefer to pay by check, that's fine too!  Just complete the online membership renewal form, and mail a check made out to "Eastern League Sport Kite Association" for the amount indicated to:</p>
+
+<p>
+  Eastern League Sport Kite Association<br />
+  Jared Haworth, Commissioner<br/>
+  212 Hazelmere Dr<br />
+  Holly Springs, NC 27540
+</p>
+
+<p>If you haven't yet logged into the new website, follow the directions below to activate your account:</p>
+<ol>
+  <li>Go to http://easternleague.net/password_resets/new</li>
+  <li>Type in your email address: <%= @user.email %> then click on "Reset My Password" </li>
+  <li>Check your email; follow the instructions and the link provided.  This will allow you to choose a password for easternleague.net, and will log you into the new site.</li>
+  <li>On the left hand side of the page, click the link for "Renew my Membership."  Those of you with family memberships will also be able to pay for your additional members as well.</li>
+  <li>Follow the directions on the screen, choose a 1 or 2 year renewal, and pay via PayPal.</li>
+</ol>
+
