@@ -3,7 +3,12 @@ namespace :membership do
   task :send_renewal_notices => :environment do
     @memberships = Membership.find_due
     @memberships.each do |membership|
-      UserMailer.time_to_renwe(membership).deliver
+      if membership.user.temporary_email?
+        admin = User.find(621)
+        UserMailer.user_message(admin,admin,"Could not email #{membership.user.id}: #{membership.user.full_name} -- no email on file.").deliver
+      else
+        UserMailer.time_to_renew(membership).deliver
+      end
     end
   end
 end
