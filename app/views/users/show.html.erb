@@ -83,7 +83,7 @@
           <tr>
             <td><%= link_to(score.event.acronym, event_scores_path(score.event)) %></td>
             <td><%= score.rank %></td>
-            <td><%= score.score %></td>
+            <td><%= number_with_precision(score.score, :precision => 2) %></td>
             <td><%= score.points %></td>
           </tr>
         <% end %>
