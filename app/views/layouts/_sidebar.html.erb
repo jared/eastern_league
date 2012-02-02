@@ -34,6 +34,7 @@
   <% if current_user %>
     <h3>Admin</h3>
     <ul>
+      <li class="icn_view_profile"><%= link_to "View my Profile", user_path(current_user) %></li>
       <li class="icn_edit_profile"><%= link_to "Edit my Profile", edit_user_path(current_user) %></li>
       <li class="icn_renew_membership"><%= link_to "Renew my Membership", new_user_membership_path(current_user) %></li>
       <li class="icn_logoff"><%= link_to("Logout", user_session_path, :method => :delete) %></li>

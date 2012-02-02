@@ -21,7 +21,7 @@
             <td>
               <%= score_name_and_link(score) %>
             </td>
-            <td><%= score.score %></td>
+            <td><%= number_with_precision(score.score, :precision => 2) %></td>
             <td><%= score.points %></td>
             <td><%= link_to score.tie_breaker, "#tiebreakers" %></td>
           </tr>
