@@ -15,7 +15,7 @@ module UsersHelper
       message = "Your Eastern League Membership will expire on #{l(user.current_through_date, :format => :membership_date)}.  #{link_to("Renew Eastern League Membership", new_user_membership_path(user))}"
       class_name = "alert_warning"
     end
-    content_tag :h4, message, :class => class_name    
+    content_tag :h4, raw(message), :class => class_name    
   end
   
 end
