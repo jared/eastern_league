@@ -60,9 +60,11 @@
 		</div>
 	</div>
 	<footer>
-	  <%= form_for :comment, :url => event_comments_path(@event), :html => {:class => "post_message"} do |f| %>
-	    <%= f.text_field :comment %>
-	    <%= f.submit "", :class => "btn_post_message" %>
+	  <% if current_user %>
+  	  <%= form_for :comment, :url => event_comments_path(@event), :html => {:class => "post_message"} do |f| %>
+  	    <%= f.text_field :comment %>
+  	    <%= f.submit "", :class => "btn_post_message" %>
+      <% end %>
     <% end %>
 	</footer>
 </article><!-- end of messages article -->
