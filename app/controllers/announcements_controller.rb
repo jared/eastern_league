@@ -21,7 +21,7 @@ class AnnouncementsController < ApplicationController
     @announcement = Announcement.new(params[:announcement])
     if @announcement.save
       flash[:notice] = "Announcement has been created."
-      redirect_to root_path and return
+      redirect_to announcements_path and return
     else
       render :action => :new
     end
@@ -32,7 +32,7 @@ class AnnouncementsController < ApplicationController
     authorize! :update, @announcement
     if @announcement.update_attributes(params[:id])
       flash[:notice] = "Announcement has been updated."
-      redirect_to root_path and return
+      redirect_to announcements_path and return
     else
       render :action => :edit
     end
@@ -47,7 +47,7 @@ class AnnouncementsController < ApplicationController
     authorize! :destroy, @announcement
     @announcement.destroy
     flash[:notice] = "Announcement has been deleted."
-    redirect_to root_path and return
+    redirect_to announcements_path and return
   end
   
 end

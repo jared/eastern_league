@@ -3,31 +3,7 @@
 <article class="module width_3_quarter">
   <header><h3>Recent News</h3></header>
   <div class="module_content">
-    <h4>January 8, 2012</h4>
-    <p>TISKC Pre-registration has closed.  Novice &amp; first-time competitors may still register at the event.  <%= link_to("Full TISKC event details.", "/TISKC") %></p>
-
-    <h4>December 6, 2011</h4>
-    <p>Online Registration is now available for TISKC!  All competitors are required to register for TISKC 2012 no later than January 7, 2012.  The only registrations that will be accepted after that date will be for the novice class.  Competitors who register before January 1, 2012 have the opportunity either to pay a $40 flat rate for unlimited disciplines or to pay a $10 base registration fee plus $10 for each discipline entered, whichever is less.  Registrations received after January 1 will be charged a base registration fee of $20 + $20 per discipline entered, so there's a significant savings for registering before January 1. Don't wait!</p>
-    
-    <h4>November 3, 2011</h4>
-    <p>Details for the <%= link_to("2012 Treasure Island Sport Kite Championship", "/TISKC") %> have been posted!  Online registration will be available shortly.  Check back here for updates!</p>
-
-    <h4>October 17, 2011</h4>
-    <p>It's alive!  The new Eastern League website goes live today, and scores from OBSKC have been posted as well.</p>
-    
-    <h4>September 22, 2011</h4>
-    <p>Join us October 8-9, 2011 at the Wright Brothers National Memorial in Kill Devil Hills, North Carolina for the 25th Annual Outer Banks Stunt Kite Competition (OBSKC)! </p>
-
-    <h4>May 22, 2011</h4>
-    <p>Just wanted to remind everyone that early registration for the 19th annual Old Dominion Sport Kite Championships (ODSKC) ends on June 1, so register now and save yourself 10 bucks!  We're going to have a great time at ODSKC.  I'm hoping to do a workshop on Friday evening on the new Program Precision format.  I'm hoping to have an open discussion that looks at Program Precision from both the judge's and competitor's perspective.  Not sure where it'll be yet, but I'll get more details out to everyone as the picture becomes clearer.</p>
-
-    <p>To register for ODSKC, go to <a href="http://www.richmondairforce.com/ODSKC/registration.htm">http://www.richmondairforce.com/ODSKC/registration.htm</a>, fill out the form, and you're in!  It only take a minute or two, and you can even pay your registration fees online with a Paypal account or any major credit card.</p>
-
-    <h4>April 27, 2010</h4>
-    <p>NJSKC 2010 has been cancelled.  This makes ODSKC 2010 the final event of the 2009-2010 season.</p>
-
-    <h4>June 22, 2009</h4>
-    <p>BASKC 2009 has been cancelled.  The first event of the 2009-2010 season will be OBSKC in October.</p>
+    <%= render :partial => "announcement", :collection => @announcements %>
   </div>
 </article>
 
