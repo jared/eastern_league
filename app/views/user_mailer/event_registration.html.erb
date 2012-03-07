@@ -24,6 +24,13 @@
   <% end %>
 </ul>
 
+<% if @event_registration.accepted_terms %>
+  <p><%= @user.full_name %> has accepted the registration liability section:</p>
+  <p><%= raw @event.event_detail.waiver %></p>
+<% else %>
+  <p><%= @user.full_name %> has not accepted the registration liability section.</p>
+<% end %>
+
 <p>We have received your payment of <%= number_to_currency(@event_registration.amount) %> and look forward to seeing you at <%= @event.location %></p>
 
 <p>
