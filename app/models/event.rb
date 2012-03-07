@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-
+  acts_as_commentable 
+  
   belongs_to :organizer, :class_name => "User", :foreign_key => "organizer_id"
   belongs_to :season
 

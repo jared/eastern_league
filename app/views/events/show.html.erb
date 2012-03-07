@@ -32,7 +32,7 @@
   </div>
 </article>
 
-<article class="module width_quarter">
+<article class="module width_quarter contents">
   <header><h3>Quick Links</h3></header>
   <div class="module_content">
     <ul>
@@ -47,6 +47,26 @@
     </ul>
   </div>
 </article>
+
+<article class="module width_quarter contents">
+	<header><h3>Messages</h3></header>
+	<div class="message_list">
+		<div class="module_content">
+		  <% @comments.each do |comment| %>
+  			<div class="message"><p><%= comment.comment %></p>
+  			<p><strong><%= link_to(comment.user.full_name, user_path(comment.user)) %></strong></p></div>
+		  
+		  <% end %>
+		</div>
+	</div>
+	<footer>
+	  <%= form_for :comment, :url => event_comments_path(@event), :html => {:class => "post_message"} do |f| %>
+	    <%= f.text_field :comment %>
+	    <%= f.submit "", :class => "btn_post_message" %>
+    <% end %>
+	</footer>
+</article><!-- end of messages article -->
+
 
 <%= render(:partial => "event_detail_field", :locals => { :detail_title => "competitor_information", :detail =>  @event.event_detail.competitor_information }) unless @event.event_detail.competitor_information.blank? %>
 <%= render(:partial => "event_detail_field", :locals => { :detail_title => "schedule", :detail => @event.event_detail.schedule }) unless @event.event_detail.schedule.blank? %>

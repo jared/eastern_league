@@ -65,6 +65,7 @@ EasternLeague::Application.routes.draw do
   resources :events do
     resources :scores
     resources :registrations
+    resources :comments
   end
 
   resources :password_resets

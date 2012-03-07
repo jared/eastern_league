@@ -35,6 +35,7 @@ gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git', :ref => '
 gem 'bcrypt-ruby'
 gem 'cancan'
 
+gem 'acts_as_commentable'
 gem 'paperclip', '~> 2.4'
 # gem 'flickraw', '~> 0.9.5'
 

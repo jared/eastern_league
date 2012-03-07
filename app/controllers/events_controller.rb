@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @event.event_detail ||= EventDetail.new
+    @comments = @event.comments.sort_by(&:created_at).reverse
   end
 
   def new
