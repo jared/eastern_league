@@ -72,7 +72,7 @@
       </fieldset>
       <fieldset class="disciplines">
         <h4>Disclaimer</h4>
-        <p><%= @event.event_detail.waiver %></p>
+        <p><%=raw @event.event_detail.waiver %></p>
         <p>I have read this release of liability and I understand its meaning.</p>
         <%= check_box_tag "event_registration[accepted_terms]", 1, false, :class => 'required' %>
         <%= f.label :accepted_terms, "I agree"  %>
