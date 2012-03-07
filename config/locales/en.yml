@@ -4,6 +4,7 @@
 en:
   time:
     formats:
+      announcement_date: '%B %e, %Y'
       membership_date: '%B %e, %Y'
   date:
     formats:

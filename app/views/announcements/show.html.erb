@@ -1,0 +1,10 @@
+<% title("Announcements") %>
+
+<article class="module width_3_quarter">
+  <header><h3>Eastern League News</h3></header>
+  <div class="module_content">
+    <h4><%= @announcement.headline %></h4>
+    <%= raw @announcement.body %>
+    <div class="clear"><br /></div>
+    <p>Posted: <%=l @announcement.created_at, :format => :announcement_date %></p>
+</article>

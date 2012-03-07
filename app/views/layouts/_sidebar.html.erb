@@ -38,6 +38,9 @@
       <li class="icn_edit_profile"><%= link_to "Edit my Profile", edit_user_path(current_user) %></li>
       <li class="icn_renew_membership"><%= link_to "Renew my Membership", new_user_membership_path(current_user) %></li>
       <li class="icn_logoff"><%= link_to("Logout", user_session_path, :method => :delete) %></li>
+      <% if current_user.admin? %>
+        <li class="icn_newsletter"><%= link_to "Announcements", announcements_path %></li>
+      <% end %>
     </ul>
   <% end %>
 
