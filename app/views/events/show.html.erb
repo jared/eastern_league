@@ -25,8 +25,9 @@
     <h4>Event Organizer</h4>
     <p>
       <%= @event.contact_name  %><br />
-      <%= mail_to(@event.contact_email) %><br />
       <%= @event.contact_phone %><br />
+      <%= mail_to(@event.contact_email, "Contact the Organizer via Email") %><br />
+      
     </p>
   </div>
 </article>
