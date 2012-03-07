@@ -70,6 +70,13 @@
           <%= raw team_name_and_members(group_name) %>
         <% end %>
       </fieldset>
+      <fieldset class="disciplines">
+        <h4>Disclaimer</h4>
+        <p><%= @event.event_detail.waiver %></p>
+        <p>I have read this release of liability and I understand its meaning.</p>
+        <%= check_box_tag "event_registration[accepted_terms]", 1, false, :class => 'required' %>
+        <%= f.label :accepted_terms, "I agree"  %>
+      </fieldset>
     </div>
     <footer>
       <div class="submit_link">

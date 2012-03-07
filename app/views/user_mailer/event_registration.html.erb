@@ -5,6 +5,14 @@
   Here are your event registration details:
 </p>
 
+<p>
+  <%= @user.full_name %><br />
+  <%= @user.street_address_1 %><br />
+  <%= @user.street_address_2 %><br />
+  <%= @user.city %> <%= @user.state %> <%= @user.zip %><br />
+  <%= @user.phone_number %>
+</p>  
+
 <ul>
   <% @event_registration.registration_disciplines.each do |rd| %>
     <li>

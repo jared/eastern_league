@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206190239) do
+ActiveRecord::Schema.define(:version => 20120307135753) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "user_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20111206190239) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "registration_instructions"
+    t.text     "waiver"
   end
 
   create_table "event_disciplines", :force => true do |t|
