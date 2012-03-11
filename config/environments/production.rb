@@ -55,7 +55,8 @@ EasternLeague::Application.configure do
 end
 
 EasternLeague::Application.config.middleware.use ExceptionNotifier,
-  :email_prefix => "[ELSKA] ",
-  :sender_address => %{"EL Website" <elcommissioner@gmail.com>},
-  :exception_recipients => %w{jared@alloycode.com}
+  :email_prefix         => "[ELSKA] ",
+  :sender_address       => %{"EL Website" <elcommissioner@gmail.com>},
+  :exception_recipients => %w{jared@alloycode.com},
+  :ignore_crawlers      => %w{Googlebot bingbot}
 
