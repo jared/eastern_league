@@ -1,5 +1,10 @@
 FactoryGirl.define do
 
+  factory :announcement do
+    headline 'The Title'
+    body  'The article body'
+  end
+
   factory :user do
     full_name 'Jared Haworth'
     nickname 'Jared'

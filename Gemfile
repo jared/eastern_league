@@ -49,4 +49,5 @@ group :test do
   gem 'turn', :require => false
   gem 'factory_girl_rails'
   gem 'timecop'
+  gem 'cover_me'
 end

@@ -3,6 +3,8 @@ config/initializers/active_merchant.rb
 config/initializers/secret_token.rb
 config/initializers/setup_mail.rb
 config/initializers/flickr.rb
+coverage.data
+coverage/
 db/*.sqlite3
 log/*.log
 tmp/

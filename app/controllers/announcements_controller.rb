@@ -30,7 +30,7 @@ class AnnouncementsController < ApplicationController
   def update
     @announcement = Announcement.find(params[:id])
     authorize! :update, @announcement
-    if @announcement.update_attributes(params[:id])
+    if @announcement.update_attributes(params[:announcement])
       flash[:notice] = "Announcement has been updated."
       redirect_to announcements_path and return
     else
