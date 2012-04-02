@@ -33,7 +33,7 @@
           </td>
           <td>
             <% if @current_user.admin? %>
-              <% form_for registration, :url => event_registrations_path(@event, registration), :html => { :method => :delete } do |f| %>
+              <%= form_for registration, :url => event_registrations_path(@event, registration), :html => { :method => :delete } do |f| %>
                 <%= f.submit "Delete" %>
               <% end %>
             <% end %>
