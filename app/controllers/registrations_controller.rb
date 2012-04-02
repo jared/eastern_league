@@ -86,6 +86,19 @@ class RegistrationsController < ApplicationController
         
   end
   
+  
+  def destroy
+    load_event
+    @event_registration = @event.event_registrations.find(params[:id])
+    authorize :destroy, @event_registration
+    if @event_registration.destroy
+      flash[:notice] = "You have removed this registration."
+    else  
+      flash[:warning] = "Something went wrong.  Sorry"
+    end
+    redirect_to event_registrations_path(@event)
+  end
+  
 private
 
   def load_event

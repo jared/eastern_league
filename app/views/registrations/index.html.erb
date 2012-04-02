@@ -8,6 +8,7 @@
         <th>Competitor</th>
         <th>Disciplines</th>
         <th>Amount Paid</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,13 @@
               <%= number_to_currency(order.amount_collected) %>
             <% else %>
               Payment not processed via PayPal
+            <% end %>
+          </td>
+          <td>
+            <% if @current_user.admin? %>
+              <% form_for registration, :url => event_registrations_path(@event, registration), :html => { :method => :delete } do |f| %>
+                <%= f.submit "Delete" %>
+              <% end %>
             <% end %>
           </td>
         </tr>
