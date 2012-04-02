@@ -90,7 +90,7 @@ class RegistrationsController < ApplicationController
   def destroy
     load_event
     @event_registration = @event.event_registrations.find(params[:id])
-    authorize :destroy, @event_registration
+    authorize! :destroy, @event_registration
     if @event_registration.destroy
       flash[:notice] = "You have removed this registration."
     else  
