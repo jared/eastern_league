@@ -9,7 +9,14 @@
   <article class="module width_full">
     <header><h3>Register!</h3></header>
     <div class="module_content">
-      <strong><%= link_to "Online Registration for #{@event.name}", new_event_registration_path(@event) %></strong> is now open!
+      <p>
+        <strong><%= link_to "Online Registration for #{@event.name}", new_event_registration_path(@event) %></strong> is now open!  
+      </p>
+      <p>
+        <% if @event.registration_form.exists? %>
+          <%= link_to "Download the registration form", @event.registration_form.url %>
+        <% end %>
+      </p>
     </div>
   </article>
 <% end %>

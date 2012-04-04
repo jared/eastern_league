@@ -2,7 +2,7 @@
 
 <article class="module width_full">
   <header><h3>Create an Eastern League Event</h3></header>
-  <%= form_for @event do |f| %>
+  <%= form_for @event, :html => { :multipart => true } do |f| %>
     <div class="module_content">
       <%= render "shared/error_messages", :target => @event %>
       <%= render :partial => "event_form", :locals => { :f => f } %>

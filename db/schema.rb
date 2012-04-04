@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307214219) do
+ActiveRecord::Schema.define(:version => 20120404204402) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
@@ -123,12 +123,16 @@ ActiveRecord::Schema.define(:version => 20120307214219) do
     t.string   "contact_email"
     t.string   "url"
     t.string   "status"
-    t.boolean  "fee_received",          :default => false
-    t.boolean  "results_available",     :default => false
-    t.boolean  "online_registration",   :default => true
+    t.boolean  "fee_received",                   :default => false
+    t.boolean  "results_available",              :default => false
+    t.boolean  "online_registration",            :default => true
     t.datetime "registration_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "registration_form_file_name"
+    t.string   "registration_form_content_type"
+    t.integer  "registration_form_file_size"
+    t.datetime "registration_form_updated_at"
   end
 
   add_index "events", ["season_id"], :name => "index_events_on_season_id"

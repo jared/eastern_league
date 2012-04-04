@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   acts_as_commentable 
   
+  has_attached_file :registration_form
+  
   belongs_to :organizer, :class_name => "User", :foreign_key => "organizer_id"
   belongs_to :season
 
