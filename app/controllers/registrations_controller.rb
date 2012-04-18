@@ -51,7 +51,7 @@ class RegistrationsController < ApplicationController
 
     # MASKC
     @base_registration = 20.0
-    @discipline_rate = 20.0
+    @discipline_rate = 10.0
     @flat_rate = 40.0
     
     unless @event_registration.first_time_competitor?
