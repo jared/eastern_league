@@ -2,7 +2,8 @@ class Event < ActiveRecord::Base
   acts_as_commentable 
   
   has_attached_file :registration_form
-  
+  before_post_process :forbid_pdf  # prevent post-processing on PDF uploads
+
   belongs_to :organizer, :class_name => "User", :foreign_key => "organizer_id"
   belongs_to :season
 
@@ -32,5 +33,10 @@ class Event < ActiveRecord::Base
     [self.start_date.strftime('%b %e'), self.end_date.strftime('%e %Y')].join("-")
   end
   
+private
+  def forbid_pdf
+    return false if (data_content_type =~ /application\/.*pdf/)
+  end
+ 
 
 end
