@@ -9,9 +9,12 @@ set :scm, :git
 
 set :user, "deploy"  # The server's user for deploys
 
+set :keep_releases, 5
+
 role :web, "50.57.149.168"                          # Your HTTP server, Apache/etc
 role :app, "50.57.149.168"                          # This may be the same as your `Web` server
 role :db,  "50.57.149.168", :primary => true # This is where Rails migrations will run
+
 
 default_run_options[:pty] = true
 
