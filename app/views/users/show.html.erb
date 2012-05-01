@@ -82,8 +82,20 @@
         <% scores.each do |score| %>
           <tr>
             <td><%= link_to(score.event.acronym, event_scores_path(score.event)) %></td>
-            <td><%= score.rank %></td>
-            <td><%= number_with_precision(score.score, :precision => 2) %></td>
+            <td>
+              <% if score.disqualified? %>
+                DQ
+              <% else %>
+                <%= score.rank %>
+              <% end %>
+            </td>
+            <td>
+              <% if score.disqualified? %>
+                DQ
+              <% else %>
+                <%= number_with_precision(score.score, :precision => 2) %>
+              <% end %>
+            </td>
             <td><%= score.points %></td>
           </tr>
         <% end %>
