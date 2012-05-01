@@ -1,5 +1,18 @@
 <% title("#{@event.name} Scores") %>
 
+<article class="module width_3_quarter">
+  <header><h3><a name="tiebreakers"></a>Navigation</h3></header>
+  <div class="module_content">
+    <% Season.current.events.each do |event| %>
+      <ul>
+        <% unless event.scores.empty? %>
+          <li><%= link_to "Scores for #{event.name}", event_scores_path(event) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</article>
+
 <% @event.event_disciplines.each do |ed| %>
   <% next if ed.scores.empty? %>
   <article class="module width_3_quarter">
@@ -21,7 +34,13 @@
             <td>
               <%= score_name_and_link(score) %>
             </td>
-            <td><%= number_with_precision(score.score, :precision => 2) %></td>
+            <td>
+              <% if score.disqualified? %>
+                DQ
+              <% else %>
+                <%= number_with_precision(score.score, :precision => 2) %>
+              <% end %>
+            </td>
             <td><%= score.points %></td>
             <td><%= link_to score.tie_breaker, "#tiebreakers" %></td>
           </tr>
