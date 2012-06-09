@@ -32,5 +32,11 @@ class UserMailer < ActionMailer::Base
     @user = membership.user
     mail(:to => @user.email, :subject => "Your Eastern League Membership is about to Expire!")
   end
+  
+  def membership_expired(membership)
+    @membership = membership
+    @user = membership.user
+    mail(:to => @user.email, :subject => "Your Eastern League Membership has Expired!")
+  end
 
 end
