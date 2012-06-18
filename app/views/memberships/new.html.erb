@@ -3,7 +3,7 @@
 <%= display_renewal_date(@user) %>
 
 <article class="module width_3_quarter">
-  <header><h3>Choose a Membership Plan</h3></header>
+  <header><h3>Choose a Membership Plan for <%= @user.full_name %></h3></header>
   <%= form_for [@user, @membership], :url => confirm_new_user_membership_path(@user) do |f| %>
     <div class="module_content">
       <%= render "shared/error_messages", :target => @membership %>
