@@ -33,6 +33,7 @@ class Score < ActiveRecord::Base
       # Only Active EL members earn points
       if !group
         if !score.competitor.user.el_member?
+          score.update_attribute(:current_member, false)
           next
         end
       end

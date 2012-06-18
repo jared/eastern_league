@@ -50,7 +50,7 @@
             <td>
               <%= score.points %>
               <% if !score.competitor.pair? && !score.competitor.team? %>
-                <% if !score.competitor.user.el_member? %>
+                <% if !score.current_member? %>
                   <%= link_to "*", "#na" %>
                 <% end %>
               <% end %>
