@@ -23,7 +23,13 @@ describe Membership do
 
     it "should set the expires at" do
       @membership.activate!
-      @membership.expires_at.should == 12.months.from_now.end_of_month
+      @membership.expires_at.should == Date.today.advance(:months => 12).to_time.end_of_month
+    end
+    
+    it "should set the expires at when given a custom payment date" do
+      renewal_date = 45.days.ago
+      @membership.activate!(renewal_date)
+      @membership.expires_at.should == renewal_date.advance(:months => 12).to_time.end_of_month
     end
 
     it "should update the user record" do

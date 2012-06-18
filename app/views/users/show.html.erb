@@ -60,6 +60,14 @@
           <% end %>
         <% end %>
       </p>
+      <% if current_user.admin? %>
+      <h4>Admin Tools</h4>
+        <ul>
+          <li><%= link_to "Edit User Record", edit_user_path(@user) %></li>
+          <li><%= link_to "View Membership Records", user_memberships_path(@user) %><br /></li>
+          <li><%= link_to "Manual Renewal", new_user_membership_path(@user) %></li>
+        </ul>
+      <% end %>
     <% else %>
       <h4 class="alert_warning">Only logged-in users may view this information</h4>
     <% end %>

@@ -46,9 +46,10 @@ class MembershipsController < ApplicationController
     # Create user records & membership records for totally new users
     if params[:new_additional_members]
       params[:new_additional_members].each do |am_params|
-        family_user = User.create(:full_name   => am_params[:full_name],
-                                  :email    => am_params[:email],
-                                  :password => am_params.map{|k,v|v}.<<(Time.now.to_i).join("")) # Set a temporary gibberish password to save the record.
+        family_user = User.create(:full_name    => am_params[:full_name],
+                                  :nickname     => am_params[:full_name].split(" ").first,
+                                  :email        => am_params[:email],
+                                  :password     => am_params.map{|k,v|v}.<<(Time.now.to_i).join("")) # Set a temporary gibberish password to save the record.
         family_membership = family_user.memberships.create(:membership_plan_id => params[:family_plan_id],
                                                            :primary_user_id => @user.id,
                                                            :primary_membership_id => @membership.id,
@@ -70,7 +71,16 @@ class MembershipsController < ApplicationController
       end
     end
     @order.save
-    redirect_to purchase_user_order_path(@user, @order)
+    if current_user.admin? && !params[:record_manual_payment_date].blank?
+      payment_date = Date.parse(params[:record_manual_payment_date])
+      @order.line_items.each do |line_item|
+        line_item.purchasable.activate!(payment_date)
+      end
+      flash[:notice] = "You have processed a manual membership renewal."
+      redirect_to user_memberships_path(@user) and return
+    else
+      redirect_to purchase_user_order_path(@user, @order) and return
+    end
   end
 
 private

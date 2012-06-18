@@ -45,7 +45,17 @@
         <span class="total_due"><%= number_to_currency(@amount) %></span>
         <p style="margin-left: 1em;">Click the <strong>Purchase</strong> link below to finalize your membership application/renewal.  You will then be prompted to go to PayPal to complete your purchase.</p>
       </fieldset>
+      <% if current_user.admin? %>
+        <fieldset>
+          <p style="margin-left: 1em;">Record a manual payment for this membership.  Use this option if the member has paid via check or cash, either in person at an event, or by postal mail.  Click the field below and specify the payment date, and the membership will be updated.</p>
+          <%= label_tag "Record Manual Payment Date" %>
+          <%= text_field_tag :record_manual_payment_date %>
+          <div class="clear"><br /></div>
+        </fieldset>
+      <% end %>
+
     </div>
+    
     <footer>
       <div class="submit_link">
         <%= f.submit "Purchase", :class => "alt_btn" %>

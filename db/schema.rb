@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618173009) do
+ActiveRecord::Schema.define(:version => 20120618211357) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
@@ -194,15 +194,15 @@ ActiveRecord::Schema.define(:version => 20120618173009) do
   create_table "scores", :force => true do |t|
     t.integer  "competitor_id"
     t.integer  "event_discipline_id"
-    t.decimal  "score",               :precision => 5, :scale => 2
-    t.boolean  "disqualified"
+    t.decimal  "score"
+    t.boolean  "disqualified",        :default => false
     t.integer  "rank"
     t.string   "tie_breaker"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "points"
     t.integer  "season_id"
-    t.boolean  "current_member",                                    :default => true
+    t.boolean  "current_member",      :default => true
   end
 
   create_table "seasons", :force => true do |t|

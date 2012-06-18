@@ -14,9 +14,10 @@ class Membership < ActiveRecord::Base
     find(:all, :conditions => { :primary_member => true, :expires_at => (time..time.end_of_month)})
   end
 
-  def activate!
+  def activate!(renewal_date = Date.today)
+    expires_at = renewal_date.advance(:months => membership_plan.renewal_period).to_time.end_of_month
     attrs = {
-      :expires_at => membership_plan.renewal_period.months.from_now.end_of_month,
+      :expires_at => expires_at,
       :paid       => true
     }
     self.update_attributes!(attrs)
