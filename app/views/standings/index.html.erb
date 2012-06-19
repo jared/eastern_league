@@ -15,11 +15,13 @@
 			</thead> 
 			<tbody> 
 			  <% standings.sort_by(&:rank).each do |standing| %>
-          <tr>
+          <tr id="<%= dom_id(standing) %>">
             <td><%= standing.rank %></td>
             <td><%= standing.competitor.name %></td>
             <td><%= standing.points %></td>
-            <td><%= standing.tie_breaker %></td>
+            <td>
+              <%= link_to(standing.tie_breaker, "#tie_breakers") unless standing.tie_breaker.blank? %>
+            </td>
             <td><%= standing.competition_count %></td>
           </tr>
         <% end %>
@@ -27,3 +29,20 @@
     </table>
   </article>
 <% end %>
+
+<article class="module width_3_quarter">
+  <header><h3><a name="tie_breakers"></a>Tie Breakers</h3></header>
+  <ol>
+    <li>      
+      <strong>Head-to-head</strong>. For all events in which the two competitors competed against each other, the total number of Eastern League points awarded to each competitor is counted. The higher number wins.
+    </li>
+    <li>
+      <strong>Total points</strong>. The total number of Eastern League points for all events in which each competitor competed is compared. The higher number wins.
+    </li>
+    <li>
+      <strong>Average flight score</strong>. The actual flight scores for every competition in which each competitor competed are averaged, and this number is compared for the two competitors. The higher number wins.
+    </li>
+  </ol>
+</article>
+
+<div class="clear"></div>

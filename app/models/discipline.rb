@@ -4,6 +4,7 @@ class Discipline < ActiveRecord::Base
 
   has_many :event_disciplines
   has_many :events, :through => :event_disciplines
+  has_many :scores, :through => :event_disciplines
 
   has_many :standings
 

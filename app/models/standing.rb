@@ -4,10 +4,9 @@ class Standing < ActiveRecord::Base
   belongs_to :competitor
   belongs_to :discipline
   
-  attr_accessor :total_points
-  attr_accessor :average_flight_scorea
-  attr_accessor :events_attended
-  
+  attr_accessor :average_flight_score
+  attr_accessor :tie_breaker_one_points
+  attr_accessor :tie_breaker_two_points
   # Tie Breaker Criteria
   #   
   def self.calculate_standings(season)
@@ -30,6 +29,8 @@ class Standing < ActiveRecord::Base
   
   def self.calculate_rank(discipline, season)
     standings = season.standings.where(:discipline_id => discipline.id).order("points DESC")
+
+    # Give everyone a rank, disregard ties (for now)
     standings.each_with_index do |standing, i|
       if i > 0 && standing.points == standings[i-1].points
         standing.update_attribute(:rank, standings[i-1].rank)
@@ -37,49 +38,94 @@ class Standing < ActiveRecord::Base
         standing.update_attribute(:rank, i+1)
       end
     end
+    
+    # Look for ties
+    standings.group_by(&:points).each do |points, standings|
+      if standings.size > 1
+        tb1 = Standing.tie_breaker_one(discipline, standings, season)
+        next if tb1
+        tb2 = Standing.tie_breaker_two(discipline, standings, season)
+        next if tb2
+        tb3 = Standing.tie_breaker_three(discipline, standings, season)
+      end
+    end
   end
   
-  # def self.check_for_ties(discipline, season)
-  #   standings = season.standings.where(:discipline_id => discipline.id).order("points DESC")
-  #   standings.group_by(&:points).each do |points, standings|
-  #     if standings.size > 1
-  #       raise standings.inspect
-  #     end
-  #   end
-  # end
-  # 
-  # def self.tie_breaker_one(standings)
-  #   # Head-to-head. For all events in which the two competitors competed against each other, the total number of Eastern League points awarded to each competitor is counted. The higher number wins.
-  #   events_attended = []
-  #   standings.each do |standing|
-  #     scores = season.scores.where(:competitor_id => standing.competitor_id).select { |score| score.discipline == standing.event_discipline.discipline }
-  #     standing.events_attended = scores.map(&:event)
-  #   end
-  # 
-  #   false
-  # end
-  # 
-  # def self.tie_breaker_two(standings)
-  #   # Total points. The total number of Eastern League points for all events in which each competitor competed is compared. The higher number wins.
-  #   standings.each do |standing|
-  #     scores = season.scores.where(:competitor_id => standing.competitor_id).select { |score| score.discipline == standing.event_discipline.discipline }
-  #     standing.total_points = scores.map(&:points).sum
-  #   end
-  #   sorted_by_total_score = standings.sort_by{ |standing| standing.total_score }.reverse
-  #   
-  #   return false unless sorted_by_total_score.size == standings.size
-  #   sorted_by_total_score
-  # end
-  # 
-  # def self.tie_breaker_three(standings)
-  #   # Average flight score. The actual flight scores for every competition in which each competitor competed are averaged, 
-  #   # and this number is compared for the two competitors. The higher number wins.
-  #   standings.each do |standing|
-  #     flight_scores = season.scores.where(:competitor_id => standing.competitor_id).select { |score| score.discipline == standing.event_discipline.discipline }.map(&:score)
-  #     standing.average_flight_score = (flight_scores.sum / flight_scores.size)
-  #     standing.tie_breaker = "TB3: #{standing.average_flight_score}"
-  #   end
-  #   standings.sort_by{ |standing| standing.average_flight_score }.reverse
-  # end
+  def self.tie_breaker_one(discipline, standings, season)
+    # Head-to-head. For all events in which the two competitors competed against each other, 
+    # the total number of Eastern League points awarded to each competitor is counted. 
+    # The higher number wins.
+    events_attended = {}
+    standings.each do |standing|
+      scores = season.scores.where(:competitor_id => standing.competitor_id).select { |score| score.discipline.id == standing.discipline.id }
+      events_attended[standing.competitor.id] = scores.map(&:event).map(&:id)
+    end
+    
+    overlapping_events = []
+    events_attended.each do |competitor, events|
+      events.each do |event|
+        overlapping_events << event if events_attended.all?{|c,e| e.include?(event) } && !overlapping_events.include?(event)
+      end
+    end
+    
+    return false if overlapping_events.empty?
+    
+    overlapping_events.each do |event|
+      standings.each do |standing|
+        scores = discipline.scores.where(:competitor_id => standing.competitor_id, :season_id => season.id).select { |score| overlapping_events.include?(score.event.id) }
+        standing.tie_breaker_one_points = scores.sum(&:points)
+      end
+    end
+    
+    standings.group_by(&:tie_breaker_one_points).each do |points, standings|
+      return false if standings.size > 1
+    end
+    
+    
+    standings.sort_by(&:tie_breaker_one_points).reverse.each_with_index do |standing, i|
+      tmp_rank = standing.rank
+      standing.rank = tmp_rank + i
+      standing.tie_breaker = "TB1: #{standing.tie_breaker_one_points}"
+      standing.save
+    end
+    return true
+  end
+
+  def self.tie_breaker_two(discipline, standings, season)
+    # Total points. The total number of Eastern League points for all events 
+    # in which each competitor competed is compared. The higher number wins.
+    standings.each do |standing|
+      scores = discipline.scores.where(:competitor_id => standing.competitor_id, :season_id => season.id)
+      standing.tie_breaker_two_points = scores.map(&:points).sum
+    end
+    
+    standings.group_by(&:tie_breaker_two_points).each do |points, standings|
+      return false if standings.size > 1
+    end
+    
+    standings.sort_by(&:tie_breaker_two_points).reverse.each_with_index do |standing, i|
+      tmp_rank = standing.rank
+      standing.rank = tmp_rank + i
+      standing.tie_breaker = "TB2: #{standing.tie_breaker_two_points}"
+      standing.save
+    end
+    return true    
+  end
+
+  def self.tie_breaker_three(discipline, standings, season)
+    # Average flight score. The actual flight scores for every competition in which each competitor competed are averaged, 
+    # and this number is compared for the two competitors. The higher number wins.
+    standings.each do |standing|      
+      flight_scores = discipline.scores.where(:competitor_id => standing.competitor_id, :season_id => season.id).map(&:score)
+      standing.average_flight_score = (flight_scores.sum / flight_scores.size)
+    end
+    
+    standings.sort_by(&:average_flight_score).reverse.each_with_index do |standing, i|
+      tmp_rank = standing.rank
+      standing.rank = tmp_rank + i
+      standing.tie_breaker = "TB3: #{standing.average_flight_score}"
+      standing.save
+    end
+  end
     
 end
