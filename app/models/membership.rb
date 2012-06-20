@@ -12,7 +12,7 @@ class Membership < ActiveRecord::Base
 
   def self.find_due(time = Time.now)
     find(:all, :conditions => { :primary_member => true, :expires_at => (time..time.end_of_month)}).select do |membership|
-      membership.user.current_through_date <= time.end_of_month
+      membership.user.current_through_date <= time.end_of_month.to_date
     end
   end
 
