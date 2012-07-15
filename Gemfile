@@ -19,7 +19,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', "1.0.16"
 gem 'therubyracer'
 
 gem 'capistrano'
