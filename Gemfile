@@ -37,7 +37,7 @@ gem 'cancan'
 
 gem 'acts_as_commentable'
 gem 'paperclip', '~> 2.4'
-# gem 'flickraw', '~> 0.9.5'
+gem 'flickraw', '~> 0.9.6'
 
 gem 'rspec-rails'
 gem 'seed-fu', :git => "git://github.com/mbleigh/seed-fu.git", :branch => "rails-3-1"

@@ -3,27 +3,14 @@
 <article class="module width_full">
   <header>
     <h3 class="tabs_involved">Eastern League News</h3>
-    <ul class="tabs">
-        <li><%= link_to("Create Announcement", new_announcement_path) %></li>
-    </ul>
+    <% if can? :create, Announcement %>
+      <ul class="tabs">
+          <li><%= link_to("Create Announcement", new_announcement_path) %></li>
+      </ul>
+    <% end %>
   </header>
+  <div class="module_content">
+    <%= render :partial => "shared/announcement", :collection => @announcements %>
+  </div>
 
-  <table class="tablesorter" cellspacing="0">
-    <thead>
-      <tr>
-        <th>Posted Date</th>
-        <th>Headline</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @announcements.each do |announcement| %>
-        <tr id="<%= dom_id(announcement) %>">
-          <td><%=l announcement.created_at, :format => :announcement_date %></td>
-          <td><%= link_to(announcement.headline, announcement) %></td>
-          <td><%= link_to(image_tag("icons/icn_edit.png"), edit_announcement_path(announcement)) %>&nbsp;<%= link_to(image_tag("icons/icn_trash.png"), announcement_path(announcement), :method => :delete) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </article>

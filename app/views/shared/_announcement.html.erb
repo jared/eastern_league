@@ -1,0 +1,9 @@
+<h4>
+  <%=l announcement.created_at, :format => :announcement_date %>
+  <% if can? :update, Announcement %>
+    <%= link_to(image_tag("icons/icn_edit.png"), edit_announcement_path(announcement)) %>&nbsp;
+    <%= link_to(image_tag("icons/icn_trash.png"), announcement_path(announcement), :method => :delete) %>
+  <% end %>
+
+</h4>
+<%= raw announcement.body %>

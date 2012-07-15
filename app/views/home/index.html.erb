@@ -3,7 +3,8 @@
 <article class="module width_3_quarter">
   <header><h3>Recent News</h3></header>
   <div class="module_content">
-    <%= render :partial => "announcement", :collection => @announcements %>
+    <%= render :partial => "shared/announcement", :collection => @announcements %>
+    <%= link_to "Older Announcements", announcements_path %>
   </div>
 </article>
 
@@ -13,3 +14,16 @@
     <%= link_to(image_tag("active_states_2011.png", :width => "170", :alt => "Eastern League Map"), calendar_path) %>
   </div>
 </article>
+
+<article class="module width_3_quarter">
+  <header><h3>Recent Photos</h3></header>
+  <div class="module_content">
+    <% @photos.each do |photo| %>
+      <% photo_info = flickr.photos.getInfo(:photo_id => photo.id) %>
+      <%= link_to(image_tag(FlickRaw.url_s(photo_info)), FlickRaw.url_photopage(photo_info)) %>
+    <% end %>
+    <br />
+    <h4><%= link_to("More Eastern League Photos", "http://www.flickr.com/groups/1888762@N20/pool/") %></h4>
+  </div>
+</article>
+
