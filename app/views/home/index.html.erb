@@ -4,7 +4,7 @@
   <header><h3>Recent News</h3></header>
   <div class="module_content">
     <%= render :partial => "shared/announcement", :collection => @announcements %>
-    <%= link_to "Older Announcements", announcements_path %>
+    <h4><%= link_to "Older Announcements", announcements_path %></h4>
   </div>
 </article>
 
@@ -27,3 +27,4 @@
   </div>
 </article>
 
+<div class="clear"></div>

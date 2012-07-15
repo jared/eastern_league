@@ -4,10 +4,12 @@ class User < ActiveRecord::Base
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt
   end
 
+  acts_as_paranoid
+
   validates_presence_of :full_name
 
-  has_many :memberships
-  has_many :family_memberships, :class_name => "Membership", :foreign_key => "primary_user_id"
+  has_many :memberships, :dependent => :destroy
+  has_many :family_memberships, :class_name => "Membership", :foreign_key => "primary_user_id", :dependent => :destroy
 
   has_many :orders
 
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
   before_create :setup_competitor_record
   before_create :set_current_through_date
-  
+
   accepts_nested_attributes_for :competitor
 
   def related_users
@@ -33,7 +35,7 @@ class User < ActiveRecord::Base
   def name_with_email
     "#{self[:full_name]}, #{self[:email].gsub(/@.*/, '@' + '*' * 7)}"
   end
-  
+
   def temporary_email?
     self.email =~ /example.com/
   end
@@ -51,20 +53,20 @@ class User < ActiveRecord::Base
       true
     end
   end
-  
+
   def membership_status
     return nil if !el_member?
     return "active" if  board_member? || lifetime? || membership_valid?
     return "expiring_soon" if membership_expiring_soon?
     return "expired" if membership_expired?
   end
-    
+
 private
 
   def setup_competitor_record
     self.build_competitor
   end
-  
+
   def set_current_through_date
     if self[:current_through_month].to_i > 0 && self[:current_through_year].to_i > 0
       self[:current_through_date] = Date.new(self[:current_through_year].to_i, self[:current_through_month].to_i, 1).end_of_month
@@ -74,11 +76,11 @@ private
   def membership_expired?
     self.current_through_date < Date.today
   end
-  
+
   def membership_valid?
     self.current_through_date >= 30.days.from_now.to_date
   end
-  
+
   def membership_expiring_soon?
     self.current_through_date.between?(Date.today,29.days.from_now.to_date)
   end

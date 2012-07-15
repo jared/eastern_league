@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618211357) do
+ActiveRecord::Schema.define(:version => 20120715160413) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20120618211357) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "membership_plans", :force => true do |t|
@@ -168,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20120618211357) do
     t.boolean  "paid",                  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "orders", :force => true do |t|
@@ -180,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20120618211357) do
     t.text     "encrypted_data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "registration_disciplines", :force => true do |t|
@@ -275,6 +278,7 @@ ActiveRecord::Schema.define(:version => 20120618211357) do
     t.boolean  "share_phone",           :default => false
     t.boolean  "share_address",         :default => false
     t.date     "current_through_date"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

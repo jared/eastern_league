@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   require 'el_crypto'
-  
+  acts_as_paranoid
+
   attr_accessor :description
 
   belongs_to :user
