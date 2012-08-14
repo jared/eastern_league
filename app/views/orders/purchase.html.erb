@@ -37,6 +37,20 @@
           <td>1</td>
           <td>
             <%= line_item.description %>
+            <% if line_item.purchasable_type == "Jacket" %>
+              <% jacket = line_item.purchasable %>
+              <p>
+              <strong>Jacket Details</strong><br />
+              Style: <%= jacket.style %> - Size: <%= jacket.size %><br />
+              <br />
+              <%= jacket.custom_text_1 %><br />
+              <%= jacket.custom_text_2 %><br />
+              <%= jacket.custom_text_3 %><br />
+              <% if jacket.delivery? %>
+                <em>Shipping included in displayed price</em>
+              <% end %>
+              </p>
+            <% end %>
             <% if line_item.purchasable_type == "EventRegistration" %>
               <ul>
                 <% line_item.purchasable.registration_disciplines.each do |rd| %>
@@ -52,6 +66,17 @@
           </td>
           <td><%= number_to_currency(line_item.amount) %></td>
         </tr>
+        <% if line_item.purchasable_type == "Jacket" %>
+          <tr>
+            <td colspan="3">
+
+              Paying by check?  Make the check out to <strong>Eastern League Sport Kite Association</strong> and mail to:<br />
+              Eastern League Sport Kite Assn.<br />
+              212 Hazelmere Dr<br />
+              Holly Springs, NC 27540<br />
+            </td>
+          </tr>
+        <% end %>
         <% if line_item.purchasable_type == "EventRegistration" %>
           <tr>
             <td colspan="3">
@@ -62,7 +87,7 @@
                 1020 Silcox Branch Cir.<br />
                 Oviedo, FL 32765<br />
               <% end %>
-              
+
               <% if line_item.purchasable.event_id == 1002 %>
                 Paying by check?  Make the check out to <strong>The Kite Loft</strong> and mail to:<br />
                 The Kite Loft<br />
@@ -70,7 +95,7 @@
                 511 Boardwalk<br />
                 Ocean City, MD 21842<br />
               <% end %>
-            
+
             </td>
           </tr>
         <% end %>

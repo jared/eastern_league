@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715160413) do
+ActiveRecord::Schema.define(:version => 20120813233326) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
@@ -137,6 +137,21 @@ ActiveRecord::Schema.define(:version => 20120715160413) do
 
   add_index "events", ["season_id"], :name => "index_events_on_season_id"
   add_index "events", ["start_date"], :name => "index_events_on_start_date"
+
+  create_table "jackets", :force => true do |t|
+    t.string   "name"
+    t.string   "style"
+    t.string   "size"
+    t.string   "typeface"
+    t.integer  "season_id"
+    t.boolean  "delivery"
+    t.decimal  "price",         :precision => 4, :scale => 2
+    t.string   "custom_text_1"
+    t.string   "custom_text_2"
+    t.string   "custom_text_3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "line_items", :force => true do |t|
     t.integer  "order_id"

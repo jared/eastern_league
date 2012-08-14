@@ -1,0 +1,73 @@
+<% title("Champion Jacket Order Form") %>
+<article class="module width_full">
+  <header><h3><%= @season.year %> Eastern League Champion Jacket Info/Order Page</h3></header>
+  <div class="module_content">
+    <p>Congratulations on earning an Eastern League jacket for the 2011-2012 season!  This year's jackets will be maroon, and there are 3 styles to choose from.  Due to financial considerations, winners will need to cover the cost of the jacket itself, while the league will provide the embroidery for each jacket.  <strong>As a reminder</strong>, this is the first year we'll be offering the "multi-year" jacket option, so when you win in future seasons, you'll have the option of turning this jacket in to have your placings added to it.</p>
+
+    <p>Your choices:</p>
+
+    <ol>
+      <li><%= link_to "Port Authority Challenger II", "http://www.outletshirts.com/size-chart/J354" -%> (<%= link_to "Picture", "http://www.outletshirts.com/images/images2/_J354_MAROON_TRUE_BLACK.jpg" %>): This is a new offering for 2012, it's an all-weather nylon jacket with fleece lining, zippered front pockets, interior cell-phone pocket and adjustable cuffs with hook and loop closures.   <strong>Price: XS-XL: $37.50, 2XL: $39.00, 3XL: $42.00, 4XL: $43.50, 5XL: $46.00, 6XL: $47.50</strong></li>
+      <li><%= link_to "Colorado Timberline Telluride", "http://coloradotimberline.com/specs/SJF/" -%>:  This is a 365-gram fleece jacket that has been offered for the past two years.  <strong>Price:  XS-XL: $16.00, 2XL - 6XL: $17.50</strong></li>
+      <li><%= link_to "Colorado Timberline Glenwood", "http://coloradotimberline.com/specs/SVF/" -%>:  This is a 365-gram fleece vest that has been offered for the past two years.  <strong>Price:  XS-XL:  $13.50, 2XL - 6XL:  $15.00</strong></li>
+    </ol>
+
+    <p>The links above will direct you to the manufacturer's page for that item.  These pages have very complete information on all the jackets, including detailed sizing information.  The fleece items tend to run large, so double check your measurements!</p>
+
+    <p>All jackets will have the Eastern League logo on the left front along with up to three lines of embroidery of your choice.  On the right front, the embroidery will list the season (<%= @season.year %>), along with disciplines won (1st place finishes will be denoted).  On the back, the jacket will read "Eastern League Sport Kite Association".</p>
+
+    <p>Use the form below to make your choices. Once you've completed the form, click the "Purchase" button at the bottom; this will bring you to a page where you may pay via PayPal, or receive details on how to pay via check.</p>
+    <p>If you would like to have your jacket delivered to you via Priority Mail, select "Yes" in the Delivery? box below.  Shipping is $9.00.</p>
+  </div>
+</article>
+
+<article class="module width_full">
+  <header><h3>Online Registration</h3></header>
+  <%= form_for @jacket, :html => { :id => "jacket_order_form" } do |f| %>
+    <%= f.hidden_field :season_id %>
+    <%= f.hidden_field :name %>
+    <div class="module_content">
+      <fieldset style="width:48%; float:left; margin-right: 3%;">
+        <%= label_tag "Name" %>
+        <%= current_user.full_name %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :style, "Jacket Style" %>
+        <%= f.select :style, [["Port Authority Challenger II", "J354"], ["Telluride Fleece Jacket", "SJF",], ["Glenwood Fleece Vest", "SVF"]], :prompt => "Choose a Style" %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :size %>
+        <%= f.select :size, %w(XS S M L XL 2XL 3XL 4XL 5XL 6XL), :prompt => "Choose a Size" %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :delivery, "Delivery?" %>
+        <%= f.check_box :delivery %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :typeface, "Text Style" %>
+        <%= f.select :typeface, %w(Block Script) %>
+        <div class="clear"><br /></div>
+      </fieldset>
+
+      <fieldset style="width:48%; float:left;">
+        <%= f.label :custom_text_1, "Text Line 1" %>
+        <%= f.text_field :custom_text_1, :placeholder => "e.g., Your Name" %>
+        <div class="clear"><br /></div>
+        <%= f.label :custom_text_2, "Text Line 2" %>
+        <%= f.text_field :custom_text_2, :placeholder => "e.g., Your Club, Pair or Team Name" %>
+        <div class="clear"><br /></div>
+        <%= f.label :custom_text_3, "Text Line 3" %>
+        <%= f.text_field :custom_text_3 %>
+        <div class="clear"><br /></div>
+      </fieldset>
+      <div class="clear"></div>
+
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= submit_tag "Purchase", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>

@@ -21,7 +21,7 @@ EasternLeague::Application.routes.draw do
   match 'logout'  => 'user_sessions#destroy',  :as => :logout, :method => :delete
 
   match 'api/ipn' => 'api#ipn', :as => :ipn
-  
+
   # Event-specific named routes; these need to be updated annually.
   match 'OBSKC', :controller => "events", :action => "show", :id => "1000"
   match 'obskc', :controller => "events", :action => "show", :id => "1000"
@@ -37,13 +37,13 @@ EasternLeague::Application.routes.draw do
 
   match 'ODSKC', :controller => "events", :action => "show", :id => "1004"
   match 'odskc', :controller => "events", :action => "show", :id => "1004"
-  
+
 
   resource :calendar
   resource :user_session
-  
+
   resources :announcements
-  
+
   resources :users do
     resources :messages
     resources :orders do
@@ -61,6 +61,7 @@ EasternLeague::Application.routes.draw do
       get :search
     end
   end
+  resources :jackets
 
   resources :standings
 
