@@ -37,6 +37,39 @@
 </article>
 <div class="clear"></div>
 
+<% @past_seasons.each do |season| %>
+  <article class="module width_full">
+    <header>
+      <h3><%= season.start_date.year %> - <%= season.end_date.year %> Season</h3>
+    </header>
+
+    <table class="tablesorter" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Event Dates</th>
+          <th>Event<br />(Location)</th>
+          <th>Results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% season.events.calendar.each do |event| %>
+          <tr id="<%= dom_id(event) %>">
+            <td><%= event.event_dates %></td>
+            <td>
+              <strong><%= event.acronym %></strong>: <%= link_to(event.name, event_path(event)) %><br />
+              (<%= event.location %>)
+            </td>
+            <td>
+              <%= status_name_and_link(event) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </article>
+  <div class="clear"></div>
+<% end %>
+
 <article class="module width_full">
   <header><h3>A note on Status</h3></header>
   <div class="module_content">

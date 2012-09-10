@@ -3,7 +3,7 @@
 <article class="module width_3_quarter">
   <header><h3><a name="tiebreakers"></a>Navigation</h3></header>
   <div class="module_content">
-    <% Season.current.events.each do |event| %>
+    <% @event.season.events.each do |event| %>
       <ul>
         <% unless event.scores.empty? %>
           <li><%= link_to "Scores for #{event.name}", event_scores_path(event) %></li>
@@ -18,16 +18,16 @@
   <article class="module width_3_quarter">
     <header><h3><%= ed.name %> (<%= ed.discipline.abbreviation %>)</h3></header>
     <table class="tablesorter" cellspacing="0">
-      <thead> 
-				<tr> 
-   					<th>Rank</th> 
-    				<th>Competitor</th> 
-    				<th>Score</th> 
+      <thead>
+				<tr>
+   					<th>Rank</th>
+    				<th>Competitor</th>
+    				<th>Score</th>
     				<th>Points</th>
     				<th>Tie Breaker</th>
-				</tr> 
-			</thead> 
-			<tbody> 
+				</tr>
+			</thead>
+			<tbody>
 			  <% ed.scores.ranked.each do |score| %>
           <tr id="<%= dom_id(score) %>">
             <td>
