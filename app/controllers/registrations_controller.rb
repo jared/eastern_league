@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   before_filter :require_user
-  
+
   def index
     load_event
     authorize! :update, @event
@@ -12,12 +12,12 @@ class RegistrationsController < ApplicationController
     @event_registration = @event.event_registrations.build(:competitor => current_user.competitor)
     @user = @event_registration.competitor.user
   end
-  
+
   def create
     load_event
-        
+
     @event_registration = @event.event_registrations.build({:competitor => current_user.competitor}.merge(params[:event_registration].slice(:volunteer_judge, :volunteer_field_staff, :volunteer_setup_crew, :first_time_competitor, :accepted_terms)))
-    
+
     params[:event_registration][:disciplines].each do |discipline_id|
       event_discipline = @event.event_disciplines.find_by_discipline_id(discipline_id)
       reg_disc = @event_registration.registration_disciplines.build(:event_discipline => event_discipline)
@@ -38,11 +38,15 @@ class RegistrationsController < ApplicationController
         reg_disc.group_name = params[:event_registration][:omp_team_name]
         reg_disc.group_members = params[:event_registration][:omp_team_members]
       end
-      
+
     end
 
 
     tmp_amount = 0.0
+
+    # OBSKC
+    @base_registration = 10.0
+    @discipline_rate = 10.0
 
     # TISKC
     # @base_registration = 20.0
@@ -50,10 +54,10 @@ class RegistrationsController < ApplicationController
     # @flat_rate = 40.0
 
     # MASKC
-    @base_registration = 20.0
-    @discipline_rate = 10.0
-    @flat_rate = 40.0
-    
+    # @base_registration = 20.0
+    # @discipline_rate = 10.0
+    # @flat_rate = 40.0
+
     unless @event_registration.first_time_competitor?
       tmp_amount += @base_registration # Base registration
       @event_registration.registration_disciplines.each do |rd|
@@ -64,13 +68,13 @@ class RegistrationsController < ApplicationController
     # Test against early, flat-rate fee
     # @event_registration.amount = (tmp_amount > @flat_rate) ? @flat_rate : tmp_amount
     @event_registration.amount = tmp_amount
-    
+
     if @event_registration.save
       if @event_registration.amount > 0
         # Build Order
         @order = current_user.orders.build(:description => "#{@event.acronym} Registration for #{current_user.full_name}")
         @order.line_items.build(:purchasable => @event_registration, :amount => @event_registration.amount, :description => "#{@event.acronym} Registration for #{current_user.full_name}")
-      
+
         @order.save
         flash[:notice] = "Your registration for #{@event.acronym} has been created."
         redirect_to purchase_user_order_path(current_user, @order) and return
@@ -83,26 +87,26 @@ class RegistrationsController < ApplicationController
       flash[:error] = "Something went wrong, please try your registration again"
       render :action => :new
     end
-        
+
   end
-  
-  
+
+
   def destroy
     load_event
     @event_registration = @event.event_registrations.find(params[:id])
     authorize! :destroy, @event_registration
     if @event_registration.destroy
       flash[:notice] = "You have removed this registration."
-    else  
+    else
       flash[:warning] = "Something went wrong.  Sorry"
     end
     redirect_to event_registrations_path(@event)
   end
-  
+
 private
 
   def load_event
     @event = Event.find(params[:event_id])
   end
-  
+
 end

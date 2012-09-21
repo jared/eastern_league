@@ -4,7 +4,7 @@ class JacketsController < ApplicationController
 
   def index
     authorize! :manage, Jacket.new, :message => "Only an administrator may view the list of jacket orders."
-    @jackets = Jacket.where(["season_id = ?", Season.current])
+    @jackets = Jacket.all
   end
 
   def new
