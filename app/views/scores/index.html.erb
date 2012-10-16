@@ -3,13 +3,13 @@
 <article class="module width_3_quarter">
   <header><h3><a name="tiebreakers"></a>Event Score Navigation</h3></header>
   <div class="module_content">
-    <% @event.season.events.each do |event| %>
-      <ul>
+    <ul>
+      <% @event.season.events.each do |event| %>
         <% unless event.scores.empty? %>
           <li><%= link_to "Scores for #{event.name}", event_scores_path(event) %></li>
         <% end %>
-      </ul>
-    <% end %>
+      <% end %>
+    </ul>
   </div>
 </article>
 

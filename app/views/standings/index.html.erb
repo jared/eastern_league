@@ -2,19 +2,21 @@
 
 <article class="module width_3_quarter">
   <header><h3>Season</h3></header>
-    <ul style="list-style-type:none;">
-      <% Season.with_standings.each do |season| %>
-        <li style="float: left;"><%= link_to season.year, standings_path(:season_id => season.id) %></li>
-      <% end %>
-    </ul>
+  <div class="module_content">
+    <p>View standings from previous competition seasons:<br />
+      <%= Season.with_standings.map{ |season| link_to season.year, standings_path(:season_id => season.id) }.join("|").html_safe %>
+    </p>
+  </div>
 </article>
 
 <% if current_user.try(:admin?) %>
   <article class="module width_quarter">
     <header><h3>Admin</h3></header>
-    <ul>
-      <li><%= link_to "Calculate Standings", calculate_standings_path, :method => :post %></li>
-    </ul>
+    <div class="module_content">
+      <ul>
+        <li><%= link_to "Calculate Standings", calculate_standings_path, :method => :post %></li>
+      </ul>
+    </div>
   </article>
 <% end %>
 
