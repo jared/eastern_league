@@ -1,19 +1,37 @@
 <% title("Current Eastern League Standings") %>
 
+<article class="module width_3_quarter">
+  <header><h3>Navigation</h3></header>
+    <ul>
+      <% Season.with_standings.each do |season| %>
+        <li><%= link_to season.year, standings_path(:season_id => season.id) %></li>
+      <% end %>
+    </ul>
+</article>
+
+<% if current_user.try(:admin?) %>
+  <article class="module width_quarter">
+    <header><h3>Admin</h3></header>
+    <ul>
+      <li><%= link_to "Calculate Standings", calculate_standings_path, :method => :post %></li>
+    </ul>
+  </article>
+<% end %>
+
 <% @standings.each do |discipline, standings| %>
   <article class="module width_3_quarter">
     <header><h3><%= discipline.name %> (<%= discipline.abbreviation %>)</h3></header>
     <table class="tablesorter">
-      <thead> 
-				<tr> 
-   					<th>Rank</th> 
-    				<th>Competitor</th> 
-    				<th>Points</th> 
-    				<th>Tie Breaker</th> 
+      <thead>
+				<tr>
+   					<th>Rank</th>
+    				<th>Competitor</th>
+    				<th>Points</th>
+    				<th>Tie Breaker</th>
     				<th>Times Competed</th>
-				</tr> 
-			</thead> 
-			<tbody> 
+				</tr>
+			</thead>
+			<tbody>
 			  <% standings.sort_by(&:rank).each do |standing| %>
           <tr id="<%= dom_id(standing) %>">
             <td><%= standing.rank %></td>
@@ -30,10 +48,11 @@
   </article>
 <% end %>
 
+
 <article class="module width_3_quarter">
   <header><h3><a name="tie_breakers"></a>Tie Breakers</h3></header>
   <ol>
-    <li>      
+    <li>
       <strong>Head-to-head</strong>. For all events in which the two competitors competed against each other, the total number of Eastern League points awarded to each competitor is counted. The higher number wins.
     </li>
     <li>

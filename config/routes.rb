@@ -63,7 +63,11 @@ EasternLeague::Application.routes.draw do
   end
   resources :jackets
 
-  resources :standings
+  resources :standings do
+    collection do
+      post :calculate
+    end
+  end
 
   resources :events do
     resources :scores

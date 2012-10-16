@@ -26,7 +26,8 @@
   <h3>Competition</h3>
   <ul>
     <li class="icn_calendar"><%= link_to "Calendar", calendar_path %></li>
-    <li class="icn_event_results"><a href="/events/1004/scores">Event Results</a></li>
+    <li class="icn_event_results"><%= link_to "Event Results", event_scores_path(Event.most_recent) %></li>
+    <!-- li class="icn_event_results"><a href="/events/1004/scores">Event Results</a></li -->
     <!-- li class="icn_competitor_results"><a href="#">Competitor Results</a></li-->
     <li class="icn_standings"><%= link_to "Current Standings", standings_path %></li>
   </ul>
