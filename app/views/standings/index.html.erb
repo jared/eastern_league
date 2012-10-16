@@ -4,7 +4,7 @@
   <header><h3>Season</h3></header>
   <div class="module_content">
     <p>View standings from previous competition seasons:<br />
-      <%= Season.with_standings.map{ |season| link_to season.year, standings_path(:season_id => season.id) }.join("|").html_safe %>
+      <%= Season.with_standings.map{ |season| link_to season.year, standings_path(:season_id => season.id) }.join(" | ").html_safe %>
     </p>
   </div>
 </article>
