@@ -1,10 +1,10 @@
 <% title("Current Eastern League Standings") %>
 
 <article class="module width_3_quarter">
-  <header><h3>Navigation</h3></header>
-    <ul>
+  <header><h3>Season</h3></header>
+    <ul style="list-style-type:none;">
       <% Season.with_standings.each do |season| %>
-        <li><%= link_to season.year, standings_path(:season_id => season.id) %></li>
+        <li style="float: left;"><%= link_to season.year, standings_path(:season_id => season.id) %></li>
       <% end %>
     </ul>
 </article>
