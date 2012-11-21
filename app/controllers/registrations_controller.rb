@@ -46,14 +46,14 @@ class RegistrationsController < ApplicationController
 
     # OBSKC
     # @base_registration = 10.0
-    @base_registration = 20.0
-    @discipline_rate = 10.0
-    @flat_rate = 40.0
-
-    # TISKC
     # @base_registration = 20.0
-    # @discipline_rate = 20.0
+    # @discipline_rate = 10.0
     # @flat_rate = 40.0
+
+    # TISKC 2013
+    @base_registration = 15.0
+    @discipline_rate = 15.0
+    @flat_rate = 45.0
 
     # MASKC
     # @base_registration = 20.0
