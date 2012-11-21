@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   CURRENT_RAFFLE_COST = 5.0
 
-  before_filter :require_user, :except => [:show, :donate]
+  before_filter :require_user, :except => [:show, :donate, :raffle_ticket]
 
   def index
     @events = Event.all(:order => "start_date DESC")
