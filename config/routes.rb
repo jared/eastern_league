@@ -73,6 +73,10 @@ EasternLeague::Application.routes.draw do
     resources :scores
     resources :registrations
     resources :comments
+    member do
+      get :donate
+      post :raffle_ticket
+    end
   end
 
   resources :password_resets

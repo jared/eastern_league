@@ -1,16 +1,30 @@
 class EventsController < ApplicationController
+  CURRENT_RAFFLE_COST = 5.0
 
-  before_filter :require_user, :except => :show
+  before_filter :require_user, :except => [:show, :donate]
 
   def index
     @events = Event.all(:order => "start_date DESC")
     authorize! :manage, Event
   end
-  
+
   def show
     @event = Event.find(params[:id])
     @event.event_detail ||= EventDetail.new
     @comments = @event.comments.sort_by(&:created_at).reverse
+  end
+
+  def donate
+    @event = Event.find(params[:id])
+    @cost = CURRENT_RAFFLE_COST
+  end
+
+  def raffle_ticket
+    @event = Event.find(params[:id])
+    @cost = CURRENT_RAFFLE_COST
+    UserMailer.raffle_ticket_order(@event, params.slice(:name, :street_address, :city_state_zip, :phone, :email, :number_of_donations, :item).merge(:cost_each => @cost))
+    flash[:notice] = "Thank you, your donation request has been received.  You should receive confirmation via email shortly."
+    render :action => :donate
   end
 
   def new
@@ -49,7 +63,7 @@ class EventsController < ApplicationController
       render :action => :edit
     end
   end
-  
+
   def destroy
     @event = Event.find(params[:id])
     authorize! :destroy, @event

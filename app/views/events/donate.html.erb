@@ -1,0 +1,70 @@
+<% title("#{@event.name} Donation") %>
+
+<article class="module width_3_quarter">
+  <header><h3>Make a Donation</h3></header>
+  <div class="module_content">
+    <p>Great events like TISKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.</p>
+    <p>
+      All persons making a donation will be entered into a drawing to win a set of Eliot Shook Revolution mini-banners!<br />
+      Anyone who has attended a kite competition on the east coast in the past few years has most likely seen these awesome banners marking the bags of our prominent multi-line flyers.  <%= link_to("Flying Smiles Kites", "http://flyingsmileskites.com") %> has generously provided a set of two custom banners as a reward for one lucky person making a donation to support TISKC.  There are a maximum of <strong>30</strong> donation opportunities at this time.  Each donation is <strong>$5.00 USD</strong> and an individual may donate up to a maximum of $25.00.
+    </p>
+    <p>
+      Drawing for the Rev Banners is expected to be held on or around <strong>December 7th, 2012</strong>, or sonner if all donations have been received prior to December 7th.
+      <br />
+      <strong>There will be additional donation opportunities for TISKC 2013 in the next few weeks, so keep checking back!</strong>
+    </p>
+    <%= image_tag("rev_banners.jpg") %>
+  </div>
+</article>
+
+<article class="module width_3_quarter">
+  <header><h3>Make a Donation</h3></header>
+  <%= form_tag raffle_ticket_event_path(@event) do %>
+    <div class="module_content">
+      <fieldset>
+        <%= hidden_field_tag :item, "Banners" %>
+
+        <%= label_tag "Name" %>
+        <%= text_field_tag :name %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "Street Address" %>
+        <%= text_field_tag :address %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "City, State, ZIP" %>
+        <%= text_field_tag :city_state_zip %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "Phone Number" %>
+        <%= text_field_tag :phone %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "Email" %>
+        <%= text_field_tag :email %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "# of Donations ($#{@cost.to_i} USD each)".html_safe %>
+        <%= select_tag :number_of_donations, options_for_select((1..5).to_a) %>
+        <div class="clear"><br /></div>
+
+      </fieldset>
+      <p>
+        Pressing "Submit" below will send your request to the event organizer.  You should receive a donation invoice via email shortly after.  If you would rather donate by check, please make the check out to "Eastern League Sport Kite Association" and mail to the following address:
+      </p>
+      <p>
+        Eastern League<br />
+        212 Hazelmere Dr<br />
+        Holly Springs, NC 27540 USA<br />
+      </p>
+
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= submit_tag "Submit", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+
+  <% end %>
+</article>
