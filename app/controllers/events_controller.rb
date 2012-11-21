@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   def raffle_ticket
     @event = Event.find(params[:id])
     @cost = CURRENT_RAFFLE_COST
-    UserMailer.raffle_ticket_order(@event, params.slice(:name, :street_address, :city_state_zip, :phone, :email, :number_of_donations, :item).merge(:cost_each => @cost))
+    UserMailer.raffle_ticket_order(@event, params.slice(:name, :street_address, :city_state_zip, :phone, :email, :number_of_donations, :item).merge(:cost_each => @cost)).deliver
     flash[:notice] = "Thank you, your donation request has been received.  You should receive confirmation via email shortly."
     render :action => :donate
   end
