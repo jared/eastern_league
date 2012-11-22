@@ -53,8 +53,8 @@ class RegistrationsController < ApplicationController
     # TISKC 2013
     @base_registration = 15.0
     @discipline_rate = 15.0
-    @flat_rate = 45.0
-
+    # @flat_rate = 45.0
+#
     # MASKC
     # @base_registration = 20.0
     # @discipline_rate = 10.0
@@ -68,8 +68,8 @@ class RegistrationsController < ApplicationController
     end
 
     # Test against early, flat-rate fee
-    # @event_registration.amount = (tmp_amount > @flat_rate) ? @flat_rate : tmp_amount
-    @event_registration.amount = tmp_amount
+    @event_registration.amount = (tmp_amount > @flat_rate) ? @flat_rate : tmp_amount
+    # @event_registration.amount = tmp_amount
 
     if @event_registration.save
       if @event_registration.amount > 0
