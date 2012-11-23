@@ -53,7 +53,7 @@ class RegistrationsController < ApplicationController
     # TISKC 2013
     @base_registration = 15.0
     @discipline_rate = 15.0
-    # @flat_rate = 45.0
+    @flat_rate = 45.0
 #
     # MASKC
     # @base_registration = 20.0
