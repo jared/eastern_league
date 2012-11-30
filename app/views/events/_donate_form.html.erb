@@ -1,0 +1,48 @@
+<%= form_tag raffle_ticket_event_path(@event) do %>
+    <div class="module_content">
+      <fieldset>
+        <%= hidden_field_tag :item, "Banners" %>
+
+        <%= label_tag "Name" %>
+        <%= text_field_tag :name %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "Street Address" %>
+        <%= text_field_tag :street_address %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "City, State, ZIP" %>
+        <%= text_field_tag :city_state_zip %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "Phone Number" %>
+        <%= text_field_tag :phone %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "Email" %>
+        <%= text_field_tag :email %>
+        <div class="clear"><br /></div>
+
+        <%= label_tag "# of Donations ($#{@cost.to_i} USD each)".html_safe %>
+        <%= select_tag :number_of_donations, options_for_select((1..5).to_a) %>
+        <div class="clear"><br /></div>
+
+      </fieldset>
+      <p>
+        Pressing "Submit" below will send your request to the event organizer.  You should receive a donation invoice via email shortly after.  If you would rather donate by check, please make the check out to "Eastern League Sport Kite Association" and mail to the following address:
+      </p>
+      <p>
+        Eastern League<br />
+        212 Hazelmere Dr<br />
+        Holly Springs, NC 27540 USA<br />
+      </p>
+
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= submit_tag "Submit", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+
+  <% end %>
