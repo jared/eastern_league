@@ -3,24 +3,28 @@
 <article class="module width_3_quarter">
   <header><h3>Make a Donation</h3></header>
   <div class="module_content">
-    <p>Great events like TISKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.</p>
     <p>
-      All persons making a donation will be entered into a drawing to win a set of Eliot Shook Revolution mini-banners!<br />
-      Anyone who has attended a kite competition on the east coast in the past few years has most likely seen these awesome banners marking the bags of our prominent multi-line flyers.  <%= link_to("Flying Smiles Kites", "http://flyingsmileskites.com") %> has generously provided a set of two custom banners as a reward for one lucky person making a donation to support TISKC.  There are a maximum of <strong>30</strong> donation opportunities at this time.  Each donation is <strong>$5.00 USD</strong> and an individual may donate up to a maximum of $25.00.
+      Great events like TISKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
     </p>
     <p>
-      Drawing for the Rev Banners is expected to be held on or around <strong>December 7th, 2012</strong>, or sonner if all donations have been received prior to December 7th.
+      All persons making a donation will be entered into a drawing to win a blue Skate from <%= link_to("Into The Wind", "http://intothewind.com") %>!
+    </p>
+    <p>
+      Any kite flyer who has watched an indoor competition in the past few years is likely already familiar with the Skate.  Through an arrangement with Into the Wind, Paul de Bakker has brought back some of his most popular designs, including this single line indoor/outdoor glider.  Ideally suited to flying in a large indoor space, the Skate is also a perfect choice for those days when the wind outdoors is too soft (or nonexistent!) for even the lightest of kites.  There's no reason to pack up and go home on a no-wind day, as long as you have a Skate in your bag, and we're thrilled to be offering one as a reward for one lucky person making a donation to support TISKC.  There are a maximum of <strong>25</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $50.00.
+    </p>
+    <p>
+      Drawing for the Skate is expected to be held on or around <strong>December 23rd, 2012</strong>, or sonner if all donations have been received prior to December 23rd.
       <br />
       <strong>There will be additional donation opportunities for TISKC 2013 in the next few weeks, so keep checking back!</strong>
     </p>
-    <%= image_tag("rev_banners.jpg") %>
+    <%= image_tag("skate.jpg") %>
+    <p><em>Congratulations to Bob Matteo of Colorado, who received a set of Eliot Shook Revolution Mini-Banners in return for his support of TISKC!</em></p>
   </div>
 </article>
+<div class="clear"><br /></div>
 
 <article class="module width_3_quarter">
   <header><h3>Support TISKC</h3></header>
-  <%#= render :partial => "donate_form" %>
-  <div class="module_content">
-    <p>All donation slots have been taken at this time.  We'll update shortly with another donation opportunity!</p>
-  </div>
+  <%= render :partial => "donate_form" %>
 </article>
+<div class="clear"><br /></div>
