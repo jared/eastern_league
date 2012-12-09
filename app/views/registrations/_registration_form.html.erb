@@ -1,0 +1,13 @@
+<fieldset class="disciplines">
+  <% @event.disciplines.group_by(&:discipline_group).each do |group_name, disciplines| %>
+    <h4><%= group_name %></h4>
+    <% group_prefix = group_name.downcase.gsub(/[^a-z]/, '_') %>
+    <% disciplines.each do |discipline| %>
+      <%= label_tag discipline.abbreviation, nil, :class => "abbrev" %>
+      <%= check_box_tag "event_registration[disciplines][]", discipline.id, @event_registration.disciplines.include?(discipline), :class => "abbrev #{group_prefix}_checkbox", :onclick => %{$('.#{group_prefix}_team_name').toggleClass('required');$('.#{group_prefix}_team_members').toggleClass('required');} %>
+      <br class="clear"/>
+    <% end %>
+    <div class="clear"><br /></div>
+    <%= raw team_name_and_members(group_name, @event_registration) %>
+  <% end %>
+</fieldset>

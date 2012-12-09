@@ -1,14 +1,7 @@
 <% title("Event Registration") %>
 <article class="module width_full">
-  <header><h3>Register for <%= @event.name %></h3></header>
-  <div class="module_content">
-    <%=raw @event.event_detail.registration_instructions %>
-  </div>
-</article>
-
-<article class="module width_full">
-  <header><h3>Online Registration</h3></header>
-  <%= form_for @event_registration, :url => event_registrations_path(@event), :html => { :id => "event_registration_form" } do |f| %>
+  <header><h3>Edit Event Registration for <%= @event.acronym %> : <%= @user.full_name %></h3></header>
+  <%= form_for @event_registration, :url => event_registration_path(@event, @event_registration), :html => { :id => "event_registration_form" } do |f| %>
     <div class="module_content">
       <fieldset style="width:48%; float:left; margin-right: 3%;">
         <%= label_tag "Competitor Name" %>
@@ -16,44 +9,44 @@
         <div class="clear"><br /></div>
 
         <%= label_tag "Street Address" %>
-        <%= text_field_tag "users[street_address_1]", @user.street_address_1 %>
+        <%= @user.street_address_1 %>
         <div class="clear"><br /></div>
 
         <%= label_tag "City" %>
-        <%= text_field_tag "users[city]", @user.city %>
+        <%=  @user.city %>
         <div class="clear"><br /></div>
 
         <%= label_tag "State" %>
-        <%= text_field_tag "users[state]", @user.state %>
+        <%= @user.state %>
         <div class="clear"><br /></div>
 
         <%= label_tag "ZIP Code" %>
-        <%= text_field_tag "users[zip]", @user.zip %>
+        <%= @user.zip %>
         <div class="clear"><br /></div>
 
         <%= label_tag "Phone" %>
-        <%= text_field_tag "users[phone_number]", @user.phone_number %>
+        <%= @user.phone_number %>
         <div class="clear"><br /></div>
 
         <%= label_tag "Email" %>
-        <%= text_field_tag "users[email]", @user.email %>
+        <%= @user.email %>
         <div class="clear"><br /></div>
       </fieldset>
 
       <fieldset style="width:48%; float:left;">
-        <%= f.check_box :volunteer_judge %>
+        <%= f.check_box :volunteer_judge, :disabled => true %>
         <%= f.label :volunteer_judge, "Volunteer as Judge" %>
         <div class="clear"><br /></div>
-        <%= f.check_box :volunteer_field_staff %>
+        <%= f.check_box :volunteer_field_staff, :disabled => true %>
         <%= f.label :volunteer_field_staff, "Volunteer as Field Staff" %>
         <div class="clear"><br /></div>
-        <%= f.check_box :volunteer_setup_crew %>
+        <%= f.check_box :volunteer_setup_crew, :disabled => true %>
         <%= f.label :volunteer_setup_crew, "Volunteer as Setup Crew" %>
         <div class="clear"><br /></div>
 
         <hr style="width: 75%; color: #ccc;"/>
 
-        <%= f.check_box :first_time_competitor %>
+        <%= f.check_box :first_time_competitor, :disabled => true %>
         <%= f.label :first_time_competitor, "I am a First Time Competitor" %>
       </fieldset>
       <div class="clear"></div>
@@ -62,13 +55,13 @@
         <h4>Disclaimer</h4>
         <p><%=raw @event.event_detail.waiver %></p>
         <p>I have read this release of liability and I understand its meaning.</p>
-        <%= check_box_tag "event_registration[accepted_terms]", 1, false, :class => 'required' %>
+        <%= check_box_tag "event_registration[accepted_terms]", 1, @event_registration.accepted_terms, :class => 'required', :disabled => true %>
         <%= f.label :accepted_terms, "I agree"  %>
       </fieldset>
     </div>
     <footer>
       <div class="submit_link">
-        <%= submit_tag "Register", :class => "alt_btn" %>
+        <%= submit_tag "Update", :class => "alt_btn" %>
         or <%= link_to "Cancel", request.referer %>
       </div>
     </footer>

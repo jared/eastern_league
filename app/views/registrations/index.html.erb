@@ -33,6 +33,7 @@
           </td>
           <td>
             <% if @current_user.admin? %>
+              <%= link_to "Edit", edit_event_registration_path(@event, registration), :class => "alt-btn" %>
               <%= form_for registration, :url => event_registration_path(@event, registration), :html => { :method => :delete } do |f| %>
                 <%= f.submit "Delete" %>
               <% end %>

@@ -1,8 +1,17 @@
 class RegistrationDiscipline < ActiveRecord::Base
-  
+
   belongs_to :event_registration
   belongs_to :event_discipline
-  
+
+  scope :for_discipline, lambda { |discipline_ids|
+    includes(:event_discipline => :discipline).
+    where("disciplines.id IN (?)", discipline_ids)
+  }
+
+  # def self.for_discipline(discipline_id)
+  #   includes(:event_discipline => :discipline).where("disciplines.id = ?", discipline_id).first
+  # end
+
   def abbrev_and_members
     output = []
     str = event_discipline.abbreviation
@@ -13,5 +22,5 @@ class RegistrationDiscipline < ActiveRecord::Base
     output << str
     output
   end
-  
+
 end

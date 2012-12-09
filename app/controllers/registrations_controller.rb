@@ -13,6 +13,42 @@ class RegistrationsController < ApplicationController
     @user = @event_registration.competitor.user
   end
 
+  def edit
+    load_event
+    @event_registration = @event.event_registrations.find(params[:id])
+    @user = @event_registration.competitor.user
+  end
+
+  def update
+    load_event
+    @event_registration = @event.event_registrations.find(params[:id])
+    @event_registration.registration_disciplines.clear
+
+    params[:event_registration][:disciplines].each do |discipline_id|
+      event_discipline = @event.event_disciplines.find_by_discipline_id(discipline_id)
+      reg_disc = @event_registration.registration_disciplines.build(:event_discipline => event_discipline)
+      case discipline_id.to_i
+      when 13, 14, 15, 16
+        reg_disc.group_name = params[:event_registration][:op_team_name]
+        reg_disc.group_members = params[:event_registration][:op_team_members]
+      when 17, 18, 19, 20, 21, 22
+        reg_disc.group_name = params[:event_registration][:ot_team_name]
+        reg_disc.group_members = params[:event_registration][:ot_team_members]
+      when 23
+        reg_disc.group_name = params[:event_registration][:ott_team_name]
+        reg_disc.group_members = params[:event_registration][:ott_team_members]
+      when 26, 27
+        reg_disc.group_name = params[:event_registration][:omt_team_name]
+        reg_disc.group_members = params[:event_registration][:omt_team_members]
+      when 28, 29
+        reg_disc.group_name = params[:event_registration][:omp_team_name]
+        reg_disc.group_members = params[:event_registration][:omp_team_members]
+      end
+    end
+    @event_registration.save
+    redirect_to event_registrations_path(@event)
+  end
+
   def create
     load_event
 
