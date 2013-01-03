@@ -9,7 +9,12 @@ class ApiController < ApplicationController
       logger.warn("Multiple Payments received for #{@notify.transaction_id}")
     end
 
-    @order = Order.find(@notify.invoice)
+    @order = Order.find_by_id(@notify.invoice)
+    if @order.nil?
+      File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{Time.now.to_s(:db)}: No order found for #{@notify.txn_id}" }
+      UserMailer.user_message(User.find(1), User.find(1), "API Controller: No order found for #{@notify.txn_id}").deliver
+      render :nothing and return
+    end
 
     if @notify.acknowledge
       begin
