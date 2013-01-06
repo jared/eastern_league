@@ -13,7 +13,7 @@ class ApiController < ApplicationController
     if @order.nil?
       File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{Time.now.to_s(:db)}: No order found for #{@notify.inspect}" }
       UserMailer.user_message(User.find(621), User.find(621), "API Controller: No order found for #{@notify.inspect}").deliver
-      render :nothing and return
+      render :nothing => true and return
     end
 
     if @notify.acknowledge
