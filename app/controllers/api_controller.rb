@@ -40,7 +40,8 @@ class ApiController < ApplicationController
         else
           @order.update_attribute(:paypal_status, @notify.status)
           logger.warn("#{@notify.transaction_id} was not complete.")
-          raise "Payment not completed."
+          UserMailer.user_message(User.find(621), User.find(621), "API Controller: #{@notify.inspect}").deliver
+          render :nothing => true and return
         end
 
       rescue => e
