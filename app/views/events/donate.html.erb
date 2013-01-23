@@ -4,9 +4,9 @@
   <header><h3>Make a Donation</h3></header>
   <div class="module_content">
     <p>
-      Great events like TISKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
+      Great events like TISKC only happen with your help!
     </p>
-    <p>
+<!--     <p>
       All persons making a donation will be entered into a drawing to win a Saber III, in their choice of Red, Yellow, Green or Blue from <%= link_to("Sturdy Designs", "http://sturdy-designs.com") %>!
     </p>
     <p>
@@ -28,16 +28,21 @@
     </p>
     <p>
       Drawing for the Saber III is expected to be held on or around <strong>January 19th, 2013</strong>, or sonner if all donations have been received prior to January 19th.
-    </p>
-    <%= image_tag("saber3.jpg") %>
-    <p><em>Congratulations to Bob Matteo of Colorado, who received a set of Eliot Shook Revolution Mini-Banners in return for his support of TISKC!</em></p>
-    <p><em>Congratulations to Rich Comras of New Jersey, who received a blue Skate from <%= link_to("Into the Wind", "http://intothewind.com") %> in return for his support of TISKC!</em></p>
+    </p> -->
+
+    <%#= image_tag("saber3.jpg") %>
+    <p>Congratulations to Bob Matteo of Colorado, who received a set of <strong>Eliot Shook Revolution Mini-Banners</strong> from <%= link_to "Flying Smiles Kites", "http://flyingsmileskites.com" %> in return for his support of TISKC!</p>
+    <p>Congratulations to Rich Comras of New Jersey, who received a <strong>blue Skate</strong> from <%= link_to("Into the Wind", "http://intothewind.com") %> in return for his support of TISKC!</p>
+    <p>Congratulations to Brian Bishop of North Carolina, who received a <strong>red Saber III</strong> from <%= link_to "Sturdy Designs", "http://sturdy-designs.com" %> in return for his support of TISKC!</p>
   </div>
 </article>
 <div class="clear"><br /></div>
 
 <article class="module width_3_quarter">
   <header><h3>Support TISKC</h3></header>
-  <%= render :partial => "donate_form" %>
+  <div class="module_content">
+    <p>No donation opportunities remain at this time</p>
+  </div>
+  <%#= render :partial => "donate_form" %>
 </article>
 <div class="clear"><br /></div>
