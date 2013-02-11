@@ -46,6 +46,11 @@ gem 'seed-fu', :git => "git://github.com/mbleigh/seed-fu.git", :branch => "rails
 
 gem 'exception_notification'
 
+group :development do
+  gem "better_errors", ">= 0.3.2"
+  gem "binding_of_caller", ">= 0.6.8"
+end
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false

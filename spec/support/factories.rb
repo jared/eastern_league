@@ -11,47 +11,47 @@ FactoryGirl.define do
     sequence(:email) { |n| "email#{n * Time.now.to_i}@example.com" }
     password 'test'
   end
-  
+
   factory :active_user, :parent => :user do
     el_member true
     current_through_date 6.months.from_now.to_date
   end
-  
+
   factory :expired_user, :parent => :user do
     el_member true
     current_through_date 1.month.ago.to_date
   end
-  
+
   factory :expiring_soon_user, :parent => :user do
     el_member true
     current_through_date 15.days.from_now.to_date
   end
-  
+
   factory :board_member_user, :parent => :user do
     el_member true
     board_member true
   end
-  
+
   factory :lifetime_member_user, :parent => :user do
     el_member true
     lifetime true
   end
-  
+
   factory :competitor do
     association :user, :factory => :active_user
     bio "This is my competitor biography."
   end
-  
+
   factory :pair, :parent => :competitor do
     pair true
     name "Dueling Sabers"
   end
-  
+
   factory :team, :parent => :competitor do
     team true
     name "Rusty Sabers"
   end
-  
+
   factory :team_member do
     association :competitor
     association :team
@@ -69,11 +69,11 @@ FactoryGirl.define do
     expires_at  1.year.from_now.end_of_month
     paid        true
   end
-  
+
   factory :order do
     association :user
   end
-  
+
   factory :line_item do
     association :order
     description "A Description"
@@ -103,12 +103,12 @@ FactoryGirl.define do
     association    :season
     registration_deadline Date.new(2011, 8, 1)
   end
-  
+
   factory :event_discipline do
     association :event
     association :discipline
   end
-  
+
   factory :event_detail do
     association :event
     general_information "Some general event info"
@@ -118,12 +118,12 @@ FactoryGirl.define do
     name          "Masters Individual Ballet"
     abbreviation  "MIB"
   end
-  
+
   factory :score do
     association :season
     association :competitor
     association :event_discipline
-    disqualified false    
+    disqualified false
   end
 
   factory :standing do

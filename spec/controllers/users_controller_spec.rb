@@ -4,13 +4,13 @@ describe UsersController do
 
   describe "#show" do
     before(:each) do
-      @user = Factory :active_user
+      @user = FactoryGirl.create :active_user
     end
     it "should show a user's profile page" do
       get :show, :id => @user.id
       response.should be_success
     end
-    
+
   end
 
   describe "#new" do
@@ -66,7 +66,7 @@ describe UsersController do
   describe "#edit" do
     describe "as regular user" do
       before(:each) do
-        @user = Factory(:user)
+        @user = FactoryGirl.create(:user)
         login_as(@user)
       end
 
@@ -79,7 +79,7 @@ describe UsersController do
 
       describe "editing someone else's profile" do
         it "should not allow non-admin to edit" do
-          @other_user = Factory(:user)
+          @other_user = FactoryGirl.create(:user)
           get :edit, :id => @other_user.id
           flash[:error].should == "You may only edit your own account."
           response.should redirect_to root_path
@@ -89,8 +89,8 @@ describe UsersController do
 
     describe "as admin user" do
       before(:each) do
-        @admin = Factory(:user, :admin => true)
-        @user = Factory(:user)
+        @admin = FactoryGirl.create(:user, :admin => true)
+        @user = FactoryGirl.create(:user)
         login_as(@admin)
       end
 
@@ -105,7 +105,7 @@ describe UsersController do
   describe "#update" do
     describe "as regular user" do
       before(:each) do
-        @user = Factory(:user)
+        @user = FactoryGirl.create(:user)
 
         login_as(@user)
       end
@@ -131,7 +131,7 @@ describe UsersController do
 
       describe "editing someone else's profile" do
         it "should not allow non-admin to edit" do
-          @other_user = Factory(:user)
+          @other_user = FactoryGirl.create(:user)
           put :update, :id => @other_user.id, :user => { :full_name => "Test Updated" }
           flash[:error].should == "You may only edit your own account."
           response.should redirect_to root_path

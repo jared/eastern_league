@@ -25,8 +25,8 @@ describe User do
 
   describe "#activate_membership!" do
     before(:each) do
-      @user = Factory :user, :el_member => false, :member_since => nil
-      @membership = Factory :membership, :user => @user, :expires_at => 12.months.from_now.end_of_month, :paid => true
+      @user = FactoryGirl.create :user, :el_member => false, :member_since => nil
+      @membership = FactoryGirl.create :membership, :user => @user, :expires_at => 12.months.from_now.end_of_month, :paid => true
     end
 
     it "should mark the user as an eastern league member" do
@@ -57,37 +57,37 @@ describe User do
 
   describe "#name_with_email" do
     before(:each) do
-      @user = Factory :user, :full_name => "Test User", :email => "testuser@example.com"
+      @user = FactoryGirl.create :user, :full_name => "Test User", :email => "testuser@example.com"
     end
 
     it "should list the full name and obfuscated email address" do
       @user.name_with_email.should == "Test User, testuser@*******"
     end
   end
-  
+
   describe "#membership_status" do
     it "should return 'active' for an active user'" do
-      @user = Factory :active_user
+      @user = FactoryGirl.create :active_user
       @user.membership_status.should == 'active'
     end
-    
+
     it "should return 'active' for a board member" do
-      @user = Factory :board_member_user
+      @user = FactoryGirl.create :board_member_user
       @user.membership_status.should == 'active'
     end
 
     it "should return 'active' for a lifetime member" do
-      @user = Factory :lifetime_member_user
+      @user = FactoryGirl.create :lifetime_member_user
       @user.membership_status.should == 'active'
     end
-    
+
     it "should return 'expired' for an expired user" do
-      @user = Factory :expired_user
+      @user = FactoryGirl.create :expired_user
       @user.membership_status.should == 'expired'
     end
-    
+
     it "should return 'expiring_soon' for a user whose membership will expire inside of 30 days" do
-      @user = Factory :expiring_soon_user
+      @user = FactoryGirl.create :expiring_soon_user
       @user.membership_status.should == 'expiring_soon'
     end
   end

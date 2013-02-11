@@ -4,11 +4,11 @@ describe Membership do
 
   describe "#activate!" do
     before(:each) do
-      @user = Factory :user
+      @user = FactoryGirl.create :user
       @user.stub!(:activate_membership!).and_return(true)
-      @membership_plan = Factory :membership_plan, :name => "1 Year Individual", :renewal_period => 12
+      @membership_plan = FactoryGirl.create :membership_plan, :name => "1 Year Individual", :renewal_period => 12
 
-      @membership = Factory :membership, :user => @user, :paid => false, :expires_at => nil, :membership_plan => @membership_plan
+      @membership = FactoryGirl.create :membership, :user => @user, :paid => false, :expires_at => nil, :membership_plan => @membership_plan
     end
 
     it "should save the membership" do
@@ -25,7 +25,7 @@ describe Membership do
       @membership.activate!
       @membership.expires_at.should == Date.today.advance(:months => 12).to_time.end_of_month
     end
-    
+
     it "should set the expires at when given a custom payment date" do
       renewal_date = 45.days.ago
       @membership.activate!(renewal_date)

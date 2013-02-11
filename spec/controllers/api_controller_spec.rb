@@ -8,46 +8,46 @@ describe ApiController do
       ipn_setup_order
       @membership.stub!(:activate!).and_return(true)
     end
-    
+
     describe "successful" do
       before(:each) do
         @ipn_params.merge!(:acknowledge => "true")
         mock_notify(@ipn_params)
       end
-      
+
       it "should process an update the order state" do
         post :ipn, @ipn_params
         @order.reload.state.should == "IPN Received"
       end
-      
+
       it "should set the paypal_status" do
         post :ipn, @ipn_params
         @order.reload.paypal_status.should == "Completed"
       end
-      
+
       it "should set the transaction identifier" do
         post :ipn, @ipn_params
         @order.reload.paypal_transaction_identifier.should == @trans_id
       end
-      
+
       it "should activate the membership" do
         post :ipn, @ipn_params
         @user.reload.el_member.should be_true
       end
-      
+
     end
-    
+
   end
 end
 
 def ipn_setup_order
-  @user = Factory :user
-  @membership = Factory :membership, :user => @user
-  @order = Factory.build(:order)
+  @user = FactoryGirl.create :user
+  @membership = FactoryGirl.create :membership, :user => @user
+  @order = FactoryGirl.build(:order)
   @order.line_items << LineItem.new(:purchasable => @membership, :amount => 15.00)
   @order.save
 
-  @trans_id = "16F08736TA389152H" 
+  @trans_id = "16F08736TA389152H"
   @ipn_params = {:payment_date => "04:33:33 Oct 13.2007+PDT" ,
        :txn_type => "web_accept",
        :last_name => "User",
@@ -77,7 +77,7 @@ def ipn_setup_order
        :mc_gross => "15.00",
        :custom => "3",
        :charset => "windows-1252",
-       :notify_version => "2.4" 
+       :notify_version => "2.4"
      }
 end
 

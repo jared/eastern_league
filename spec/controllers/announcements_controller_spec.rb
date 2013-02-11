@@ -13,7 +13,7 @@ describe AnnouncementsController do
 
     context "show" do
       before(:each) do
-        @announcement = Factory :announcement
+        @announcement = FactoryGirl.create :announcement
       end
 
       it "should render the show template" do
@@ -30,12 +30,12 @@ describe AnnouncementsController do
 
     context "index" do
       before(:each) do
-        2.times { Factory(:announcement) }
+        2.times { FactoryGirl.create(:announcement) }
       end
 
       context "as an admin" do
         before(:each) do
-          @admin = Factory(:user, :admin => true)
+          @admin = FactoryGirl.create(:user, :admin => true)
           login_as(@admin)
         end
 
@@ -55,7 +55,7 @@ describe AnnouncementsController do
     context "GET new" do
       context "as an admin" do
         before(:each) do
-          @admin = Factory(:user, :admin => true)
+          @admin = FactoryGirl.create(:user, :admin => true)
           login_as(@admin)
         end
 
@@ -80,12 +80,12 @@ describe AnnouncementsController do
 
     context "GET edit" do
       before(:each) do
-        @announcement = Factory :announcement
+        @announcement = FactoryGirl.create :announcement
       end
 
       context "as an admin" do
         before(:each) do
-          @admin = Factory(:user, :admin => true)
+          @admin = FactoryGirl.create(:user, :admin => true)
           login_as(@admin)
         end
 
@@ -115,7 +115,7 @@ describe AnnouncementsController do
     context "create" do
       context "for an admin user" do
         before :each do
-          @admin = Factory :user, :admin => true
+          @admin = FactoryGirl.create :user, :admin => true
           login_as @admin
         end
         context "with valid parameters" do
@@ -173,8 +173,8 @@ describe AnnouncementsController do
     context "update" do
       context "for an admin user" do
         before :each do
-          @announcement = Factory :announcement
-          @admin = Factory :user, :admin => true
+          @announcement = FactoryGirl.create :announcement
+          @admin = FactoryGirl.create :user, :admin => true
           login_as @admin
         end
         context "with valid parameters" do
@@ -209,7 +209,7 @@ describe AnnouncementsController do
 
       context "for a non-admin" do
         before(:each) do
-          @announcement = Factory :announcement
+          @announcement = FactoryGirl.create :announcement
           @method = :put
           @action = :update
           @params = {:id => @announcement.id, :announcement => { :headline => "Some Text", :body => "Some more text"}}
@@ -226,8 +226,8 @@ describe AnnouncementsController do
     context "destroy" do
       context "for an admin user" do
         before :each do
-          @announcement = Factory :announcement
-          @admin = Factory :user, :admin => true
+          @announcement = FactoryGirl.create :announcement
+          @admin = FactoryGirl.create :user, :admin => true
           login_as @admin
         end
         context "with valid parameters" do
@@ -254,7 +254,7 @@ describe AnnouncementsController do
         before(:each) do
           @method = :delete
           @action = :destroy
-          @params = {:id => Factory(:announcement).id}
+          @params = {:id => FactoryGirl.create(:announcement).id}
         end
 
         it_should_behave_like "a non-admin user"

@@ -3,7 +3,15 @@
     <h4><%= group_name %></h4>
     <% group_prefix = group_name.downcase.gsub(/[^a-z]/, '_') %>
     <% disciplines.each do |discipline| %>
-      <%= label_tag discipline.abbreviation, nil, :class => "abbrev" %>
+      <% if @event.acronym == "ECSKC" %>
+        <% if [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29].include?(discipline.id) %>
+          <%= label_tag "#{discipline.abbreviation} ($15)", nil, :class => "abbrev", :style => "width: 70px;" %>
+        <% else %>
+          <%= label_tag "#{discipline.abbreviation} ($10)", nil, :class => "abbrev", :style => "width: 70px;" %>
+        <% end %>
+      <% else %>
+        <%= label_tag discipline.abbreviation, nil, :class => "abbrev" %>
+      <% end %>
       <%= check_box_tag "event_registration[disciplines][]", discipline.id, @event_registration.disciplines.include?(discipline), :class => "abbrev #{group_prefix}_checkbox", :onclick => %{$('.#{group_prefix}_team_name').toggleClass('required');$('.#{group_prefix}_team_members').toggleClass('required');} %>
       <br class="clear"/>
     <% end %>

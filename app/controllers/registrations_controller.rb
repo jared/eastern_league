@@ -77,8 +77,23 @@ class RegistrationsController < ApplicationController
 
     end
 
-
     tmp_amount = 0.0
+    @flat_rate = nil
+
+    case @event.acronym
+    when "ECSKC"
+      @base_registration = 0.0
+      @discipline_rate = 10.0
+    when "MASKC"
+      @base_registration = 10.0
+      @discipline_rate = 10.0
+      @flat_rate = 40.0
+    else
+      @base_registration = 20.0
+      @discipline_rate = 20.0
+    end
+
+
 
     # OBSKC
     # @base_registration = 10.0
@@ -87,10 +102,10 @@ class RegistrationsController < ApplicationController
     # @flat_rate = 40.0
 
     # TISKC 2013
-    @base_registration = 20.0
-    @discipline_rate = 20.0
+    # @base_registration = 20.0
+    # @discipline_rate = 20.0
     # @flat_rate = 45.0
-#
+
     # MASKC
     # @base_registration = 20.0
     # @discipline_rate = 10.0
@@ -100,12 +115,18 @@ class RegistrationsController < ApplicationController
       tmp_amount += @base_registration # Base registration
       @event_registration.registration_disciplines.each do |rd|
         tmp_amount += @discipline_rate # X dollars per discipline
+        if @event.acronym == "ECSKC" && [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29].include?(rd.event_discipline.discipline.id)
+          tmp_amount += 5.0
+        end
       end
     end
 
     # Test against early, flat-rate fee
-    # @event_registration.amount = (tmp_amount > @flat_rate) ? @flat_rate : tmp_amount
-    @event_registration.amount = tmp_amount
+    if @flat_rate
+      @event_registration.amount = (tmp_amount > @flat_rate) ? @flat_rate : tmp_amount
+    else
+      @event_registration.amount = tmp_amount
+    end
 
     if @event_registration.save
       if @event_registration.amount > 0

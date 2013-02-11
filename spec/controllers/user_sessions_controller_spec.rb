@@ -17,7 +17,7 @@ describe UserSessionsController do
 
     describe "with valid user credentials" do
       before(:each) do
-        @user = Factory(:user)
+        @user = FactoryGirl.create(:user)
         @params[:user_session][:email] = @user.email
         @params[:user_session][:password] = 'test'
       end
@@ -50,7 +50,7 @@ describe UserSessionsController do
 
   describe "#destroy" do
     before(:each) do
-      login_as Factory(:user)
+      login_as FactoryGirl.create(:user)
     end
 
     it "should log out the current user" do
