@@ -213,7 +213,7 @@
         <h4>Disclaimer</h4>
         <p><%=raw @event.event_detail.waiver %></p>
         <p>I have read this release of liability and I understand its meaning.</p>
-        <%= f.check_box :accepted_waiver, :required => "required" %>
+        <%= f.check_box :accepted_waiver, :required => "required", :class => "required" %>
         <%= f.label :accepted_waiver, "I agree"  %>
     </fieldset>
     </div>
