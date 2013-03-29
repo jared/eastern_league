@@ -30,10 +30,10 @@
   <table class="tablesorter" cellspacing="0">
     <thead>
       <tr>
-        <th>Competitor</th>
-        <th>Details</th>
-        <th>Amount Due</th>
-        <th>Number for Dinner</th>
+        <th width="25%">Competitor</th>
+        <th width="50%">Details</th>
+        <th width="12%">Amount Due</th>
+        <th width="13%">Number for Dinner</th>
       </tr>
     </thead>
     <tbody>
@@ -49,15 +49,23 @@
         </td>
         <td>
           <strong>ECSKC</strong><br />
-          <%= "(none)" if registration.ecskc.blank? %>
-          <% registration.ecskc.each do |discipline, value| %>
-            <%= "#{discipline}: #{value}<br />".html_safe unless value.blank? %>
-          <% end %><br />
+          <% if registration.ecskc.nil? %>
+            (none)<br />
+          <% else %>
+
+            <% registration.ecskc.each do |discipline, value| %>
+              <%= "#{discipline}: #{value}<br />".html_safe unless value.blank? %>
+            <% end %><br />
+          <% end %>
+
           <strong>WIKF Challenges</strong><br />
-          <%= "(none)" if registration.challenges.blank? %>
-          <% registration.challenges.each do |challenge, value| %>
-            <%= "#{challenge}: #{value}<br />".html_safe unless value.blank? %>
-          <% end %><br />
+          <% if registration.challenges.nil? %>
+            (none)<br />
+          <% else %>
+            <% registration.challenges.each do |challenge, value| %>
+              <%= "#{challenge}: #{value}<br />".html_safe unless value.blank? %>
+            <% end %><br />
+          <% end %>
           <strong>Volunteer:</strong><br />
           <%= "Judge," if registration.judge %>
           <%= "Field Staff," if registration.field_staff %>

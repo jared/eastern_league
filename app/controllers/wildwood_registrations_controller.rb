@@ -27,7 +27,7 @@ class WildwoodRegistrationsController < ApplicationController
       UserMailer.wildwood_registration(@wildwood_registration).deliver
 
       # display printable receipt/voucher for payment
-      render :action => :receipt
+      redirect_to receipt_wildwood_registration_path(@wildwood_registration) and return
     else
       render :action => :new
     end
