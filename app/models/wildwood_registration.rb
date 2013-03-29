@@ -4,6 +4,9 @@ class WildwoodRegistration < ActiveRecord::Base
 
   belongs_to :season
 
+  validates_presence_of :name, :address, :city, :state, :zip, :phone, :email
+  validates_acceptance_of :accepted_waiver
+
   before_save :set_total_due
 
   def self.prepare(current_user=nil)
