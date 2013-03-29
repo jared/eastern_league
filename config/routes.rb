@@ -80,6 +80,11 @@ EasternLeague::Application.routes.draw do
   end
 
   resources :password_resets
+  resources :wildwood_registrations do
+    member do
+      get :receipt
+    end
+  end
 
 
   # Sample resource route with options:

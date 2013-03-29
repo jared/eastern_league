@@ -45,4 +45,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => "elcommissioner@gmail.com", :subject => "Raffle Ticket Order")
   end
 
+  def wildwood_registration(wildwood_registration)
+    @event = Season.current.events.find_by_acronym("ECSKC")
+    @wildwood_registration = wildwood_registration
+    # mail(:to => @wildwood_registration.email, :bcc => ["elcommissioner@gmail.com", @event.contact_email], :subject => "Online Wildwood Registration Received")
+    mail(:to => @wildwood_registration.email, :bcc => ["elcommissioner@gmail.com"], :subject => "Online Wildwood Registration Received")
+  end
+
 end

@@ -1,0 +1,84 @@
+<% content_for :stylesheet do %>
+  <style>
+    @media print {
+      header#header {display:none;}
+      section#secondary_bar {display:none;}
+      aside#sidebar {display:none;}
+      a {display:none;}
+    }
+  </style>
+<% end %>
+
+<% title("Wildwood Registration") %>
+<article class="module width_full">
+  <header><h3>Thank you for registering for the <%= @wildwood_registration.season.year %> Wildwoods International Kite Festival</h3></header>
+  <div class="module_content">
+    <p>Thank you for signing up for the Wildwoods International Kite Festival.  The next step is to pay for your event registration!</p>
+    <p>Please print this page out and mail it, along with a check made out to "<strong>Sky Festival Productions</strong>" for the amount of <strong><%= number_to_currency(@wildwood_registration.total_due) %></strong> to the following address:</p>
+    <p>
+      Sky Festival Productions<br />
+      16 Springstead Dr<br />
+      Chester, NY 10918
+    </p>
+    <p>Remember, your check MUST be received by Saturday, May 11, 2013 to be considered pre-event registration!  Any registrations paid after that date must pay an additional $10.00 On Site Registration Fee.</p>
+    <p><strong><a href="javascript:window.print();">Print This Page</a></strong></p>
+  </div>
+</article>
+
+<article class="module width_full">
+  <header><h3>Registration Details</h3></header>
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Competitor</th>
+        <th>Details</th>
+        <th>Amount Due</th>
+        <th>Number for Dinner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% registration = @wildwood_registration %>
+      <tr id="<%= dom_id(registration) %>">
+        <td>
+          <%= registration.name %><br />
+          <%= registration.address %><br />
+          <%= registration.city %>, <%= registration.state %> <%= registration.zip %><br />
+          <%= registration.country %><br />
+          <%= registration.phone %><br />
+          <%= registration.email %><br />
+        </td>
+        <td>
+          <strong>ECSKC</strong><br />
+          <%= "(none)" if registration.ecskc.blank? %>
+          <% registration.ecskc.each do |discipline, value| %>
+            <%= "#{discipline}: #{value}<br />".html_safe unless value.blank? %>
+          <% end %><br />
+          <strong>WIKF Challenges</strong><br />
+          <%= "(none)" if registration.challenges.blank? %>
+          <% registration.challenges.each do |challenge, value| %>
+            <%= "#{challenge}: #{value}<br />".html_safe unless value.blank? %>
+          <% end %><br />
+          <strong>Volunteer:</strong><br />
+          <%= "Judge," if registration.judge %>
+          <%= "Field Staff," if registration.field_staff %>
+          <%= "Sales," if registration.sales %>
+          <%= "Workshops," if registration.workshops %>
+          <%= "Auction," if registration.auction %>
+          <%= "Operations," if registration.operations %>
+          <br />
+          <strong>Waiver</strong><br />
+          <%= registration.name %> has accepted the following waiver:
+          <%= raw @event.event_detail.waiver %>
+        </td>
+        <td>
+          <%= number_to_currency(registration.total_due) %><br />
+          <%= "(includes on-site registration fee)" if registration.on_site %>
+        </td>
+        <td>
+          <%= registration.number_for_dinner %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>

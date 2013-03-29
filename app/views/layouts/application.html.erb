@@ -5,6 +5,7 @@
     <meta charset="utf-8"/>
     <title><%= content_for?(:page_title) ? yield(:page_title) : "Eastern League Sport Kite Association" %></title>
     <%= stylesheet_link_tag "application" %>
+    <%= yield :stylesheet %>
     <!--[if lt IE 9]>
     <style type="text/css" media="screen">
       .quick_search{text-align:center;padding:14px 0 0px 0;}

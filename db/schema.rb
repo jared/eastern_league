@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813233326) do
+ActiveRecord::Schema.define(:version => 20130329150845) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
@@ -298,5 +298,31 @@ ActiveRecord::Schema.define(:version => 20120813233326) do
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
+
+  create_table "wildwood_registrations", :force => true do |t|
+    t.integer  "season_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "email"
+    t.string   "phone"
+    t.boolean  "judge"
+    t.boolean  "field_staff"
+    t.boolean  "sales"
+    t.boolean  "workshops"
+    t.boolean  "auction"
+    t.boolean  "operations"
+    t.boolean  "accepted_waiver"
+    t.text     "challenges"
+    t.text     "ecskc"
+    t.boolean  "on_site"
+    t.integer  "number_for_dinner"
+    t.decimal  "total_due",         :precision => 6, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

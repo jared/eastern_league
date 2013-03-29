@@ -27,6 +27,9 @@ class Event < ActiveRecord::Base
 
   def self.most_recent
     @season = Season.current
+    if @season.scores.empty?
+      @season = Season.where(:id => (@season.id - 1)).first
+    end
     return @season.scores.order("id DESC").first.event
   end
 
