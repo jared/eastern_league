@@ -26,11 +26,12 @@ private
     tally = 0.0
     self.challenges.each do |item, value|
       tally += value.to_i
-    end
+    end unless self.challenges.empty?
 
     self.ecskc.each do |item, value|
       tally += value.to_i
-    end
+    end unless self.ecskc.empty?
+
     tally += 10.0 if self[:on_site]
     self[:total_due] = tally
   end
