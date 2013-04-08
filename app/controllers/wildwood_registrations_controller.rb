@@ -1,4 +1,5 @@
 class WildwoodRegistrationsController < ApplicationController
+  before_filter :require_user, :only => :destroy
 
   def index
     unless params[:auth] == "939188"
@@ -22,6 +23,8 @@ class WildwoodRegistrationsController < ApplicationController
     # create the registration
     @wildwood_registration = WildwoodRegistration.new(params[:wildwood_registration])
 
+    render :action => :new and return unless params[:humint].to_s.downcase == "kites"
+
     if @wildwood_registration.save
       # send confirmation email
       UserMailer.wildwood_registration(@wildwood_registration).deliver
@@ -31,6 +34,15 @@ class WildwoodRegistrationsController < ApplicationController
     else
       render :action => :new
     end
+  end
+
+  def destroy
+    if current_user.admin?
+      @wildwood_registration = WildwoodRegistration.find(params[:id])
+      @wildwood_registration.destroy
+      flash[:notice] = "Wildwood Registration has been deleted"
+    end
+    redirect_to wildwood_registrations_path(:auth => "939188")
   end
 
   def receipt

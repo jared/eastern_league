@@ -60,7 +60,9 @@
             <%= registration.number_for_dinner %>
           </td>
           <td>
-
+            <% if current_user && current_user.admin? %>
+              <%= link_to "Delete", wildwood_registration_path(registration), :method => :delete %>
+            <% end %>
           </td>
         </tr>
       <% end %>
