@@ -74,7 +74,7 @@ class MembershipsController < ApplicationController
     if current_user.admin? && !params[:record_manual_payment_date].blank?
       payment_date = Date.parse(params[:record_manual_payment_date])
       @order.line_items.each do |line_item|
-        line_item.purchasable.activate!(payment_date)
+        line_item.purchasable.activate!(payment_date, false)
       end
       flash[:notice] = "You have processed a manual membership renewal."
       redirect_to user_memberships_path(@user) and return

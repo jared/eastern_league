@@ -17,7 +17,7 @@ class Membership < ActiveRecord::Base
     end
   end
 
-  def activate!(renewal_date = Date.today)
+  def activate!(renewal_date = Date.today, send_email = true)
     expires_at = renewal_date.advance(:months => membership_plan.renewal_period).to_time.end_of_month
     attrs = {
       :expires_at => expires_at,
@@ -25,7 +25,9 @@ class Membership < ActiveRecord::Base
     }
     self.update_attributes!(attrs)
     user.activate_membership!(self)
-    UserMailer.membership_purchased(self).deliver unless self.user.temporary_email?
+    if send_email
+      UserMailer.membership_purchased(self).deliver unless self.user.temporary_email?
+    end
   end
 
 end
