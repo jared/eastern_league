@@ -23,7 +23,10 @@ class WildwoodRegistrationsController < ApplicationController
     # create the registration
     @wildwood_registration = WildwoodRegistration.new(params[:wildwood_registration])
 
-    render :action => :new and return unless params[:humint].to_s.downcase == "kites"
+    unless params[:humint].to_s.downcase =~ /kites/
+      flash[:error] = "Please fill in the field below your email address as instructed to proceed."
+      render :action => :new and return
+    end
 
     if @wildwood_registration.save
       # send confirmation email
