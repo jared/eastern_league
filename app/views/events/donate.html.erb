@@ -4,45 +4,32 @@
   <header><h3>Make a Donation</h3></header>
   <div class="module_content">
     <p>
-      Great events like TISKC only happen with your help!
-    </p>
-<!--     <p>
-      All persons making a donation will be entered into a drawing to win a Saber III, in their choice of Red, Yellow, Green or Blue from <%= link_to("Sturdy Designs", "http://sturdy-designs.com") %>!
+      Great events like ECSKC only happen with your help!
     </p>
     <p>
-    <p>Will Sturdy’s rise as a Masters class dual-line flier and kitebuilder has
-    been nothing less than meteoric. Years of development led to the Saber. That
-    kite won the AKAGN 2008 sport kite kitebuilding competition, and in 2010 he
-    was crowned Grand National Champion at the AKA convention. This gives you
-    some indication of the meticulous worksmanship that Will puts into his
-    kites.&nbsp; Will also flew the Saber to victory in the AKAGN Experienced
-    Individual Dual-line Ballet competition. He is now regularly finishing near
-    the top of the heap in Masters class dual-line competitions along the
-    Eastern seaboard, and his entries in Virtual Freestyle events are garnering
-    him international acclaim both as a flier and a builder.<br /><br />
-    And just to drive the point home, my first Master's Ballet win of the 2013 season was flown on a Saber III, so you don't have to be Will Sturdy to succeed on this kite!
-  </p>
+      All persons making a donation will be entered into a drawing to win a Revolution 25th Anniversary T-Shirt from <%= link_to("Revolution Kites", "http://revkites.com") %>!
+    </p>
+    <p>
+      <strong>This is a brand-new design from Revolution, and have never before been seen by the kite-flying public!</strong>
+    </p>
+    <p>
+      Revolution has provided us with two shirts to award, one in Large, and one in Extra-Large.  The first name drawn will have their choice of size, the second will receive the remaining shirt.  So, for your <%= number_to_currency(@cost) %> donation, you're actually receiving <strong>two</strong> chances to win!
+    </p>
 
     <p>
-     There are a maximum of <strong>50</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $50.00.
+     There are a maximum of <strong>30</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $21.00.
     </p>
     <p>
-      Drawing for the Saber III is expected to be held on or around <strong>January 19th, 2013</strong>, or sonner if all donations have been received prior to January 19th.
-    </p> -->
+      Drawing for the Revolution 25th Anniversary T-Shirts is expected to be held on or around <strong>May 20th, 2013</strong>, or sonner if all donations have been received prior to May 20th.
+    </p>
 
-    <%#= image_tag("saber3.jpg") %>
-    <p>Congratulations to Bob Matteo of Colorado, who received a set of <strong>Eliot Shook Revolution Mini-Banners</strong> from <%= link_to "Flying Smiles Kites", "http://flyingsmileskites.com" %> in return for his support of TISKC!</p>
-    <p>Congratulations to Rich Comras of New Jersey, who received a <strong>blue Skate</strong> from <%= link_to("Into the Wind", "http://intothewind.com") %> in return for his support of TISKC!</p>
-    <p>Congratulations to Brian Bishop of North Carolina, who received a <strong>red Saber III</strong> from <%= link_to "Sturdy Designs", "http://sturdy-designs.com" %> in return for his support of TISKC!</p>
+    <%= image_tag('revshirt.png', :alt => "Revolution 25th Anniversary T-Shirt") %>
   </div>
 </article>
 <div class="clear"><br /></div>
 
 <article class="module width_3_quarter">
-  <header><h3>Support TISKC</h3></header>
-  <div class="module_content">
-    <p>No donation opportunities remain at this time</p>
-  </div>
-  <%#= render :partial => "donate_form" %>
+  <header><h3>Support ECSKC</h3></header>
+  <%= render :partial => "donate_form" %>
 </article>
 <div class="clear"><br /></div>
