@@ -4,32 +4,26 @@
   <header><h3>Make a Donation</h3></header>
   <div class="module_content">
     <p>
-      Great events like ECSKC only happen with your help!
+      Great events like ODSKC only happen with your help!
     </p>
     <p>
-      All persons making a donation will be entered into a drawing to win a Revolution 25th Anniversary T-Shirt from <%= link_to("Revolution Kites", "http://revkites.com") %>!
+      All persons making a donation will be entered into a drawing to win a Set of Mini-Rev Banners from <%= link_to("Flying Smiles Kites", "http://flyingsmileskites.com") %>!
     </p>
     <p>
-      <strong>This is a brand-new design from Revolution, and have never before been seen by the kite-flying public!</strong>
-    </p>
-    <p>
-      Revolution has provided us with two shirts to award, one in Large, and one in Extra-Large.  The first name drawn will have their choice of size, the second will receive the remaining shirt.  So, for your <%= number_to_currency(@cost) %> donation, you're actually receiving <strong>two</strong> chances to win!
+      Anyone who has attended a kite competition on the east coast in the past few years has most likely seen these awesome banners marking the bags of our prominent multi-line flyers.  <%= link_to("Flying Smiles Kites", "http://flyingsmileskites.com") %> has generously provided a set of four custom banners as a reward for one lucky person making a donation to support ODSKC.  There are a maximum of <strong>50</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %></strong> and an individual may donate up to a maximum of $50.00.
     </p>
 
     <p>
-     There are a maximum of <strong>30</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $21.00.
-    </p>
-    <p>
-      Drawing for the Revolution 25th Anniversary T-Shirts is expected to be held on or around <strong>May 20th, 2013</strong>, or sonner if all donations have been received prior to May 20th.
+      Drawing for the Mini Rev Banners is expected to be held on <strong>June 8th, 2013</strong>
     </p>
 
-    <%= image_tag('revshirt.png', :alt => "Revolution 25th Anniversary T-Shirt") %>
+    <%= image_tag('minibannersodskc.png', :alt => "ODSKC Mini Banner Raffles") %>
   </div>
 </article>
 <div class="clear"><br /></div>
 
 <article class="module width_3_quarter">
-  <header><h3>Support ECSKC</h3></header>
+  <header><h3>Support ODSKC</h3></header>
   <%= render :partial => "donate_form" %>
 </article>
 <div class="clear"><br /></div>
