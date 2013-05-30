@@ -42,7 +42,7 @@ class UserMailer < ActionMailer::Base
   def raffle_ticket_order(event, ticket_details)
     @event = event
     @details = ticket_details
-    mail(:to => ["elcommissioner@gmail.com", "conklincomputer@gmail.com"] :subject => "Raffle Ticket Order")
+    mail(:to => ["elcommissioner@gmail.com", "conklincomputer@gmail.com"], :subject => "Raffle Ticket Order")
   end
 
   def wildwood_registration(wildwood_registration)
