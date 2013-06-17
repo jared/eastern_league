@@ -11,4 +11,10 @@ class StandingsController < ApplicationController
     redirect_to standings_path
   end
 
+  def calculate_final
+    Standing.calculate_standings(Season.current, true)
+    flash[:notice] = "Final Standings have been updated for this season."
+    redirect_to standings_path
+  end
+
 end

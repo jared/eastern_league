@@ -66,6 +66,7 @@ EasternLeague::Application.routes.draw do
   resources :standings do
     collection do
       post :calculate
+      post :calculate_final
     end
   end
 

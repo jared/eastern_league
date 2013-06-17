@@ -11,15 +11,12 @@ class Standing < ActiveRecord::Base
 
   # Tie Breaker Criteria
   #
-  def self.calculate_standings(season)
+  def self.calculate_standings(season, final = false)
     discipline_scores = season.scores.group_by(&:discipline)
-
-    # TODO: Determine if final standing should be calculated:
-    # Today's date later than last competition finish date & scores available?
 
     discipline_scores.each do |discipline, scores|
       Standing.calculate_discipline_standings(discipline, scores, season)
-      Standing.calculate_rank(discipline, season)
+      Standing.calculate_rank(discipline, season, final)
     end
   end
 
