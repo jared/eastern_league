@@ -92,7 +92,7 @@ class Standing < ActiveRecord::Base
     standings.sort_by(&:tie_breaker_one_points).reverse.each_with_index do |standing, i|
       tmp_rank = standing.rank
       standing.rank = tmp_rank + i
-      standing.tie_breaker = "TB1: #{standing.tie_breaker_one_points}"
+      standing.tie_breaker = "TB1: #{standing.tie_breaker_one_points.round(2)}"
       standing.save
     end
     return true
@@ -113,7 +113,7 @@ class Standing < ActiveRecord::Base
     standings.sort_by(&:tie_breaker_two_points).reverse.each_with_index do |standing, i|
       tmp_rank = standing.rank
       standing.rank = tmp_rank + i
-      standing.tie_breaker = "TB2: #{standing.tie_breaker_two_points}"
+      standing.tie_breaker = "TB2: #{standing.tie_breaker_two_points.round(2)}"
       standing.save
     end
     return true
@@ -130,7 +130,7 @@ class Standing < ActiveRecord::Base
     standings.sort_by(&:average_flight_score).reverse.each_with_index do |standing, i|
       tmp_rank = standing.rank
       standing.rank = tmp_rank + i
-      standing.tie_breaker = "TB3: #{standing.average_flight_score}"
+      standing.tie_breaker = "TB3: #{standing.average_flight_score.round(2)}"
       standing.save
     end
   end
