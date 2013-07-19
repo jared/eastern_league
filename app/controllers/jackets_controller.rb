@@ -8,7 +8,7 @@ class JacketsController < ApplicationController
   end
 
   def new
-    @season = Season.find_by_year("2012")
+    @season = Season.find_by_year("2013")
     @jacket = Jacket.new(:season => @season, :name => current_user.full_name)
   end
 
