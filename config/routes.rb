@@ -23,17 +23,19 @@ EasternLeague::Application.routes.draw do
   match 'api/ipn' => 'api#ipn', :as => :ipn
 
   # Event-specific named routes; these need to be updated annually.
-  match 'OBSKC', :controller => "events", :action => "show", :id => "1005"
-  match 'obskc', :controller => "events", :action => "show", :id => "1005"
+  match 'OBSKC', :controller => "events", :action => "show", :id => "1010"
+  match 'obskc', :controller => "events", :action => "show", :id => "1010"
 
-  match 'TISKC', :controller => "events", :action => "show", :id => "1006"
-  match 'tiskc', :controller => "events", :action => "show", :id => "1006"
+  match 'fallfly', :controller => "events", :action => "show", :id => '1011'
 
-  match 'MASKC', :controller => "events", :action => "show", :id => "1007"
-  match 'maskc', :controller => "events", :action => "show", :id => "1007"
+  match 'TISKC', :controller => "events", :action => "show", :id => "1012"
+  match 'tiskc', :controller => "events", :action => "show", :id => "1012"
 
-  match 'ECSKC', :controller => "events", :action => "show", :id => "1008"
-  match 'ecskc', :controller => "events", :action => "show", :id => "1008"
+  match 'MASKC', :controller => "events", :action => "show", :id => "1013"
+  match 'maskc', :controller => "events", :action => "show", :id => "1013"
+
+  match 'ECSKC', :controller => "events", :action => "show", :id => "1014"
+  match 'ecskc', :controller => "events", :action => "show", :id => "1014"
 
   match 'ODSKC', :controller => "events", :action => "show", :id => "1009"
   match 'odskc', :controller => "events", :action => "show", :id => "1009"
