@@ -81,6 +81,14 @@ class RegistrationsController < ApplicationController
     @flat_rate = nil
 
     case @event.acronym
+    when "OBSKC"
+      @flat_rate = 40.0
+      @base_registration = 10.0
+      @discipline_rate = 10.0
+    when "FallFly"
+      @flat_rate = 45.0
+      @base_registration = 20.0
+      @discipline_rate = 20.0
     when "ECSKC"
       @base_registration = 0.0
       @discipline_rate = 10.0
