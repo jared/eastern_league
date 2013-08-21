@@ -88,7 +88,7 @@ class RegistrationsController < ApplicationController
     when "FallFly"
       @flat_rate = 45.0
       @base_registration = 20.0
-      @discipline_rate = 20.0
+      @discipline_rate = 10.0
     when "ECSKC"
       @base_registration = 0.0
       @discipline_rate = 10.0
