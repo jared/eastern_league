@@ -14,6 +14,7 @@
     </thead>
     <tbody>
       <% @election.candidates.each do |candidate| %>
+        <% next if candidate.votes.size == 0 %>
         <tr id="<%= dom_id(candidate) %>">
           <td><%= candidate.user.full_name %></td>
           <td><%= candidate.votes.size %></td>

@@ -14,6 +14,7 @@
         <th>Name</th>
         <th>Active</th>
         <th>Close At</th>
+        <th>Results</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -23,6 +24,7 @@
           <td><%= link_to(election.name, election) %></td>
           <td><%= election.active? ? "Yes" : "No" %></td>
           <td><%= election.close_at.to_s(:db) %></td>
+          <td><%= link_to "Results", results_election_path(election) %>
           <td>
             <%= link_to(image_tag("icons/icn_edit.png"), edit_election_path(election)) %>
           </td>
