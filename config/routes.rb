@@ -45,6 +45,12 @@ EasternLeague::Application.routes.draw do
   resource :user_session
 
   resources :announcements
+  resources :elections do
+    member do
+      post :vote
+      get :results
+    end
+  end
 
   resources :users do
     resources :messages

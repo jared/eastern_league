@@ -1,0 +1,33 @@
+<% title("Elections") %>
+
+<article class="module width_full">
+  <header>
+    <h3 class="tabs_involved">Eastern League Elections</h3>
+    <ul class="tabs">
+      <li><%= link_to("Create Election", new_election_path) %></li>
+    </ul>
+  </header>
+
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Active</th>
+        <th>Close At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @elections.each do |election| %>
+        <tr id="<%= dom_id(election) %>">
+          <td><%= link_to(election.name, election) %></td>
+          <td><%= election.active? ? "Yes" : "No" %></td>
+          <td><%= election.close_at.to_s(:db) %></td>
+          <td>
+            <%= link_to(image_tag("icons/icn_edit.png"), edit_election_path(election)) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

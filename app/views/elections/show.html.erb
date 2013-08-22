@@ -1,0 +1,20 @@
+<% title(@election.name) %>
+
+<article class="module width_3_quarter">
+  <header><h3><%= @election.name %></h3></header>
+  <div class="module_content">
+    <%= render "shared/error_messages", :target => @vote %>
+    <p>
+      <%= @election.description %>
+    </p>
+    <%= form_for :vote, :url => vote_election_path(@election), :id => "vote_form" do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <ul>
+        <% @candidates.each do |candidate| %>
+          <li><%= check_box_tag "vote[candidate_ids][]", candidate.id %><%= candidate.user.full_name %></li>
+        <% end %>
+      </ul>
+      <%= submit_tag "Vote", :class => "alt_btn" %>
+    <% end %>
+  </div>
+</article>

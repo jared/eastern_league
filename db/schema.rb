@@ -11,13 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329150845) do
+ActiveRecord::Schema.define(:version => 20130822190029) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "candidates", :force => true do |t|
+    t.integer  "election_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "candidates_votes", :id => false, :force => true do |t|
+    t.integer "candidate_id"
+    t.integer "vote_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -57,6 +69,15 @@ ActiveRecord::Schema.define(:version => 20130329150845) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "discipline_group"
+  end
+
+  create_table "elections", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "active",      :default => true
+    t.datetime "close_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "event_details", :force => true do |t|
@@ -298,6 +319,13 @@ ActiveRecord::Schema.define(:version => 20130329150845) do
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "election_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "wildwood_registrations", :force => true do |t|
     t.integer  "season_id"

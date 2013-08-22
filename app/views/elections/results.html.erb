@@ -1,0 +1,24 @@
+<% title(@election.name) %>
+
+<article class="module width_full">
+  <header>
+    <h3 class="tabs_involved"><%= @election.name %></h3>
+  </header>
+
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Candidate</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @election.candidates.each do |candidate| %>
+        <tr id="<%= dom_id(candidate) %>">
+          <td><%= candidate.user.full_name %></td>
+          <td><%= candidate.votes.size %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

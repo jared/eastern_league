@@ -27,6 +27,14 @@ protected
     end
   end
 
+  def require_current_membership
+    unless current_user && current_user.membership_status == 'active'
+      flash[:notice] = "You must have a current Eastern League membership to access this page."
+      redirect_to root_url
+      return false
+    end
+  end
+
   def require_no_user
     if current_user
       flash[:notice] = "You must be logged out to access this page"
