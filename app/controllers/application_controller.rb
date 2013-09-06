@@ -28,7 +28,7 @@ protected
   end
 
   def require_current_membership
-    unless current_user && current_user.membership_status == 'active'
+    unless current_user && ['active', 'expiring_soon'].include?(current_user.membership_status)
       flash[:notice] = "You must have a current Eastern League membership to access this page."
       redirect_to root_url
       return false
