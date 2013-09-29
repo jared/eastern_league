@@ -1,0 +1,2 @@
+module AnnualEventsHelper
+end

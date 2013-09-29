@@ -1,0 +1,23 @@
+<% title("Annual Events") %>
+
+<article class="module width_full">
+  <header><h3>Annual Event Counts</h3></header>
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Start Year</th>
+        <th>Annual #</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @annual_events.each do |event| %>
+        <tr id="<%= dom_id(event) %>">
+          <td><%= event.event_name %></td>
+          <td><%= event.start_year %></td>
+          <td><%= event.annual_number.ordinalize %> Annual</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

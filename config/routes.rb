@@ -95,6 +95,8 @@ EasternLeague::Application.routes.draw do
     end
   end
 
+  resources :annual_events
+  match 'annual' => 'annual_events#index'
 
   # Sample resource route with options:
   #   resources :products do

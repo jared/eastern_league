@@ -11,11 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822190029) do
+ActiveRecord::Schema.define(:version => 20130929013452) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "annual_events", :force => true do |t|
+    t.string   "event_name"
+    t.integer  "start_year"
+    t.integer  "skip",       :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
