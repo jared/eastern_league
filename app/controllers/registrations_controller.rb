@@ -97,28 +97,14 @@ class RegistrationsController < ApplicationController
       @base_registration = 20.0
       @discipline_rate = 10.0
       # @flat_rate = 40.0
+    when "TISKC"
+      @flat_rate = 45.0
+      @base_registration = 15.0
+      @discipline_rate = 15.0
     else
       @base_registration = 20.0
       @discipline_rate = 20.0
     end
-
-
-
-    # OBSKC
-    # @base_registration = 10.0
-    # @base_registration = 20.0
-    # @discipline_rate = 10.0
-    # @flat_rate = 40.0
-
-    # TISKC 2013
-    # @base_registration = 20.0
-    # @discipline_rate = 20.0
-    # @flat_rate = 45.0
-
-    # MASKC
-    # @base_registration = 20.0
-    # @discipline_rate = 10.0
-    # @flat_rate = 40.0
 
     unless @event_registration.first_time_competitor?
       tmp_amount += @base_registration # Base registration
