@@ -37,8 +37,8 @@ EasternLeague::Application.routes.draw do
   match 'ECSKC', :controller => "events", :action => "show", :id => "1014"
   match 'ecskc', :controller => "events", :action => "show", :id => "1014"
 
-  match 'ODSKC', :controller => "events", :action => "show", :id => "1009"
-  match 'odskc', :controller => "events", :action => "show", :id => "1009"
+  match 'ODSKC', :controller => "events", :action => "show", :id => "1015"
+  match 'odskc', :controller => "events", :action => "show", :id => "1015"
 
 
   resource :calendar
