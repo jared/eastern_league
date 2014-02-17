@@ -69,7 +69,7 @@
         <%= f.check_box :operations %>
         <%= f.label :operations, "Volunteer as Operations" %>
         <div class="clear"><br /></div>
-        <p style="padding: 0 0.5em;">All registrations received after May 11, 2013, and all registrations paid in person at the event will be considered "on site" and must pay an additional $10.00.</p>
+        <p style="padding: 0 0.5em;">All registrations received after May 10, 2014, and all registrations paid in person at the event will be considered "on site" and must pay an additional $10.00.</p>
         <%= f.check_box :on_site %>
         <%= f.label :on_site, "On Site Registration ($10)" %>
         <div class="clear"><br /></div>
@@ -209,6 +209,10 @@
 
         <%= check_box_tag "wildwood_registration[ecskc][OIIU]", 10, false %>
         <%= label_tag "wildwood_registration[ecskc][OIIU]", "Open Individual Indoor Unlimited ($10)" %>
+        <div class="clear"><br /></div>
+
+        <%= check_box_tag "wildwood_registration[ecskc][ISB]", 10, false %>
+        <%= label_tag "wildwood_registration[ecskc][ISB]", "Indoor Single Line Ballet ($10)" %>
         <div class="clear"><br /></div>
       </fieldset>
 
