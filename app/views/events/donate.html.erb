@@ -4,45 +4,32 @@
   <header><h3>Make a Donation</h3></header>
   <div class="module_content">
     <p>
-      Great events like TISKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
+      Great events like ECSKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
     </p>
     <p>
-      Previous Eastern League champion and master kite designer Paul De Bakker has provided us with a new Into the Wind Echo Indoor kite!  I cannot say enough wonderful things about this kite, I already own two of them and I'd be tempted to add a third one to my bag, if only my duties as League commissioner didn't prevent me from participating!  I've flown my Echos in the following locations, and more:
-    </p>
-    <ul>
-      <li>The National Air &amp; Space Museum, Washington, DC</li>
-      <li>The Wildwood Convention Center</li>
-      <li>Seaside High School, Seaside, OR</li>
-      <li>Downtown Raleigh, NC (both inside and outside the Duke Progress Energy Center)</li>
-      <li>Baltimore Convention Center, Baltimore, MD</li>
-      <li>Buckeye Recreation Center, Beech Mountain, NC</li>
-      <li>Ocean City, MD (on the boardwalk when the wind dropped to 1mph)</li>
-      <li>Wildwood Boardwalk, Wildwood, NJ</li>
-      <li>Blossom Kite Festival, Washington, DC</li>
-      <li>Katara Cultural Village, Doha, Qatar</li>
-    </ul>
-    <p>
-      For an indoor kite, that's a pretty big list of outdoor locations, and here's why:  the Echo is a wonderful low wind outdoor kite in addition to being a stupendous indoor kite.  I've even flown in my front yard &amp; street on short lines just to practice for upcoming indoor events.<br />
-
-      The new ITW Echo is designed with a leading edge ferrule which allows the kite to be folded down to just 25" -- I've carried this kite on trains, planes, buses, and subways.  It will go ANYWHERE you want to go!  Bring along a 10' lineset for indoor flying, or 15-20' for outdoor, and you can fly anywhere, anytime.  When the wind dies, the festival doesn't have to stop!  When the Rev flyers take over the whole field for their mega fly, just grab an Echo and a little bit of line, and entertain the crowds along the edges of the field.
+      All persons making a donation will be entered into a drawing to win a new Black Dog from <%= link_to("Skydog Kites", "http://skydogkites.com") %>!
     </p>
 
     <p>
-      All persons making a donation will be entered into a drawing to win a new Echo in teal from <%= link_to("Into the Wind", "http://intothewind.com") %>!
+      Here's what Skydog Kites has to say about the Black Dog:
+      "The Black Dog is a unique sport kite.  It is desgined as a trainer and introduction for those pilots ready to move up to advanced slack line trick flying.  It also comes with factory installed features normally found on much more expensive sport kites.  The Black Dog basically came from another one of our successful designs, the Thunderstruck.  We enlarged it, replaced the fiberglass frame with a druable high tech Carbon frame, tweaked it out a bit, added a weight system, yo-yo stoppers, covered the leadying edge to avoid line catches and basically gave it everything our higher end sport kites have for tricking.  Don't let it's 6 foot wingspan fool you, this kite is capable of all of the advanced big wing sport kite tricks and the smaller size allows the flyer to learn these tricks without the pull associated with larger wingspan slack line sport kites."
+    </p>
+
+    <p>
+      Personally, I've flown both the Black Dog and the ultralight variant, and I've had a blast with both.  This is definitely a kite that catches you off guard on first impression, as it has both a size and a pricepoint associated with cheaper, less capable dual line kites.  Once you launch, though, you realize that you've got in your hands a remarkable kite, a dance partner ready to follow your lead and impress everyone watching.  This is a kite that I love to pull out when I just want to have a good time flying and not focus on my competition training.  You can watch Dodd Gross demonstrate the Black Dog in <a href="http://www.youtube.com/watch?v=Drlv-EVABk4#t=1m17s" target="_BLANK">this video</a>.
+    <p>
+     There are a maximum of <strong>75</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $40.00.
     </p>
     <p>
-     There are a maximum of <strong>75</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $50.00.
+      Drawing for the Black Dog is expected to be held on or around <strong>May 1st, 2014</strong>, or sooner if all donations have been received prior to May 1st.  Jim Cosca will have this kite on hand to present to the winner at the 29th Annual Wildwoods International Kite Festival and East Coast Sport Kite Championships.  If you're not planning on attending, no worries!  We'll make sure it gets shipped to you!
     </p>
-    <p>
-      Drawing for the Echo is expected to be held on or around <strong>January 18th, 2014</strong>, or sooner if all donations have been received prior to January 18th.
-    </p>
-    <%= image_tag("echo.jpg", :alt => "Into the Wind Echo", :width => "100%") %>
+    <%= image_tag("blackdog.jpg", :alt => "Skydog Kites Black Dog", :width => "100%") %>
   </div>
 </article>
 <div class="clear"><br /></div>
 
 <article class="module width_3_quarter">
-  <header><h3>Support TISKC!</h3></header>
+  <header><h3>Support ECSKC!</h3></header>
   <%= render :partial => "donate_form" %>
 </article>
 <div class="clear"><br /></div>
