@@ -1,7 +1,7 @@
 <p>Hi <%= @user.nickname %>,</p>
 <p>
   Thank you for registering for <%= @event.name %>.<br />
-  
+
   Here are your event registration details:
 </p>
 
@@ -11,7 +11,7 @@
   <%= @user.street_address_2 %><br />
   <%= @user.city %> <%= @user.state %> <%= @user.zip %><br />
   <%= @user.phone_number %>
-</p>  
+</p>
 
 <ul>
   <% @event_registration.registration_disciplines.each do |rd| %>
@@ -23,6 +23,14 @@
     </li>
   <% end %>
 </ul>
+
+<% if @event.acronym == "ODSKC" %>
+  <p>Box Lunch Orders</p>
+  <ul>
+    <li>Saturday: <%= @event_registration.saturday_lunches %></li>
+    <li>Sunday: <%= @event_registration.sunday_lunches %></li>
+  </ul>
+<% end %>
 
 <% if @event_registration.accepted_terms %>
   <p><%= @user.full_name %> has accepted the registration liability section:</p>
