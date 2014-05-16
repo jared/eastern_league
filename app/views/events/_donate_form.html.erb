@@ -24,7 +24,7 @@
         <div class="clear"><br /></div>
 
         <%= label_tag "# of Donations ($#{@cost.to_i} USD each)".html_safe %>
-        <%= select_tag :number_of_donations, options_for_select((1..10).to_a) %>
+        <%= select_tag :number_of_donations, options_for_select((1..3).to_a) %>
         <div class="clear"><br /></div>
 
       </fieldset>
