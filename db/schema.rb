@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130929013452) do
+ActiveRecord::Schema.define(:version => 20140516031036) do
 
   create_table "announcements", :force => true do |t|
     t.string   "headline"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(:version => 20130929013452) do
     t.boolean  "volunteer_field_staff",                               :default => false
     t.boolean  "volunteer_setup_crew",                                :default => false
     t.string   "team_member_names"
+    t.integer  "saturday_lunches",                                    :default => 0
+    t.integer  "sunday_lunches",                                      :default => 0
   end
 
   create_table "event_sponsors", :force => true do |t|

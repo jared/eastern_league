@@ -22,6 +22,10 @@
                 <br />
               <% end %>
             <% end %>
+            <% if @event.acronym == "ODSKC" %>
+              Lunches for Saturday: <%= registration.saturday_lunches  %><br />
+              Lunches for Sunday: <%= registration.sunday_lunches %><br />
+            <% end %>
           </td>
           <td>
             <% if registration.paid? %>

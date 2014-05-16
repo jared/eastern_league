@@ -55,6 +55,19 @@
 
         <%= f.check_box :first_time_competitor %>
         <%= f.label :first_time_competitor, "I am a First Time Competitor" %>
+
+        <% if @event.acronym == "ODSKC" %>
+        <hr style="width: 75%; color: #ccc;"/>
+
+          <p style="padding: 0.5em;">Pre-order box lunches to be delivered on the field at ODSKC.  Lunches are $7.50 per lunch per day.  Adrianne &amp; Mearl are coordinating the ODSKC hospitality tent once again and will follow up closer to the event with the list of availble sandwich choices.</p>
+          <%= f.label :saturday_lunches, "# of lunches for Saturday" %>
+          <%= f.text_field :saturday_lunches %>
+          <div class="clear"><br /></div>
+
+          <%= f.label :sunday_lunches, "# of lunches for Sunday" %>
+          <%= f.text_field :sunday_lunches %>
+          <div class="clear"><br /></div>
+        <% end %>
       </fieldset>
       <div class="clear"></div>
       <%= render :partial => 'registration_form', :locals => { :f => f } %>
