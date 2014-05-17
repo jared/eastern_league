@@ -85,7 +85,7 @@ class RegistrationsController < ApplicationController
       @flat_rate = 40.0
       @base_registration = 10.0
       @discipline_rate = 10.0
-      @lunch_rate = 7.5
+      @lunch_rate = 8
     when "OBSKC"
       # @flat_rate = 40.0
       @base_registration = 20.0
