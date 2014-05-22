@@ -52,7 +52,7 @@ class RegistrationsController < ApplicationController
   def create
     load_event
 
-    @event_registration = @event.event_registrations.build({:competitor => current_user.competitor}.merge(params[:event_registration].slice(:volunteer_judge, :volunteer_field_staff, :volunteer_setup_crew, :first_time_competitor, :accepted_terms, :saturday_lunches, :sunday_lunches)))
+    @event_registration = @event.event_registrations.build({:competitor => current_user.competitor}.merge(params[:event_registration].slice(:volunteer_judge, :volunteer_field_staff, :volunteer_setup_crew, :first_time_competitor, :accepted_terms, :saturday_lunches, :sunday_lunches, :number_for_dinner)))
 
     params[:event_registration][:disciplines].each do |discipline_id|
       event_discipline = @event.event_disciplines.find_by_discipline_id(discipline_id)
@@ -86,6 +86,7 @@ class RegistrationsController < ApplicationController
       @base_registration = 10.0
       @discipline_rate = 10.0
       @lunch_rate = 8
+      @dinner_rate = 7.5
     when "OBSKC"
       # @flat_rate = 40.0
       @base_registration = 20.0
@@ -128,6 +129,7 @@ class RegistrationsController < ApplicationController
     if @event.acronym == "ODSKC"
       @event_registration.amount += @lunch_rate * @event_registration.saturday_lunches
       @event_registration.amount += @lunch_rate * @event_registration.sunday_lunches
+      @event_registration.amount += @dinner_rate * @event_registration.number_for_dinner
     end
 
     if @event_registration.save

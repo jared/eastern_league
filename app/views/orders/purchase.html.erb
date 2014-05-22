@@ -56,6 +56,7 @@
                 <% if line_item.purchasable.event.acronym == "ODSKC" %>
                   <li>Lunches for Saturday: <%= line_item.purchasable.saturday_lunches %></li>
                   <li>Lunches for Sunday: <%= line_item.purchasable.sunday_lunches %></li>
+                  <li>Number for Dinner: <%= line_item.purchasable.number_for_dinner %></li>
                 <% end %>
                 <% line_item.purchasable.registration_disciplines.each do |rd| %>
                   <li>

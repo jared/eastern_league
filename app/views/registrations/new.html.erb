@@ -57,9 +57,9 @@
         <%= f.label :first_time_competitor, "I am a First Time Competitor" %>
 
         <% if @event.acronym == "ODSKC" %>
-        <hr style="width: 75%; color: #ccc;"/>
+          <hr style="width: 75%; color: #ccc;"/>
 
-          <p style="padding: 0.5em;">Pre-order box lunches to be delivered on the field at ODSKC.  Lunches are $7.50 per lunch per day.  Adrianne &amp; Mearl are coordinating the ODSKC hospitality tent once again and will follow up closer to the event with the list of availble sandwich choices.</p>
+          <p style="padding: 0.5em;">Pre-order box lunches to be delivered on the field at ODSKC.  Box lunches are $8 per lunch per day.  Adrianne &amp; Mearl are coordinating the ODSKC hospitality tent once again and will follow up closer to the event with the list of availble sandwich choices.</p>
           <%= f.label :saturday_lunches, "# of lunches for Saturday" %>
           <%= f.text_field :saturday_lunches %>
           <div class="clear"><br /></div>
@@ -67,6 +67,12 @@
           <%= f.label :sunday_lunches, "# of lunches for Sunday" %>
           <%= f.text_field :sunday_lunches %>
           <div class="clear"><br /></div>
+
+          <hr style="width: 75%; color: #ccc;"/>
+          <p style="padding: 0.5em;">We're still planning on holding the traditional ODSKC cookout at Terry &amp; Janis's house on Saturday evening.  In order to allow Heidi to plan ahead for the dinner, this year we're offering the option to RSVP and pre-pay through the registration form.  In order to cover the cost of dinner, we're asking for $7.50 per person, which you can pay through this form as well.</p>
+          <%= f.label :number_for_dinner, "# for dinner" %>
+          <%= f.text_field :number_for_dinner %>
+
         <% end %>
       </fieldset>
       <div class="clear"></div>
