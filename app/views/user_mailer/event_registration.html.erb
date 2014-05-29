@@ -30,6 +30,10 @@
     <li>Saturday: <%= @event_registration.saturday_lunches %></li>
     <li>Sunday: <%= @event_registration.sunday_lunches %></li>
   </ul>
+  <p># for Dinner</p>
+  <ul>
+    <li>Saturday: <%= @event_registration.number_for_dinner %></li>
+  </ul>
 <% end %>
 
 <% if @event_registration.accepted_terms %>
