@@ -37,7 +37,7 @@ gem 'cancan'
 
 gem 'acts_as_commentable'
 gem 'paperclip', '~> 2.4'
-gem 'flickraw', '~> 0.9.6'
+gem 'flickraw', '~> 0.9.8'
 
 gem 'paranoia'
 
