@@ -8,7 +8,7 @@ class JacketsController < ApplicationController
   end
 
   def new
-    @season = Season.find_by_year("2013")
+    @season = Season.find_by_year("2014")
     @jacket = Jacket.new(:season => @season, :name => current_user.full_name)
   end
 
@@ -20,7 +20,7 @@ class JacketsController < ApplicationController
         amount += 9.00
       end
       @order = current_user.orders.build(:description => "Award Jacket for #{current_user.full_name}")
-      @order.line_items.build(:purchasable => @jacket, :amount => amount, :description => "2012 Jacket")
+      @order.line_items.build(:purchasable => @jacket, :amount => amount, :description => "2014 Jacket")
 
       @order.save
       flash[:notice] = "Your jacket information has been saved."
