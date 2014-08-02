@@ -4,7 +4,7 @@ class CalendarsController < ApplicationController
     @season = Season.current
     @events = @season.events.calendar
 
-    @past_seasons = Season.where(:year => [2012,2013]).order("year DESC")
+    @past_seasons = Season.where(:year => [2012,2013,2014]).order("year DESC")
   end
 
 end
