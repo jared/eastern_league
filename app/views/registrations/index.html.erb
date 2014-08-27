@@ -15,7 +15,9 @@
     <tbody>
       <% @event_registrations.each do |registration| %>
         <tr id="<%= dom_id(registration) %>">
-          <td><%= registration.competitor.name %></td>
+          <td>
+            <%= mail_to(registration.competitor.user.email, registration.competitor.name) %>
+          </td>
           <td>
             <% registration.registration_disciplines.each do |rd| %>
               <% rd.abbrev_and_members.each do |str| %>
