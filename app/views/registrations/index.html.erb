@@ -37,8 +37,8 @@
             <%= "Setup" if registration.volunteer_setup_crew? %>
           </td>
           <td>
+            <% order = registration.line_item.order  %>
             <% if registration.paid? %>
-              <% order = registration.line_item.order  %>
               <%= number_to_currency(order.amount_collected) %>
             <% else %>
               Payment not processed via PayPal <br />
