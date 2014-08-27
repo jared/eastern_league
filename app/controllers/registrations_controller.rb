@@ -88,8 +88,8 @@ class RegistrationsController < ApplicationController
       @lunch_rate = 8
       @dinner_rate = 7.5
     when "OBSKC"
-      # @flat_rate = 40.0
-      @base_registration = 20.0
+      @flat_rate = 40.0
+      @base_registration = 10.0
       @discipline_rate = 10.0
     when "FallFly"
       @flat_rate = 45.0
