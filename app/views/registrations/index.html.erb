@@ -7,6 +7,7 @@
       <tr>
         <th>Competitor</th>
         <th>Disciplines</th>
+        <th>Volunteer</th>
         <th>Amount Paid</th>
         <th>&nbsp;</th>
       </tr>
@@ -27,6 +28,11 @@
               Lunches for Sunday: <%= registration.sunday_lunches %><br />
               # for Dinner: <%= registration.number_for_dinner %><br />
             <% end %>
+          </td>
+          <td>
+            <%= "Judge" if registration.volunteer_judge? %>
+            <%= "Field Staff" if registration.volunteer_field_staff? %>
+            <%= "Setup" if registration.volunteer_setup_crew? %>
           </td>
           <td>
             <% if registration.paid? %>
