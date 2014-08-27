@@ -33,7 +33,8 @@
               <% order = registration.line_item.order  %>
               <%= number_to_currency(order.amount_collected) %>
             <% else %>
-              Payment not processed via PayPal
+              Payment not processed via PayPal <br />
+              (amount due: <%= number_to_currency(order.amount) %>)
             <% end %>
           </td>
           <td>
