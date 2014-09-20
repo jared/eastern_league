@@ -37,12 +37,12 @@
             <%= "Setup" if registration.volunteer_setup_crew? %>
           </td>
           <td>
-            <% order = registration.line_item.order  %>
+            <% order = registration.line_item.try(:order)  %>
             <% if registration.paid? %>
-              <%= number_to_currency(order.amount_collected) %>
+              <%= number_to_currency(order.try(:amount_collected)) %>
             <% else %>
               Payment not processed via PayPal <br />
-              (amount due: <%= number_to_currency(order.amount) %>)
+              (amount due: <%= number_to_currency(order.try(:amount)) %>)
             <% end %>
           </td>
           <td>
