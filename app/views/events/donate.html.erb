@@ -4,30 +4,30 @@
   <header><h3>Make a Donation</h3></header>
   <div class="module_content">
     <p>
-      Great events like ODSKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
+      Great events like TISKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
     </p>
     <p>
-      All persons making a donation will be entered into a drawing to win a Black Pearl from <%= link_to("Level One Kites", "http://shop.levelonekites.com") %>!
+      All persons making a donation will be entered into a drawing to win a custom, all-green Echo by Paul de Bakker, donated by <%= link_to("Aerial Experience Productions", "http://www.aerialexperience.com") %>!
     </p>
 
     <p>
-      The Black Pearl kite being offered is actually a demo kite from Level One, but remains in excellent condition.  I actually <a href="http://v2.2.kiteclique.com/level-one-black-pearl-pro-review-by-jared-haworth/">wrote extensively</a> about this (actual) kite a little while back.  That link will take you to the full review, but the quick summary is this:  "The Black Pearl did not disappoint, and while it would be well suited to a freestyle, tricks party or hot tricks style competition, it can still hold a nice straight line across any part of the wind window, gives nice, square corners, and can stall pretty much any place in the air I chose to stall it ... What does it all add up to?  Well, I’d take the Black Pearl out when I just wanted to have a good time, to fly and to look good for my spectators.  This is just the sort of kite I love to fly at the beach in the summer, when I’m not looking to fine-tune my inputs or focus intently on competitive maneuvers.  The Black Pearl is just fun to fly."
+     This is a really cool kite.  It was built as part of a show being put on for a corporate event in Las Vegas, this kite was flown for just one performance in the Forum Ballroom at Caesar's Palace.  The Echo is one of my all-time favorite kites, equally fun as either an indoor kite or in low or no wind conditions outdoors.  I've flown my other Echo kites on the boardwalk in Wildwood, NJ as well as Ocean City, MD, and even in the plaza at the Katara Cultural Village in Doha, Qatar, on 20 foot lines to play in close to crowds.  I've also flown an Echo in and around the Baltimore Convention Center while I was attending a software development conference.
     </p>
 
     <p>
-     There are a maximum of <strong>40</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $30.00.
+     There are a maximum of <strong>50</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $50.00.
     </p>
     <p>
-      Drawing for the Black Pearl is expected to be held on or around <strong>June 14th, 2014</strong>, or sooner if all donations have been received prior to June 14th.  International shipping to be covered by the winner (actual shipping cost).
+      Drawing for the Echo is expected to be held on or around <strong>December 21, 2014</strong>, or sooner if all donations have been received prior to December 21.  International shipping to be covered by the winner (actual shipping cost).
     </p>
-    <%= image_tag("blackpearl.jpg", :alt => "Level One Black Pearl", :width => "100%") %>
+    <%= image_tag("echo_green.jpg", :alt => "Echo Indoor Low Wind Kite", :width => "100%") %>
   </div>
 </article>
 <div class="clear"><br /></div>
 
 <article class="module width_3_quarter">
-  <header><h3>Support ODSKC!</h3></header>
-  <%#= render :partial => "donate_form" %>
-  <p>Sorry!  All donation opportunities have been taken at this time.</p>
+  <header><h3>Support TISKC!</h3></header>
+  <%= render :partial => "donate_form" %>
+  <!-- <p>Sorry!  All donation opportunities have been taken at this time.</p> -->
 </article>
 <div class="clear"><br /></div>

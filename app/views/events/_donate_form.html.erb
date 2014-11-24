@@ -24,7 +24,7 @@
         <div class="clear"><br /></div>
 
         <%= label_tag "# of Donations ($#{@cost.to_i} USD each)".html_safe %>
-        <%= select_tag :number_of_donations, options_for_select((1..1).to_a) %>
+        <%= select_tag :number_of_donations, options_for_select((1..5).to_a) %>
         <div class="clear"><br /></div>
 
       </fieldset>
@@ -33,7 +33,7 @@
       </p>
       <p>
         Eastern League Sport Kite Association<br />
-        C/O Jared Haworth<br />
+        c/o Jared Haworth<br />
         2500 Horizon Hike Ct<br />
         Raleigh, NC 27603
       </p>
