@@ -10,6 +10,7 @@ log/*.log
 log/*.log.*
 tmp/
 .sass-cache/
+public/assets/*
 public/system/avatars/*
 public/system/logos/*
 public/system/registration_forms/*
