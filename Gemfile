@@ -20,7 +20,7 @@ group :assets do
 end
 
 gem 'jquery-rails', "1.0.16"
-gem 'therubyracer'
+# gem 'therubyracer'
 
 gem 'capistrano'
 
