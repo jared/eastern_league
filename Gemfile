@@ -8,8 +8,8 @@ gem 'sqlite3'
 
 group :production do
   gem 'mysql'
-  gem 'libv8', '3.11.8.3'
-  gem 'therubyracer', '0.11.0beta5', :platform => :ruby
+  # gem 'libv8', '3.11.8.3'
+  # gem 'therubyracer', '0.11.0beta5', :platform => :ruby
 end
 
 gem 'sprockets'
