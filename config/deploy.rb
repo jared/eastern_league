@@ -44,11 +44,11 @@ set :assets_tar_path, "#{release_name}-assets.tar.gz"
 
 before "deploy:update" do
   run_locally "rake assets:precompile"
-  run_locally "cd public; tar czf #{Rails.root.join('tmp')}/#{assets_tar_path} assets"
+  run_locally "cd public; tar czf ../tmp/#{assets_tar_path} assets"
 end
 
 before "deploy:finalize_update", :roles => assets_role, :except => { :no_release => true } do
-  upload "#{Rails.root.join('tmp')}/#{assets_tar_path}", "#{shared_path}/#{assets_tar_path}"
+  upload "tmp/#{assets_tar_path}", "#{shared_path}/#{assets_tar_path}"
   run "cd #{shared_path}; /bin/tar xzf #{assets_tar_path}"
   run "/bin/ln -s #{shared_path}/assets #{release_path}/public"
   run "/bin/rm #{shared_path}/#{assets_tar_path}"

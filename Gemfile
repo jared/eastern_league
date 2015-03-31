@@ -8,6 +8,7 @@ gem 'sqlite3'
 
 group :production do
   gem 'mysql'
+  gem 'therubyracer'
 end
 
 gem 'sprockets'
