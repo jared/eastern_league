@@ -1,6 +1,7 @@
 require "bundler/capistrano"
 
-load 'deploy/assets'
+# Trying without remote asset compilation
+# load 'deploy/assets'
 
 set :application, "eastern_league"
 set :repository,  "git@github.com:jared/eastern_league.git"
@@ -32,4 +33,23 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+end
+
+
+#  Local asset compilation
+
+set :assets_role, [ :web, :app ]
+set :normalize_asset_timestamps, false
+set :assets_tar_path, "#{release_name}-assets.tar.gz"
+
+before "deploy:update" do
+  run_locally "rake assets:precompile"
+  run_locally "cd public; tar czf #{Dir.tmpdir}/#{assets_tar_path} assets"
+end
+
+before "deploy:finalize_update", :roles => assets_role, :except => { :no_release => true } do
+  upload "#{Dir.tmpdir}/#{assets_tar_path}", "#{shared_path}/#{assets_tar_path}"
+  run "cd #{shared_path}; /bin/tar xzf #{assets_tar_path}"
+  run "/bin/ln -s #{shared_path}/assets #{release_path}/public"
+  run "/bin/rm #{shared_path}/#{assets_tar_path}"
 end
