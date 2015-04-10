@@ -1,6 +1,7 @@
 class ApiController < ApplicationController
   # include ActiveMerchant::Billing::Integrations
-
+  include OffsitePayments::Integrations
+  
   def ipn
     @notify = Paypal::Notification.new(request.raw_post)
     File.open("#{Rails.root}/log/paypal_ipn.log", "a+") { |f| f.write "#{Time.now.to_s(:db)}: #{request.raw_post}\n" }
