@@ -24,7 +24,7 @@ end
 gem 'jquery-rails', '3.1.2'
 # gem 'therubyracer'
 
-gem 'capistrano'
+gem 'capistrano', '2.12.0'
 
 gem 'thin'
 
