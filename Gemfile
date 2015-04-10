@@ -24,7 +24,12 @@ end
 gem 'jquery-rails', '3.1.2'
 # gem 'therubyracer'
 
-gem 'capistrano', '2.12.0'
+# gem 'capistrano', '2.12.0'
+gem 'capistrano', '3.4.0'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-passenger'
+gem 'capistrano-rvm'
 
 gem 'thin'
 

@@ -1,55 +1,50 @@
-require "bundler/capistrano"
+# config valid only for current version of Capistrano
+lock '3.4.0'
 
-# Trying without remote asset compilation
-# load 'deploy/assets'
+set :application, 'eastern_league'
+set :repo_url, 'git@github.com:jared/eastern_league.git'
 
-set :application, "eastern_league"
-set :repository,  "git@github.com:jared/eastern_league.git"
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :scm, :git
+# Default deploy_to directory is /var/www/my_app_name
+# set :deploy_to, '/var/www/my_app_name'
 
-set :user, "deploy"  # The server's user for deploys
+# Default value for :scm is :git
+# set :scm, :git
 
-set :keep_releases, 5
+# Default value for :format is :pretty
+# set :format, :pretty
 
-role :web, "50.57.149.168"                          # Your HTTP server, Apache/etc
-role :app, "50.57.149.168"                          # This may be the same as your `Web` server
-role :db,  "50.57.149.168", :primary => true # This is where Rails migrations will run
+# Default value for :log_level is :debug
+# set :log_level, :debug
 
+# Default value for :pty is false
+# set :pty, true
 
-default_run_options[:pty] = true
+# Default value for :linked_files is []
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, %w{config/database.yml config/initializers/active_merchant.rb config/initializers/setup_mail.rb config/initializers/flickr.rb config/initializers/secret_token.rb}
 
-after "deploy:update_code", "deploy:copy_configuration_files"
+# Default value for linked_dirs is []
+# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, %w{config/paypal}
+
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+# Default value for keep_releases is 5
+# set :keep_releases, 5
 
 namespace :deploy do
-  task :copy_configuration_files do
-    run "cp #{shared_path}/secure/*.rb #{release_path}/config/initializers"
-    run "cp #{shared_path}/secure/database.yml #{release_path}/config"
-    run "cp #{shared_path}/secure/*.pem #{release_path}/config/paypal"
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
   end
-  
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
-end
 
-
-#  Local asset compilation
-
-set :assets_role, [ :web, :app ]
-set :normalize_asset_timestamps, false
-set :assets_tar_path, "#{release_name}-assets.tar.gz"
-
-before "deploy:update" do
-  run_locally "rake assets:precompile"
-  run_locally "cd public; tar czf ../tmp/#{assets_tar_path} assets"
-end
-
-before "deploy:finalize_update", :roles => assets_role, :except => { :no_release => true } do
-  upload "tmp/#{assets_tar_path}", "#{shared_path}/#{assets_tar_path}"
-  run "cd #{shared_path}; /bin/tar xzf #{assets_tar_path}"
-  run "/bin/ln -s #{shared_path}/assets #{release_path}/public"
-  run "/bin/rm #{shared_path}/#{assets_tar_path}"
 end
