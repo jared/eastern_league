@@ -47,7 +47,7 @@ gem 'paranoia'
 gem 'rspec-rails'
 gem 'seed-fu'#, :git => "git://github.com/mbleigh/seed-fu.git", :branch => "rails-3-1"
 
-gem 'exception_notification'
+gem 'exception_notification', '2.6.1'
 
 # group :development do
 #   gem "better_errors", ">= 0.3.2"
