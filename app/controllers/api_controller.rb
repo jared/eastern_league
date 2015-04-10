@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  include ActiveMerchant::Billing::Integrations
+  # include ActiveMerchant::Billing::Integrations
 
   def ipn
     @notify = Paypal::Notification.new(request.raw_post)
