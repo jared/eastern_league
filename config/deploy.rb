@@ -51,4 +51,6 @@ namespace :deploy do
     end
   end
 
+  after  :finishing,    :compile_assets
+
 end
