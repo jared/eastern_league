@@ -6,6 +6,7 @@ set :repo_url, 'git@github.com:jared/eastern_league.git'
 
 # set :rvm_ruby_version, 'ruby-1.9.3-p551@eastern_league'
 set :rvm_ruby_version, 'ruby-2.2.1@el_4'
+set :passenger_rvm_ruby_version, 'ruby-2.2.1@el_4'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
