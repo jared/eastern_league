@@ -18,7 +18,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def create
-    @announcement = Announcement.new(params[:announcement])
+    @announcement = Announcement.new(announcement_params)
     if @announcement.save
       flash[:notice] = "Announcement has been created."
       redirect_to announcements_path and return
@@ -30,7 +30,7 @@ class AnnouncementsController < ApplicationController
   def update
     @announcement = Announcement.find(params[:id])
     authorize! :update, @announcement
-    if @announcement.update_attributes(params[:announcement])
+    if @announcement.update_attributes(announcement_params)
       flash[:notice] = "Announcement has been updated."
       redirect_to announcements_path and return
     else
