@@ -7,10 +7,10 @@ class Season < ActiveRecord::Base
 
   validates_presence_of :year, :start_date, :end_date
 
-  scope :with_standings, includes(:standings).where(["standings.season_id = seasons.id"]).order("year ASC")
+  scope :with_standings, -> { joins(:standings).includes(:standings).where(["standings.season_id = seasons.id"]).order("year ASC") }
 
   def self.current
-    find(:first, :conditions => { :current => true })
+    where(current: true).first
   end
 
 end

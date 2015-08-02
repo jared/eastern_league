@@ -32,4 +32,8 @@ private
     @event = Event.find(params[:event_id])
   end
   
+  def score_params
+    params.require(:scores).permit!
+  end
+
 end

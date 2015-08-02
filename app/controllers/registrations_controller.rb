@@ -52,7 +52,7 @@ class RegistrationsController < ApplicationController
   def create
     load_event
 
-    @event_registration = @event.event_registrations.build({:competitor => current_user.competitor}.merge(params[:event_registration].slice(:volunteer_judge, :volunteer_field_staff, :volunteer_setup_crew, :first_time_competitor, :accepted_terms, :saturday_lunches, :sunday_lunches, :number_for_dinner)))
+    @event_registration = @event.event_registrations.build({:competitor => current_user.competitor}.merge(registration_params.slice(:volunteer_judge, :volunteer_field_staff, :volunteer_setup_crew, :first_time_competitor, :accepted_terms, :saturday_lunches, :sunday_lunches, :number_for_dinner)))
 
     params[:event_registration][:disciplines].each do |discipline_id|
       event_discipline = @event.event_disciplines.find_by_discipline_id(discipline_id)
@@ -170,6 +170,10 @@ private
 
   def load_event
     @event = Event.find(params[:event_id])
+  end
+
+  def registration_params
+    params.require(:event_registration).permit!
   end
 
 end

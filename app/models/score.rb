@@ -7,8 +7,8 @@ class Score < ActiveRecord::Base
   belongs_to :competitor
   belongs_to :season
   
-  scope :ranked, order("rank ASC")
-  scope :season, lambda { |season| where('season_id = ?', season.id) }
+  scope :ranked, -> { order("rank ASC") }
+  scope :season, -> (season) { where('season_id = ?', season.id) }
 
   def discipline
     event_discipline.discipline

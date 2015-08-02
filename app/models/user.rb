@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :competitor
 
-  scope :current, where(["el_member = ? AND current_through_date >= ?", true, Date.today]).order("full_name ASC")
+  scope :current, -> { where(["el_member = ? AND current_through_date >= ?", true, Date.today]).order("full_name ASC") }
 
   def related_users
     self.family_memberships.map(&:user)

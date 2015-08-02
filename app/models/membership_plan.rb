@@ -2,7 +2,7 @@ class MembershipPlan < ActiveRecord::Base
 
   has_many :memberships
 
-  scope :visible, :conditions => { :visible => true }
-  scope :primary, :conditions => { :primary => true }
+  scope :visible, -> { where(visible: true) }
+  scope :primary, -> { where(primary: true) }
 
 end

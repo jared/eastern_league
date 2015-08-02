@@ -50,4 +50,10 @@ class AnnouncementsController < ApplicationController
     redirect_to announcements_path and return
   end
 
+  private
+
+  def announcement_params
+    params.require(:announcement).permit(:headline, :body, :created_at)
+  end
+
 end

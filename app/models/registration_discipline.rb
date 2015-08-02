@@ -3,8 +3,8 @@ class RegistrationDiscipline < ActiveRecord::Base
   belongs_to :event_registration
   belongs_to :event_discipline
 
-  scope :for_discipline, lambda { |discipline_ids|
-    includes(:event_discipline => :discipline).
+  scope :for_discipline, -> (discipline_ids) { 
+    includes(event_discipline: :discipline).
     where("disciplines.id IN (?)", discipline_ids)
   }
 

@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :season_id, :location
   validate :validate_date_escalation, :if => Proc.new { |event| !event.start_date.blank? && !event.end_date.blank? }
 
-  scope :calendar, order("start_date ASC")
+  scope :calendar, -> { order("start_date ASC") }
 
   def self.most_recent
     @season = Season.current

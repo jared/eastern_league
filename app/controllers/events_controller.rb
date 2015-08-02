@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :require_user, :except => [:show, :donate, :raffle_ticket]
 
   def index
-    @events = Event.all(:order => "start_date DESC")
+    @events = Event.order "start_date DESC"
     authorize! :manage, Event
   end
 
@@ -41,7 +41,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new({:status => 'new'}.merge(params[:event]))
+    @event = Event.new({:status => 'new'}.merge(event_params))
     authorize! :create, Event
     if @event.save
       flash[:notice] = "You have successfully created this event."
@@ -55,7 +55,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     authorize! :update, @event
-    if @event.update_attributes(params[:event])
+    if @event.update_attributes(event_params)
       flash[:notice] = "This event has been updated."
       redirect_to event_path(@event) and return
     else
@@ -70,6 +70,11 @@ class EventsController < ApplicationController
     @event.destroy
     flash[:notice] = "This event has been deleted."
     redirect_to events_path and return
+  end
+
+private
+  def event_params
+    params.require(:event).permit!
   end
 
 end

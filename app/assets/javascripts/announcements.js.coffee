@@ -4,5 +4,14 @@
 
 $(document).ready ->
   $("#announcement_created_at").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
-  
-  $('textarea.announcement_body').tinymce({theme: 'advanced'});
+  tinymce.init({
+    selector: "textarea.announcement_body",
+    plugins: [
+         "autolink link hr anchor pagebreak",
+         "searchreplace visualblocks visualchars code insertdatetime nonbreaking",
+         "table contextmenu directionality emoticons template paste textcolor"
+    ],
+    toolbar: [
+      "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link forecolor backcolor emoticons code"
+    ]
+    })

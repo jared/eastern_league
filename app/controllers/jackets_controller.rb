@@ -5,7 +5,7 @@ class JacketsController < ApplicationController
   def index
     authorize! :manage, Jacket.new, :message => "Only an administrator may view the list of jacket orders."
     @season = Season.find_by_year("2014")
-    @jackets = Jacket.find(:all, :conditions => { :season_id => @season.id })
+    @jackets = Jacket.where(season_id: @season.id)
   end
 
   def new
@@ -14,7 +14,7 @@ class JacketsController < ApplicationController
   end
 
   def create
-    @jacket = Jacket.new(params[:jacket])
+    @jacket = Jacket.new(jacket_params)
     if @jacket.save
       amount = @jacket.price
       if @jacket.delivery?
@@ -27,6 +27,11 @@ class JacketsController < ApplicationController
       flash[:notice] = "Your jacket information has been saved."
       redirect_to purchase_user_order_path(current_user, @order) and return
     end
+  end
+
+private
+  def jacket_params
+    params.require(:jacket).permit(:season, :name, :style, :size, :delivery, :typeface, :custom_text_1, :custom_text_2, :custom_text_3)
   end
 
 end

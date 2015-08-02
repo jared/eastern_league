@@ -21,7 +21,7 @@ class WildwoodRegistrationsController < ApplicationController
     @event = @season.events.find_by_acronym("ECSKC")
 
     # create the registration
-    @wildwood_registration = WildwoodRegistration.new(params[:wildwood_registration])
+    @wildwood_registration = WildwoodRegistration.new(wildwood_registration_params)
 
     unless params[:humint].to_s.downcase =~ /kites/
       flash[:error] = "Please fill in the field below your email address as instructed to proceed."
@@ -54,5 +54,10 @@ class WildwoodRegistrationsController < ApplicationController
     @wildwood_registration = WildwoodRegistration.find(params[:id])
   end
 
+private 
+
+  def wildwood_registration_params
+    params.require(:wildwood_registration).permit!
+  end
 
 end

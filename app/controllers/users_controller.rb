@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       UserSession.new(@user).save
       flash[:notice] = "You have successfully created an account"
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize! :update, @user, :message => "You may only edit your own account."
     
-    @user.attributes = params[:user]
+    @user.attributes = user_params
     if params[:remove_avatar]
       @user.competitor.avatar = nil
     end
@@ -53,6 +53,36 @@ class UsersController < ApplicationController
       flash[:error] = "Unable to save your changes.  See explanation below"
       render :action => :edit
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:full_name,
+                                 :nickname,
+                                 :email,
+                                 :password,
+                                 :phone_number, 
+                                 :street_address_1,
+                                 :street_address_2, 
+                                 :city,
+                                 :state, 
+                                 :zip,
+                                 :share_email,
+                                 :share_phone,
+                                 :share_address,
+                                 :store_affiliation,
+                                 :member_since,
+                                 :current_through_date, 
+                                 :notes,
+                                 :board_member,
+                                 :lifetime,
+                                 :admin,
+                                 :former_member,
+                                 competitor_attributes: [
+                                  :bio, 
+                                  :id
+                                 ])
   end
 
 end

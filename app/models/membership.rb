@@ -9,7 +9,7 @@ class Membership < ActiveRecord::Base
 
   validates_presence_of :membership_plan_id
 
-  scope :newest, order("expires_at DESC")
+  scope :newest, -> { order("expires_at DESC") }
 
   def self.find_due(time = Time.now)
     find(:all, :conditions => { :primary_member => true, :expires_at => (time..time.end_of_month)}).select do |membership|
@@ -18,9 +18,13 @@ class Membership < ActiveRecord::Base
   end
 
   def activate!(renewal_date = Date.today, send_email = true)
-    expires_at = renewal_date.advance(:months => membership_plan.renewal_period).to_time.end_of_month
+    if self[:expires_at] <= Date.today
+      new_expires_at = renewal_date.advance(:months => membership_plan.renewal_period).to_time.end_of_month
+    else
+      new_expires_at = self[:expires_at].advance(months: membership_plan.renewal_period).to_time.end_of_month
+    end
     attrs = {
-      :expires_at => expires_at,
+      :expires_at => new_expires_at,
       :paid       => true
     }
     self.update_attributes!(attrs)

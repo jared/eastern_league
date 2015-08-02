@@ -5,4 +5,14 @@
 $(document).ready ->
   $("#user_member_since").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
   $("#user_current_through_date").datepicker({changeMonth: true, changeYear: true, dateFormat: 'yy-mm-dd'});
-  $('textarea.competitor_bio').tinymce({theme: 'simple'});
+  
+  tinymce.init({
+    selector: "#user_competitor_attributes_bio",
+    theme: "modern",
+    plugins: [
+         "advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker",
+         "searchreplace wordcount visualblocks visualchars code insertdatetime media nonbreaking",
+         "save table contextmenu directionality emoticons template paste textcolor"
+    ],
+    toolbar: "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | forecolor backcolor emoticons code",
+    })

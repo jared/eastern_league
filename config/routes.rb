@@ -9,36 +9,36 @@ EasternLeague::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
-  match 'about'       => 'about#index',       :as => :about
-  match 'competitors' => 'about#competitors', :as => :competitors
-  match 'organizers'  => 'about#organizers',  :as => :organizers
-  match 'spectators'  => 'about#spectators',  :as => :spectators
-  match 'contact'     => 'about#contact',     :as => :contact
+  get '/about'       => 'about#index',       :as => :about
+  get '/competitors' => 'about#competitors', :as => :competitors
+  get '/organizers'  => 'about#organizers',  :as => :organizers
+  get '/spectators'  => 'about#spectators',  :as => :spectators
+  get '/contact'     => 'about#contact',     :as => :contact
 
-  match 'links'       => 'about#links',       :as => :links
+  get '/links'       => 'about#links',       :as => :links
 
-  match 'login'   => 'user_sessions#new',      :as => :login
-  match 'logout'  => 'user_sessions#destroy',  :as => :logout, :method => :delete
+  get '/login'   => 'user_sessions#new',      :as => :login
+  delete '/logout'  => 'user_sessions#destroy',  :as => :logout, :method => :delete
 
-  match 'api/ipn' => 'api#ipn', :as => :ipn
+  get '/api/ipn' => 'api#ipn', :as => :ipn
 
   # Event-specific named routes; these need to be updated annually.
-  match 'OBSKC', :controller => "events", :action => "show", :id => "1016"
-  match 'obskc', :controller => "events", :action => "show", :id => "1016"
+  get '/OBSKC', :controller => "events", :action => "show", :id => "1016"
+  get '/obskc', :controller => "events", :action => "show", :id => "1016"
 
-  match 'fallfly', :controller => "events", :action => "show", :id => '1011'
+  get '/fallfly', :controller => "events", :action => "show", :id => '1011'
 
-  match 'TISKC', :controller => "events", :action => "show", :id => "1017"
-  match 'tiskc', :controller => "events", :action => "show", :id => "1017"
+  get '/TISKC', :controller => "events", :action => "show", :id => "1017"
+  get '/tiskc', :controller => "events", :action => "show", :id => "1017"
 
-  match 'MASKC', :controller => "events", :action => "show", :id => "1018"
-  match 'maskc', :controller => "events", :action => "show", :id => "1018"
+  get '/MASKC', :controller => "events", :action => "show", :id => "1018"
+  get '/maskc', :controller => "events", :action => "show", :id => "1018"
 
-  match 'ECSKC', :controller => "events", :action => "show", :id => "1019"
-  match 'ecskc', :controller => "events", :action => "show", :id => "1019"
+  get '/ECSKC', :controller => "events", :action => "show", :id => "1019"
+  get '/ecskc', :controller => "events", :action => "show", :id => "1019"
 
-  match 'ODSKC', :controller => "events", :action => "show", :id => "1020"
-  match 'odskc', :controller => "events", :action => "show", :id => "1020"
+  get '/ODSKC', :controller => "events", :action => "show", :id => "1020"
+  get '/odskc', :controller => "events", :action => "show", :id => "1020"
 
 
   resource :calendar
@@ -96,7 +96,7 @@ EasternLeague::Application.routes.draw do
   end
 
   resources :annual_events
-  match 'annual' => 'annual_events#index'
+  get '/annual' => 'annual_events#index'
 
   # Sample resource route with options:
   #   resources :products do

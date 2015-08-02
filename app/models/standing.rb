@@ -23,8 +23,11 @@ class Standing < ActiveRecord::Base
   def self.calculate_discipline_standings(discipline, scores, season)
     scores.group_by(&:competitor).each do |competitor, scores|
       eligible_points = scores.map(&:points).sort.reverse[0..4]
-      standing = Standing.find_or_initialize_by_competitor_id_and_discipline_id_and_season_id(competitor.id, discipline.id, season.id)
-      standing.attributes = {:points => eligible_points.sum, :competition_count => scores.size}
+      if Season.current.year.to_i >= 2016
+        eligible_points = scores.map(&:points).sort.reverse[0..2]
+      end
+      standing = Standing.where(competitor_id: competitor.id, discipline_id: discipline.id, season_id: season.id).first_or_initialize 
+      standing.attributes = {points: eligible_points.sum, competition_count: scores.size}
       standing.save
     end
   end
