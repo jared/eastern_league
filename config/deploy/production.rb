@@ -6,7 +6,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-server '50.57.149.168', user: 'deploy', roles: %{app db web}
+server '50.57.149.168', user: 'deploy', roles: %{web app db}
 set :assets_roles, [:web, :app]
 
 
