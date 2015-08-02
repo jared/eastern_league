@@ -34,6 +34,9 @@ gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-passenger', '0.0.5'
 gem 'capistrano-rvm'
+gem 'capistrano3-puma'
+
+gem "puma"
 
 gem 'thin'
 
