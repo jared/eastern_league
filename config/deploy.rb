@@ -4,10 +4,12 @@ lock '3.4.0'
 set :application, 'eastern_league'
 set :repo_url, 'git@github.com:jared/eastern_league.git'
 
-set :rvm_ruby_version, 'ruby-1.9.3-p551@eastern_league'
+# set :rvm_ruby_version, 'ruby-1.9.3-p551@eastern_league'
+set :rvm_ruby_version, 'ruby-2.2.1@el_4'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, 'rails4'
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
