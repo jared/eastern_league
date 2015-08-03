@@ -55,7 +55,8 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     authorize! :update, @event
-    if @event.update_attributes(event_params)
+    @event.attributes = event_params
+    if @event.save
       flash[:notice] = "This event has been updated."
       redirect_to event_path(@event) and return
     else

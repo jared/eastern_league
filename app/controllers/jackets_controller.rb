@@ -4,12 +4,12 @@ class JacketsController < ApplicationController
 
   def index
     authorize! :manage, Jacket.new, :message => "Only an administrator may view the list of jacket orders."
-    @season = Season.find_by_year("2014")
+    @season = Season.find_by_year("2015")
     @jackets = Jacket.where(season_id: @season.id)
   end
 
   def new
-    @season = Season.find_by_year("2014")
+    @season = Season.find_by_year("2015")
     @jacket = Jacket.new(:season => @season, :name => current_user.full_name)
   end
 
@@ -21,7 +21,7 @@ class JacketsController < ApplicationController
         amount += 9.00
       end
       @order = current_user.orders.build(:description => "Award Jacket for #{current_user.full_name}")
-      @order.line_items.build(:purchasable => @jacket, :amount => amount, :description => "2014 Jacket")
+      @order.line_items.build(:purchasable => @jacket, :amount => amount, :description => "2015 Jacket")
 
       @order.save
       flash[:notice] = "Your jacket information has been saved."
