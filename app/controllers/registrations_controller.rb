@@ -108,8 +108,8 @@ class RegistrationsController < ApplicationController
       @discipline_rate = 15.0
     when "LBISKC"
       @flat_rate = 15.0
-      @base_registration = 0.0
-      @discipline_rate = 0.0
+      @base_registration = 15.0
+      @discipline_rate = 15.0
     else
       @base_registration = 20.0
       @discipline_rate = 20.0
