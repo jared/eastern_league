@@ -20,7 +20,7 @@ EasternLeague::Application.routes.draw do
   get '/login'   => 'user_sessions#new',      :as => :login
   delete '/logout'  => 'user_sessions#destroy',  :as => :logout, :method => :delete
 
-  get '/api/ipn' => 'api#ipn', :as => :ipn
+  post '/api/ipn' => 'api#ipn', :as => :ipn
 
   # Event-specific named routes; these need to be updated annually.
   get '/OBSKC', :controller => "events", :action => "show", :id => "1021"
