@@ -18,7 +18,7 @@ class MembershipsController < ApplicationController
 
   def confirm
     load_user
-    @membership = @user.memberships.build(params[:membership])
+    @membership = @user.memberships.build(membership_params)
     if @membership.valid?
       plan = @membership.membership_plan
       @additional_members = []
