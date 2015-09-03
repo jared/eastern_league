@@ -23,11 +23,11 @@ class MembershipsController < ApplicationController
       plan = @membership.membership_plan
       @additional_members = []
       params[:additional_members].reject{ |am| am.blank? }.each do |full_name|
-        @additional_members << User.find_or_initialize_by_full_name(full_name)
+        @additional_members << User.where(full_name: full_name).first_or_initialize #find_or_initialize_by_full_name(full_name)
       end
       @amount = plan.amount
       if @additional_members.size > 0
-        @family_plan = MembershipPlan.find_by_name(plan.name.gsub(/Individual/, "Family"))
+        @family_plan = MembershipPlan.where(name: plan.name.gsub(/Individual/, "Family")) #find_by_name()
         @amount += (@additional_members.size * @family_plan.amount)
       end
     else
