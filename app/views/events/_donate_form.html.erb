@@ -1,7 +1,7 @@
 <%= form_tag raffle_ticket_event_path(@event) do %>
     <div class="module_content">
       <fieldset>
-        <%= hidden_field_tag :item, "Echo" %>
+        <%= hidden_field_tag :item, "NoSticks" %>
 
         <%= label_tag "Name" %>
         <%= text_field_tag :name %>
@@ -24,7 +24,7 @@
         <div class="clear"><br /></div>
 
         <%= label_tag "# of Donations ($#{@cost.to_i} USD each)".html_safe %>
-        <%= select_tag :number_of_donations, options_for_select((1..5).to_a) %>
+        <%= select_tag :number_of_donations, options_for_select((1..10).to_a) %>
         <div class="clear"><br /></div>
 
       </fieldset>
