@@ -27,7 +27,7 @@ class MembershipsController < ApplicationController
       end
       @amount = plan.amount
       if @additional_members.size > 0
-        @family_plan = MembershipPlan.where(name: plan.name.gsub(/Individual/, "Family")) #find_by_name()
+        @family_plan = MembershipPlan.where(name: plan.name.gsub(/Individual/, "Family")).first #find_by_name()
         @amount += (@additional_members.size * @family_plan.amount)
       end
     else
