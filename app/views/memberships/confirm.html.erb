@@ -33,7 +33,7 @@
               <div class="clear"><br /></div>
             <% else %>
               <p class="clear" style="padding-left: 1em;">
-                <%= select_tag("additional_members[]", options_from_collection_for_select(User.find_all_by_full_name(member.full_name), :id, :name_with_email), :style => "width: 50%") %>
+                <%= select_tag("additional_members[]", options_from_collection_for_select(User.where(full_name: member.full_name), :id, :name_with_email), :style => "width: 50%") %>
                 <%= @family_plan.name %>
               </p>
             <% end %>
