@@ -18,11 +18,16 @@ class Membership < ActiveRecord::Base
   end
 
   def activate!(renewal_date = Date.today, send_email = true)
-    if self[:expires_at] <= Date.today
-      new_expires_at = renewal_date.advance(:months => membership_plan.renewal_period).to_time.end_of_month
-    else
-      new_expires_at = self[:expires_at].advance(months: membership_plan.renewal_period).to_time.end_of_month
+
+    # If the user does not have a current_through_date, add additional time from today's date.
+    # If the user has a current_through_date, and that date is in the past, add additional time from today's date.
+    # If the user has a current_through_date, and that date is in the future, add additional time to that date.
+
+    new_expires_at = renewal_date.advance(:months => membership_plan.renewal_period).to_time.end_of_month
+    if user.current_through_date.present? && user.current_through_date >= Date.today
+      new_expires_at = user.current_through_date.advance(:months => membership_plan.renewal_period).to_time.end_of_month
     end
+
     attrs = {
       :expires_at => new_expires_at,
       :paid       => true
