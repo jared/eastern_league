@@ -34,7 +34,8 @@ private
   end
   
   def score_params
-    params.require(:scores).permit!
+    # params.require(:scores).permit!
+    params.permit(:scores, {:competitor_id, :rank, :score, :tie_breaker})
   end
 
 end
