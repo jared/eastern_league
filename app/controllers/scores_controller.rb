@@ -15,8 +15,9 @@ class ScoresController < ApplicationController
     load_event
     authorize! :create, Score
     scores = []
-    params[:scores].each do |score_attrs|
-      scores << Score.create(score_attrs.merge(:event_discipline_id => params[:event_discipline_id], :season_id => @event.season.id))
+    score_params.each do |score_attrs|
+      scores << Score.create(score_attrs.merge(event_discipline_id: params[:event_discipline_id], 
+                                               season_id:           @event.season.id))
     end
     
     @event_discipline = EventDiscipline.find(params[:event_discipline_id])
