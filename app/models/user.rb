@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   scope :current, -> { where(["el_member = ? AND current_through_date >= ?", true, Date.today]).order("full_name ASC") }
 
   def related_users
-    self.family_memberships.map(&:user)
+    self.family_memberships.map(&:user).uniq
   end
 
   def activate_membership!(member_record)
