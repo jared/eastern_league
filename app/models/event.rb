@@ -38,7 +38,9 @@ class Event < ActiveRecord::Base
   end
 
   def event_dates
-    [self.start_date.strftime('%b %e'), self.end_date.strftime('%e %Y')].join("-")
+    end_date_str = '%e %Y'
+    end_date_str = '%b %e %Y' if self.start_date.month != self.end_date.month
+    [self.start_date.strftime('%b %e'), self.end_date.strftime(end_date_str)].join("-")
   end
 
 private
