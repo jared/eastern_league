@@ -1,0 +1,33 @@
+<% title("Seasons") %>
+
+<article class="module width_full">
+  <header>
+    <h3 class="tabs_involved">Eastern League Seasons</h3>
+    <ul class="tabs">
+        <li><%= link_to("Create Season", new_season_path) %></li>
+    </ul>
+  </header>
+
+  <table class="tablesorter" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Current?</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @seasons.each do |season| %>
+        <tr id="<%= dom_id(season) %>">
+          <td><%= season.year %></td>
+          <td><%=l season.start_date, format: :event_date %></td>
+          <td><%=l season.end_date, format: :event_date %></td>
+          <td><%= season.current? ? "Y" : "N"  %></td>
+          <td><%= link_to(image_tag("icons/icn_edit.png"), edit_season_path(season)) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

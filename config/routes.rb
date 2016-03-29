@@ -79,6 +79,8 @@ EasternLeague::Application.routes.draw do
     end
   end
 
+  resources :seasons
+
   resources :events do
     resources :scores
     resources :registrations

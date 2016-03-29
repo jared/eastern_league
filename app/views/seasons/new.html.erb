@@ -1,0 +1,20 @@
+<% title("Seasons") %>
+
+<article class="module width_full">
+  <header><h3>Create Season</h3></header>
+  <%= form_for @season do |f| %>
+    <div class="module_content">
+      <%= render "shared/error_messages", target: @season %>
+      <%= render partial: "season_form", locals: { f: f } %>
+
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Save", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+
+
+</article>
