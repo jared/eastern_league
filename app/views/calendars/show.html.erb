@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <% season.events.each do |event| %>
+        <% season.events.order("start_date ASC").each do |event| %>
           <tr id="<%= dom_id(event) %>">
             <td><%= event.event_dates %></td>
             <td>
