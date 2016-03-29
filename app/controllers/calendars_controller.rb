@@ -1,10 +1,11 @@
 class CalendarsController < ApplicationController
 
   def show
-    @season = Season.current
-    @events = @season.events.calendar
+    # @season = Season.current
+    # @events = @season.events.calendar
 
-    @past_seasons = Season.where(:year => [2012,2013,2014]).order("year DESC")
+    # @past_seasons = Season.where(current: false).order("year DESC").limit(5)
+    @seasons = Season.order("year DESC").limit(5)
   end
 
 end
