@@ -99,9 +99,9 @@ class RegistrationsController < ApplicationController
       @base_registration = 0.0
       @discipline_rate = 10.0
     when "MASKC"
-      @flat_rate = 40.0
-      @base_registration = 10.0
-      @discipline_rate = 10.0
+      # @flat_rate = 40.0
+      @base_registration = 20.0
+      @discipline_rate = 20.0
     when "TISKC"
       @flat_rate = 45.0
       @base_registration = 15.0
