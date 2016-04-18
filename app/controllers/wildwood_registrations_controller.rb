@@ -11,6 +11,10 @@ class WildwoodRegistrationsController < ApplicationController
   end
 
   def new
+
+    flash[:error] = "ECSKC competition has been canceled for 2016."
+    redirect_to "/" and return
+
     @season = Season.current
     @event = @season.events.find_by_acronym("ECSKC")
     @wildwood_registration = WildwoodRegistration.prepare(current_user)
