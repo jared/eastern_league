@@ -20,4 +20,8 @@ class RegistrationDiscipline < ActiveRecord::Base
     output
   end
 
+  def free?
+    event_discipline.free?
+  end
+
 end

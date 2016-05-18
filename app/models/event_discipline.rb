@@ -12,4 +12,8 @@ class EventDiscipline < ActiveRecord::Base
     discipline.abbreviation
   end
 
+  def free?
+    discipline.free?
+  end
+
 end

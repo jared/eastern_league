@@ -118,7 +118,7 @@ class RegistrationsController < ApplicationController
     unless @event_registration.first_time_competitor?
       tmp_amount += @base_registration # Base registration
       @event_registration.registration_disciplines.each do |rd|
-        tmp_amount += @discipline_rate # X dollars per discipline
+        tmp_amount += @discipline_rate unless rd.free? # X dollars per discipline
       end
     end
 
