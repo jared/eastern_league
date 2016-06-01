@@ -10,7 +10,7 @@
           <%= label_tag "#{discipline.abbreviation} ($10)", nil, :class => "abbrev", :style => "width: 70px;" %>
         <% end %>
       <% else %>
-        <%= label_tag group_name =~ /battle/i ? discipline.name : discipline.abbreviation, nil, :class => "abbrev" %>
+        <%= label_tag group_name =~ /battle/i ? discipline.name : discipline.abbreviation, nil, :class => "abbrev", style: "#{'width:140px;' if group_name =~ /battle/i}" %>
       <% end %>
       <%= check_box_tag "event_registration[disciplines][]", discipline.id, @event_registration.disciplines.include?(discipline), :class => "abbrev #{group_prefix}_checkbox", :onclick => %{$('.#{group_prefix}_team_name').toggleClass('required');$('.#{group_prefix}_team_members').toggleClass('required');} %>
       <br class="clear"/>
