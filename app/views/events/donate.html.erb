@@ -4,34 +4,27 @@
   <header><h3>Make a Donation</h3></header>
   <div class="module_content">
     <p>
-      Great events like TISKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
+      Great events like ODSKC only happen with your help!  Please use the form below to make a donation to help offset the operating costs of the competition.
     </p>
     <p>
-      All persons making a donation will be entered into a drawing to win the "Festival in a Box!" kite package, generously donated by Barbara Birnman &amp; Paul LaMasters
+      All persons making a donation will be entered into a drawing to win the Black Pearl UL kite.  This kite has previously been used as a demo kite, and is in excellent condition.  You can read the review of this kite on <a href="http://v2.2.kiteclique.com/level-one-kites-black-pearl-ul-review/">KiteClique.com</a>
     </p>
 
     <p>
-      Those of you who know Barb know that her "blind-item" raffle/auction prizes are some of the neatest packages in kiting.  She &amp; Paul have donated a number of items to be raffled off to support TISKC, and I've gathered together some of the similarly themed items into these "mega-prize-packs."  This raffle is what I'm calling "the festival in a box" package.  Included in the raffle are a number of single line kites: some are smaller kite kits, some are low-cost delta style kites which can be set up in trains or given away to festival participants.  Also included is a <strong>White Giant Ghost Delta</strong> kite, with an 11 foot wingspan, and 36 feet of sail and tail, and a Mystical Jester Dragon-style kite, featuring gold foil &amp; images of various playing cards.  These two will be sure to dominate the sky wherever you choose to fly them.
+     There are a maximum of <strong>40</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $100.00.
     </p>
 
     <p>
-      But that's still not all!  What's a festival without a ground display?  This package also includes 5 banners with 10 foot display poles.  There is one of each in Red, Orange, Yellow, Green and Teal.  (In the interest of full disclosure, one of the 10' banner poles was damaged while setting up for the photo, and may need to be replaced.)
+      Drawing for the Black Pearl UL is expected to be held on or around <strong>June 25, 2016</strong>.
     </p>
-
-    <p>
-     There are a maximum of <strong>100</strong> donation opportunities at this time.  Each donation is <strong><%= number_to_currency(@cost) %> USD</strong> and an individual may donate up to a maximum of $50.00.
-    </p>
-    <p>
-      Drawing for the "Festival in a Box!" package is expected to be held on or around <strong>January 1, 2016</strong>, or sooner if all donations have been received prior to January 1.
-    </p>
-    <%= image_tag("ti_raffle_2.jpg", :alt => "Festival in a Box Package", :width => "100%") %>
+    <%= image_tag("BlackPearlUL.jpg", :alt => "Black Pearl UL", :width => "100%") %>
   </div>
 </article>
 <div class="clear"><br /></div>
 
 <article class="module width_3_quarter">
-  <header><h3>Support TISKC!</h3></header>
-  <%#= render :partial => "donate_form" %>
-  <p>Sorry!  All donation opportunities have been taken at this time.</p>
+  <header><h3>Support ODSKC!</h3></header>
+  <%= render :partial => "donate_form" %>
+  <!-- <p>Sorry!  All donation opportunities have been taken at this time.</p> -->
 </article>
 <div class="clear"><br /></div>
