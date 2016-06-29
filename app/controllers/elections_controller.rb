@@ -28,7 +28,7 @@ class ElectionsController < ApplicationController
 
   def create
     authorize! :create, Election
-    @election = Election.new(params[:election])
+    @election = Election.new(election_params)
     if @election.save
       flash[:notice] = "Election created."
       redirect_to elections_path and return
@@ -36,6 +36,18 @@ class ElectionsController < ApplicationController
       render :action => :new
     end
   end
+
+  def update
+    @election = Election.find params[:id]
+    authorize! :edit, @election
+    if @election.save
+      flash[:notice] = "Election updated."
+      redirect_to elections_path and return
+    else
+      render action: :edit
+    end
+  end
+
 
   def results
     @election = Election.find(params[:id])
