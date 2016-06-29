@@ -51,7 +51,7 @@ class ElectionsController < ApplicationController
 
   def results
     @election = Election.find(params[:id])
-    authorize! :udpate, Election
+    authorize! :update, Election
   end
 
   def vote
