@@ -1,0 +1,18 @@
+<% title("Elections") %>
+
+<article class="module width_full">
+  <header><h3>Edit an Election</h3></header>
+  <%= form_for @election do |f| %>
+    <div class="module_content">
+      <%= render "shared/error_messages", :target => @election %>
+      <%= render :partial => "election_form", :locals => { :f => f } %>
+      <div class="clear"></div>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Save", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>

@@ -21,6 +21,11 @@ class ElectionsController < ApplicationController
     @election = Election.new
   end
 
+  def edit
+    @election = Election.find params[:id]
+    authorize! :edit, @election
+  end
+
   def create
     authorize! :create, Election
     @election = Election.new(params[:election])
@@ -55,5 +60,10 @@ class ElectionsController < ApplicationController
     end
   end
 
+private
+
+  def election_params
+    params.require(:election).permit(:name, :description, :active, :close_at)
+  end
 
 end
