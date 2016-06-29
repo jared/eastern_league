@@ -29,6 +29,7 @@ class ElectionsController < ApplicationController
   def create
     authorize! :create, Election
     @election = Election.new(election_params)
+    User.current.each { |u| @election.build_candidate(user_id: u.id) unless u.board_member? }
     if @election.save
       flash[:notice] = "Election created."
       redirect_to elections_path and return
