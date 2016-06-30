@@ -63,7 +63,7 @@ class ElectionsController < ApplicationController
       redirect_to root_url and return
     end
 
-    @vote = @election.votes.build(params[:vote])
+    @vote = @election.votes.build(vote_params)
     if @vote.save
       flash[:notice] = "Your vote has been recorded.  Thank you!"
       redirect_to root_url and return
