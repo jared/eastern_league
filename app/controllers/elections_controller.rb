@@ -79,4 +79,8 @@ private
     params.require(:election).permit(:name, :description, :active, :close_at)
   end
 
+  def vote_params
+    params.require(:vote).permit(:user_id, candidate_ids: [])
+  end
+
 end
