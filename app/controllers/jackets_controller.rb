@@ -24,8 +24,13 @@ class JacketsController < ApplicationController
       @order.line_items.build(:purchasable => @jacket, :amount => amount, :description => "#{@jacket.season.year} Jacket")
 
       @order.save
-      flash[:notice] = "Your jacket information has been saved."
-      redirect_to purchase_user_order_path(current_user, @order) and return
+      if @order.amount.to_f == 0.00
+        flash[:notice] = "Your jacket order has been received."
+        redirect_to "/" and return
+      else
+        flash[:notice] = "Your jacket information has been saved."
+        redirect_to purchase_user_order_path(current_user, @order) and return
+      end
     else
       @season = @jacket.season
       render action: :new
