@@ -23,23 +23,24 @@ EasternLeague::Application.routes.draw do
   post '/api/ipn' => 'api#ipn', :as => :ipn
 
   # Event-specific named routes; these need to be updated annually.
-  get '/OBSKC', :controller => "events", :action => "show", :id => "1021"
-  get '/obskc', :controller => "events", :action => "show", :id => "1021"
-
   get '/fallfly', :controller => "events", :action => "show", :id => '1011'
-  get '/LBI',    :controller => "events", :action => "show", :id => '1026'
+  get '/LBI',    :controller => "events", :action => "show", :id => '1027'
 
-  get '/TISKC', :controller => "events", :action => "show", :id => "1022"
-  get '/tiskc', :controller => "events", :action => "show", :id => "1022"
+  get '/OBSKC', :controller => "events", :action => "show", :id => "1028"
+  get '/obskc', :controller => "events", :action => "show", :id => "1028"
 
-  get '/MASKC', :controller => "events", :action => "show", :id => "1023"
-  get '/maskc', :controller => "events", :action => "show", :id => "1023"
+
+  get '/TISKC', :controller => "events", :action => "show", :id => "1029"
+  get '/tiskc', :controller => "events", :action => "show", :id => "1029"
+
+  get '/MASKC', :controller => "events", :action => "show", :id => "1030"
+  get '/maskc', :controller => "events", :action => "show", :id => "1030"
 
   get '/ECSKC', :controller => "events", :action => "show", :id => "1024"
   get '/ecskc', :controller => "events", :action => "show", :id => "1024"
 
-  get '/ODSKC', :controller => "events", :action => "show", :id => "1025"
-  get '/odskc', :controller => "events", :action => "show", :id => "1025"
+  get '/ODSKC', :controller => "events", :action => "show", :id => "1031"
+  get '/odskc', :controller => "events", :action => "show", :id => "1031"
 
 
   resource :calendar
