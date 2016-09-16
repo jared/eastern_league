@@ -78,58 +78,24 @@ class RegistrationsController < ApplicationController
     end
 
     tmp_amount = 0.0
-    @flat_rate = nil
-
-    case @event.acronym
-    when "ODSKC"
-      @flat_rate = 40.0
-      @base_registration = 10.0
-      @discipline_rate = 10.0
-      @lunch_rate = 8
-      @dinner_rate = 7.5
-    when "OBSKC"
-      @flat_rate = 40.0
-      @base_registration = 10.0
-      @discipline_rate = 10.0
-    when "FallFly"
-      @flat_rate = 45.0
-      @base_registration = 20.0
-      @discipline_rate = 10.0
-    when "ECSKC"
-      @base_registration = 0.0
-      @discipline_rate = 10.0
-    when "MASKC"
-      # @flat_rate = 40.0
-      @base_registration = 20.0
-      @discipline_rate = 20.0
-    when "TISKC"
-      @flat_rate = 45.0
-      @base_registration = 15.0
-      @discipline_rate = 15.0
-    when "LBISKC"
-      @flat_rate = 40.0
-      @base_registration = 15.0
-      @discipline_rate = 15.0
-    else
-      @base_registration = 20.0
-      @discipline_rate = 20.0
-    end
 
     unless @event_registration.first_time_competitor?
-      tmp_amount += @base_registration # Base registration
+      tmp_amount += @event.base_rate # Base registration
       @event_registration.registration_disciplines.each do |rd|
-        tmp_amount += @discipline_rate unless rd.free? # X dollars per discipline
+        tmp_amount += @event.discipline_rate unless rd.free? # X dollars per discipline
       end
     end
 
     # Test against early, flat-rate fee
-    if @flat_rate
-      @event_registration.amount = (tmp_amount > @flat_rate) ? @flat_rate : tmp_amount
+    if @event.flat_rate
+      @event_registration.amount = (tmp_amount > @event.flat_rate) ? @event.flat_rate : tmp_amount
     else
       @event_registration.amount = tmp_amount
     end
 
     if @event.acronym == "ODSKC"
+      @lunch_rate  = 8
+      @dinner_rate = 7.5
       @event_registration.amount += @lunch_rate * @event_registration.saturday_lunches
       @event_registration.amount += @lunch_rate * @event_registration.sunday_lunches
       @event_registration.amount += @dinner_rate * @event_registration.number_for_dinner

@@ -47,6 +47,18 @@
   <%= f.url_field :url, :placeholder => "http://easternleauge.net/events/HSSKC" %>
   <div class="clear"><br /></div>
 
+  <%= f.label :flat_rate %>
+  <%= f.text_field :flat_rate, placeholder: 'Leave blank to disable flat-rate registration.' %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :base_rate, "Base registration fee." %>
+  <%= f.text_field :base_rate, placeholder: '20.00' %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :discipline_rate, "Per-discipline registration fee." %>
+  <%= f.text_field :discipline_rate, placeholder: '10.00' %>
+  <div class="clear"><br /></div>
+
   <%= f.label :registration_deadline %>
   <%= f.text_field :registration_deadline %>
   <div class="clear"><br /></div>

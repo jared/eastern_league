@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518015803) do
+ActiveRecord::Schema.define(version: 20160916170344) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "headline",   limit: 255
@@ -155,9 +155,9 @@ ActiveRecord::Schema.define(version: 20160518015803) do
     t.string   "contact_email",                  limit: 255
     t.string   "url",                            limit: 255
     t.string   "status",                         limit: 255
-    t.boolean  "fee_received",                   limit: 1,   default: false
-    t.boolean  "results_available",              limit: 1,   default: false
-    t.boolean  "online_registration",            limit: 1,   default: true
+    t.boolean  "fee_received",                   limit: 1,                           default: false
+    t.boolean  "results_available",              limit: 1,                           default: false
+    t.boolean  "online_registration",            limit: 1,                           default: true
     t.datetime "registration_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -165,6 +165,9 @@ ActiveRecord::Schema.define(version: 20160518015803) do
     t.string   "registration_form_content_type", limit: 255
     t.integer  "registration_form_file_size",    limit: 4
     t.datetime "registration_form_updated_at"
+    t.decimal  "flat_rate",                                  precision: 5, scale: 2
+    t.decimal  "base_rate",                                  precision: 5, scale: 2, default: 10.0
+    t.decimal  "discipline_rate",                            precision: 5, scale: 2, default: 10.0
   end
 
   add_index "events", ["season_id"], name: "index_events_on_season_id", using: :btree

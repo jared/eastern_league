@@ -22,6 +22,8 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :name, :season_id, :location
   validate :validate_date_escalation, :if => Proc.new { |event| !event.start_date.blank? && !event.end_date.blank? }
+  validates :base_rate, presence: true
+  validates :discipline_rate, presence: true
 
   scope :calendar, -> { order("start_date ASC") }
 
