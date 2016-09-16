@@ -16,7 +16,7 @@
       <tr>
         <th colspan="2">Competitors: <%= @event_registrations.size %></th>
         <th>Amount Collected:</th>
-        <th><%= @event_registrations.map{|er| er.line_item.try(:order)}.compact.sum(&:amount_collected).to_s %></th>
+        <th><%= @event_registrations.where(paid: true).map{|er| er.line_item.try(:order)}.compact.sum(&:amount_collected).to_s %></th>
         <th>&nbsp;</th>
       </tr>
     </tfoot>
