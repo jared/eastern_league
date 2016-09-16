@@ -30,12 +30,14 @@ class UserMailer < ActionMailer::Base
   def time_to_renew(membership)
     @membership = membership
     @user = membership.user
+    @commissioner = User.find(AdminSetting.first.commissioner_user_id)
     mail(:to => @user.email, :subject => "Your Eastern League Membership is about to Expire!")
   end
 
   def membership_expired(membership)
     @membership = membership
     @user = membership.user
+    @commissioner = User.find(AdminSetting.first.commissioner_user_id)
     mail(:to => @user.email, :subject => "Your Eastern League Membership has Expired!")
   end
 

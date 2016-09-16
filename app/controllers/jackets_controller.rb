@@ -4,12 +4,12 @@ class JacketsController < ApplicationController
 
   def index
     authorize! :manage, Jacket.new, :message => "Only an administrator may view the list of jacket orders."
-    @season = Season.find_by_year("2016")
+    @season = Season.find_by_year(AdminSetting.first.jacket_season)
     @jackets = Jacket.where(season_id: @season.id)
   end
 
   def new
-    @season = Season.find_by_year("2016")
+    @season = Season.find_by_year(AdminSetting.first.jacket_season)
     @jacket = Jacket.new(:season_id => @season.id, :name => current_user.full_name)
   end
 

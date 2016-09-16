@@ -5,15 +5,15 @@
   <div class="module_content">
     <p>
       <%= image_tag('icons/map.png') %>
-      Jared Haworth<br />
+      <%= @commissioner.full_name %><br />
       <span style="padding-left: 20px;">Eastern League Commissioner</span><br />
-      <span style="padding-left: 20px;">2500 Horizon Hike Ct</span><br />
-      <span style="padding-left: 20px;">Raleigh, NC 27603</span><br />
+      <span style="padding-left: 20px;"><%= @commissioner.street_address_1 %></span><br />
+      <span style="padding-left: 20px;"><%= @commissioner.city %>, <%= @commissioner.state %> <%= @commissioner.zip %></span><br />
     </p>
 
     <p>
       <%= image_tag('icons/phone.png') %> 
-      919/637-3041
+      <%= @commissioner.phone_number %>
     </p>
 
     <p>

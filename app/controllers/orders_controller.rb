@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   def purchase
     load_user
     @order = @user.orders.find(params[:id])
+    @commissioner = User.find(AdminSetting.first.commissioner_user_id)
   end
 
   def thank_you

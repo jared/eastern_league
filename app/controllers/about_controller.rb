@@ -16,6 +16,7 @@ class AboutController < ApplicationController
   end
 
   def contact
+    @commissioner = User.find(AdminSetting.first.commissioner_user_id)
   end
 
 end

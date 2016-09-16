@@ -1,0 +1,49 @@
+<% title("Admin Settings") %>
+
+<article class="module width_full">
+  <header><h3>Edit Admin Settings</h3></header>
+  <%= form_for @admin_setting do |f| %>
+    <div class="module_content">
+      <%= render "shared/error_messages", :target => @admin_setting %>
+      <fieldset>
+        <%= f.label :jacket_season %>
+        <%= f.text_field :jacket_season %>
+        <div class="clear"><br /></div>
+        
+        <%= f.label :jacket_description %><br />
+        <%= f.text_area :jacket_description, :class => "jacket_description" %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :raffle_item_name %>
+        <%= f.text_field :raffle_item_name %>
+        <div class="clear"><br /></div>
+        
+        <%= f.label :raffle_item_description %><br />
+        <%= f.text_area :raffle_item_description, :class => "raffle_item_description_body" %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :raffle_ticket_cost %>
+        <%= f.text_field :raffle_ticket_cost %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :raffle_tickets_available %>
+        <%= f.text_field :raffle_tickets_per_user %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :raffle_open %>
+        <%= f.check_box :raffle_open %>
+        <div class="clear"><br /></div>
+
+        <%= f.label :commissioner_user_id, "Commissioner User ID" %>
+        <%= f.text_field :commissioner_user_id %>
+        <div class="clear"><br /></div>
+      </fieldset>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Save", :class => "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>

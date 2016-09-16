@@ -71,53 +71,18 @@
           </td>
           <td><%= number_to_currency(line_item.amount) %></td>
         </tr>
-        <% if line_item.purchasable_type == "Jacket" %>
           <tr>
             <td colspan="3">
 
               Paying by check?  Make the check out to <strong>Eastern League Sport Kite Association</strong> and mail to:<br />
-              Eastern League Sport Kite Assn.<br />
-              2500 Horizon Hike Ct<br />
-              Raleigh, NC 27603<br />
+
+              Eastern League Sport Kite Association<br />
+              c/o <%= @commissioner.full_name %><br />
+              <%= @commissioner.street_address_1 %><br />
+              <%= @commissioner.street_address_2 %><br />
+              <%= @commissioner.city %>, <%= @commissioner.state %> <%= @commissioner.zip %>
             </td>
           </tr>
-        <% end %>
-        <% if line_item.purchasable_type == "EventRegistration" %>
-          <tr>
-            <td colspan="3">
-              <% if line_item.purchasable.event_id == 1006 %>
-                Paying by check?  Make the check out to <strong>Eastern League Sport Kite Association</strong> and mail to:<br />
-                Eastern League Sport Kite Assn.<br />
-                2500 Horizon Hike Ct<br />
-                Raleigh, NC 27603<br />
-              <% end %>
-
-              <% if line_item.purchasable.event_id == 1007 %>
-                Paying by check?  Make the check out to <strong>The Kite Loft</strong> and mail to:<br />
-                The Kite Loft<br />
-                MASKC Registration<br />
-                511 Boardwalk<br />
-                Ocean City, MD 21842<br />
-              <% end %>
-
-              <% if line_item.purchasable.event_id == 1021 %>
-                Paying by check?  Make the check out to <strong>Kitty Hawk Kites</strong> and mail to:<br />
-                Outer Banks Stunt Kite Competition<br />
-                Kitty Hawk Kites<br />
-                P.O. Box 1839<br />
-                Nags Head, NC 27959<br />
-              <% end %>
-
-              <% if [1022, 1025, 1026].include?(line_item.purchasable.event_id) %>
-                Paying by check?  Make the check out to <strong>Eastern League Sport Kite Association</strong> and mail to:<br />
-                Eastern League Sport Kite Assn.<br />
-                2500 Horizon Hike Ct<br />
-                Raleigh, NC 27603<br />
-              <% end %>
-
-            </td>
-          </tr>
-        <% end %>
       <% end %>
     </tbody>
   </table>

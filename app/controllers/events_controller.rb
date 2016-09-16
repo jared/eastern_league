@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  CURRENT_RAFFLE_COST = 10.0
 
   before_filter :require_user, :except => [:show, :donate, :raffle_ticket]
 
@@ -16,12 +15,15 @@ class EventsController < ApplicationController
 
   def donate
     @event = Event.find(params[:id])
-    @cost = CURRENT_RAFFLE_COST
+    @admin_setting = AdminSetting.first
+    @cost = @admin_setting.raffle_ticket_cost
+    @tickets_available = @admin_setting.raffle_tickets_per_user
+    @commissioner = User.find(@admin_setting.commissioner_user_id)
   end
 
   def raffle_ticket
     @event = Event.find(params[:id])
-    @cost = CURRENT_RAFFLE_COST
+    @cost = AdminSetting.first.raffle_ticket_cost
     UserMailer.raffle_ticket_order(@event, params.slice(:name, :street_address, :city_state_zip, :phone, :email, :number_of_donations, :item).merge(:cost => @cost)).deliver
     flash[:notice] = "Thank you, your donation request has been received.  You should receive confirmation via email shortly."
     render :action => :donate

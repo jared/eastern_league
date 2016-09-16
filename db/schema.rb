@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916170344) do
+ActiveRecord::Schema.define(version: 20160916172503) do
+
+  create_table "admin_settings", force: :cascade do |t|
+    t.string   "jacket_season",            limit: 255,                           default: "2016"
+    t.text     "jacket_description",       limit: 65535
+    t.decimal  "raffle_ticket_cost",                     precision: 5, scale: 2, default: 5.0
+    t.boolean  "raffle_open",              limit: 1,                             default: false
+    t.string   "raffle_item_name",         limit: 255
+    t.integer  "raffle_tickets_available", limit: 4,                             default: 50
+    t.integer  "raffle_tickets_per_user",  limit: 4,                             default: 10
+    t.text     "raffle_item_description",  limit: 65535
+    t.integer  "commissioner_user_id",     limit: 4,                             default: 621
+    t.datetime "created_at",                                                                      null: false
+    t.datetime "updated_at",                                                                      null: false
+  end
 
   create_table "announcements", force: :cascade do |t|
     t.string   "headline",   limit: 255

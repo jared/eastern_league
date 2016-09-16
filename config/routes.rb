@@ -45,6 +45,7 @@ EasternLeague::Application.routes.draw do
 
   resource :calendar
   resource :user_session
+  resource :admin_setting
 
   resources :announcements
   resources :elections do

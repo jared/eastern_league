@@ -2,23 +2,7 @@
 <article class="module width_full">
   <header><h3><%= @season.year %> Eastern League Champion Jacket Info/Order Page</h3></header>
   <div class="module_content">
-    <p>Congratulations on earning an Eastern League jacket for the <%= "#{@season.start_date.year} - #{@season.end_date.year}" %>
-       season!  New this year, all jacket winners can claim a fleece jacket or vest, for absolutely no cost!  If you'd like to upgrade to the Port Authority jacket, you'll just pay the cost difference between the fleece jacket &amp; fancier all-weather option.  <strong>As a reminder</strong>, this year we'll be offering the "multi-year" jacket option, so when you win in future seasons, you'll have the option of turning this jacket in to have your placings added to it. Don't forget to indicate your color choice on the form, or I'll pick for you!</p>
-
-    <p>Your choices:</p>
-
-    <ol>
-      <li><%= link_to "Port Authority Challenger II", "http://www.outletshirts.com/size-chart/J354" -%> (<%= link_to "Picture", "http://www.outletshirts.com/images/images2/_J354_MAROON_TRUE_BLACK.jpg" %>): This is an all-weather nylon jacket with fleece lining, zippered front pockets, interior cell-phone pocket and adjustable cuffs with hook and loop closures.   <strong>Price: XS-XL: $21.50, 2XL: $23.00, 3XL: $26.00, 4XL: $27.50, 5XL: $28.00, 6XL: $29.50</strong></li>
-      <li><%= link_to "Colorado Timberline Telluride", "http://coloradotimberline.com/specs/SJF/" -%>:  This is a 365-gram fleece jacket that has been offered for the past two years.  <strong>Price:  FREE!</strong></li>
-      <li><%= link_to "Colorado Timberline Glenwood", "http://coloradotimberline.com/specs/SVF/" -%>:  This is a 365-gram fleece vest that has been offered for the past two years.  <strong>Price:  FREE!</strong></li>
-    </ol>
-
-    <p>The links above will direct you to the manufacturer's page for that item.  These pages have very complete information on all the jackets, including detailed sizing information.  The fleece items tend to run large, so double check your measurements!</p>
-
-    <p>All jackets will have the Eastern League logo on the left front along with up to three lines of embroidery of your choice.  On the right front, the embroidery will list the season (<%= @season.year %>), along with disciplines won (1st place finishes will be denoted).  On the back, the jacket will read "Eastern League Sport Kite Association".</p>
-
-    <p>Use the form below to make your choices. Once you've completed the form, click the "Purchase" button at the bottom; this will bring you to a page where you may pay via PayPal, or receive details on how to pay via check.</p>
-
+    <%= AdminSetting.first.jacket_description.html_safe %>
   </div>
 </article>
 

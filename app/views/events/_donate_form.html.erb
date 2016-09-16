@@ -1,7 +1,7 @@
 <%= form_tag raffle_ticket_event_path(@event) do %>
     <div class="module_content">
       <fieldset>
-        <%= hidden_field_tag :item, "BlackPearlUL" %>
+        <%= hidden_field_tag :item, @admin_setting.raffle_item_name %>
 
         <%= label_tag "Name" %>
         <%= text_field_tag :name %>
@@ -24,7 +24,7 @@
         <div class="clear"><br /></div>
 
         <%= label_tag "# of Donations ($#{@cost.to_i} USD each)".html_safe %>
-        <%= select_tag :number_of_donations, options_for_select((1..2).to_a) %>
+        <%= select_tag :number_of_donations, options_for_select((1..@tickets_available).to_a) %>
         <div class="clear"><br /></div>
 
       </fieldset>
@@ -33,9 +33,10 @@
       </p>
       <p>
         Eastern League Sport Kite Association<br />
-        c/o Jared Haworth<br />
-        2500 Horizon Hike Ct<br />
-        Raleigh, NC 27603
+        c/o <%= @commissioner.full_name %><br />
+        <%= @commissioner.street_address_1 %><br />
+        <%= @commissioner.street_address_2 %><br />
+        <%= @commissioner.city %>, <%= @commissioner.state %> <%= @commissioner.zip %>
       </p>
     </div>
     <footer>
