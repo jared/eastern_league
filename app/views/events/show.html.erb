@@ -56,6 +56,7 @@
 
       <% if can? :update, @event %>
         <li><%= link_to "Edit Event Details", edit_event_path(@event) %></li>
+        <li><%= link_to "View Registrations", event_registrations_path(@event) %></li>
       <% end %>
     </ul>
   </div>
