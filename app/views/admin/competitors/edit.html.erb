@@ -1,0 +1,17 @@
+<% title("Edit #{@competitor.name}") %>
+
+<article class="module width_full">
+  <header><h3>Update Competitor Record</h3></header>
+  <%= form_for [:admin, @competitor], html: { multipart: true, id: 'competitor_form' } do |f| %>
+    <div class="module_content">
+      <%= render "shared/error_messages", target: @competitor %>
+      <%= render partial: "competitor_form", locals: { f: f } %>
+    </div>
+    <footer>
+      <div class="submit_link">
+        <%= f.submit "Save", class: "alt_btn" %>
+        or <%= link_to "Cancel", request.referer %>
+      </div>
+    </footer>
+  <% end %>
+</article>

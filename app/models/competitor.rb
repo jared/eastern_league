@@ -1,15 +1,15 @@
 class Competitor < ActiveRecord::Base
   
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>"}
   
   belongs_to :user
   
-  has_many :team_members, :foreign_key => "team_id"
-  has_many :competitors, :through => :team_members
+  has_many :team_members, foreign_key: "team_id"
+  has_many :competitors, through: :team_members
   
-  has_many :inverse_team_members, :class_name => "TeamMember", :foreign_key => "competitor_id"
+  has_many :inverse_team_members, class_name: "TeamMember", foreign_key: "competitor_id"
   has_many :teams, -> { where team: true }, through: :inverse_team_members
-  has_many :pairs, -> { where pair: true }, through: :inverse_team_members, :source => :team
+  has_many :pairs, -> { where pair: true }, through: :inverse_team_members, source: :team
   
   has_many :event_disciplines
   has_many :scores
@@ -18,8 +18,8 @@ class Competitor < ActiveRecord::Base
 
   has_many :standings
   
-  scope :teams, -> { where(:team => true) }
-  scope :pairs, -> { where(:pair => true) }
+  scope :teams, -> { where(team: true) }
+  scope :pairs, -> { where(pair: true) }
   
   scope :alphabetical, -> {includes(:user).order("users.full_name ASC, name ASC")}
   

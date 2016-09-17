@@ -65,6 +65,14 @@ class User < ActiveRecord::Base
     return "expired" if membership_expired?
   end
 
+  def as_json
+    {
+      id: self.id,
+      label: self.full_name,
+      competitor_id: self.competitor.id
+    }
+  end
+
 private
 
   def setup_competitor_record

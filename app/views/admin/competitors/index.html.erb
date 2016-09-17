@@ -1,0 +1,35 @@
+<% title("Pairs / Teams") %>
+
+<article class="module width_half">
+  <header>
+    <h3 class="tabs_involved">Pairs</h3>
+    <ul class="tabs">
+      <li><%= link_to "Create Pair", new_admin_competitor_path(pair: true) %></li>
+    </ul>
+    </header>
+  <div class="module_content">
+    <dl>
+      <% @pairs.each do |pair| %>
+        <dt><%= link_to pair.name, edit_admin_competitor_path(pair) %></dt>
+        <dd><%= pair.competitors.map(&:name).join(", ") %></dd>
+      <% end %>
+    </dl>
+  </div>
+</article>
+
+<article class="module width_half">
+  <header>
+    <h3 class="tabs_involved">Teams</h3>
+    <ul class="tabs">
+      <li class="active"><%= link_to "Create Team", new_admin_competitor_path(team: true) %></li>
+    </ul>
+  </header>
+  <div class="module_content">
+    <dl>
+      <% @teams.each do |team| %>
+        <dt><%= link_to team.name, edit_admin_competitor_path(team) %></dt>
+        <dd><%= team.competitors.map(&:name).join(", ") %></dd>
+      <% end %>
+    </dl>
+  </div>
+</article>

@@ -1,0 +1,32 @@
+<fieldset>
+  <%= f.label :name, "Pair / Team Name" %>
+  <%= f.text_field :name, placeholder: "Bonus points for pun-related name", class: 'required' %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :pair, "Compete as pair" %>
+  <%= f.check_box :pair %>
+  <div class="clear"><br /></div>
+
+  <%= f.label :team, "Compete as team" %>
+  <%= f.check_box :team %>
+  <div class="clear"><br /></div>
+</fieldset>
+
+<fieldset class="additional_members">
+  <%#= f.hidden_field "competitor_ids[]" %>
+  <%= label_tag "Pair/Team Members" %><br />
+  <ul id="active_members">
+    <% @competitor.competitors.each do |team_member| %>
+      <li id=<%= dom_id(team_member) %>>
+        <%= team_member.name %> <%= link_to image_tag("icons/icn_trash.png"), "#", class: 'remove_team_member' %>
+        <%= hidden_field_tag "competitor[competitor_ids][]", team_member.id %>    
+      </li>
+    <% end %>
+  </ul>
+  <div class="clear"><br /></div>
+  <hr />
+  <div class="ui-widget">
+    <label for="team_member_lookup">Add team member: </label>
+    <input id="team_member_lookup">
+  </div>
+</fieldset>

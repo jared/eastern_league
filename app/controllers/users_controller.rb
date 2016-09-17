@@ -9,8 +9,16 @@ class UsersController < ApplicationController
   
   def search
     authorize! :search, User.new, :message => "Only current Eastern League members may use the search function."
-    search_term = "%#{params[:q]}%"
+    if params[:q].present?
+      search_term = "%#{params[:q]}%"
+    else 
+      search_term = "%#{params[:term]}%"
+    end
     @users = User.where("users.full_name like ?", search_term).order("full_name ASC")
+    respond_to do |format|
+      format.html #render search.html.erb
+      format.json { render json: @users.as_json }
+    end
   end
 
   def show

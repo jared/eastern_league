@@ -73,6 +73,10 @@ EasternLeague::Application.routes.draw do
     end
   end
   resources :jackets
+  
+  namespace :admin do
+    resources :competitors
+  end
 
   resources :standings do
     collection do
