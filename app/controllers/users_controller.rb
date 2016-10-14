@@ -36,12 +36,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      UserSession.new(@user).save
-      flash[:notice] = "You have successfully created an account"
-      redirect_to root_url
-    else
-      flash[:error] = "Unable to create your account.  See explanation below"
+    begin
+      @user.save!
+      flash[:notice] = "You have successfully created an account.  "
+      if current_user.try(:admin?)
+        flash[:notice] += "Now, you can set up the new user's first year of membership."
+        redirect_to new_user_membership_path(@user) and return
+      else
+        UserSession.new(@user).save
+        redirect_to root_url and return
+      end
+    rescue ActiveRecord::RecordInvalid
+      flash[:error] = "Unable to create this user.  See explanation below"
       render :action => :new
     end
   end

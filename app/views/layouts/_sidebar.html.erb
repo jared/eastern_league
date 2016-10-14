@@ -36,14 +36,16 @@
       <li class="icn_view_profile"><%= link_to "View my Profile", user_path(current_user) %></li>
       <li class="icn_edit_profile"><%= link_to "Edit my Profile", edit_user_path(current_user) %></li>
       <li class="icn_renew_membership"><%= link_to "Renew my Membership", new_user_membership_path(current_user) %></li>
-      <li class="icn_logoff"><%= link_to("Logout", user_session_path, :method => :delete) %></li>
       <% if current_user.admin? %>
         <li class="icn_newsletter"><%= link_to "Announcements", announcements_path %></li>
+        <li class="icn_view_profile"><%= link_to "Create User", new_user_path %></li>
         <li class="icn_calendar"><%= link_to "Manage Events", events_path %></li>
         <li class="icn_calendar"><%= link_to "Manage Seasons", seasons_path %></li>
         <li class="icn_competitors"><%= link_to "Manage Pairs/Teams", admin_competitors_path %></li>
         <li class="icn_about"><%= link_to "Admin Settings", edit_admin_setting_path %></li>
       <% end %>
+      <li class="icn_logoff"><%= link_to("Logout", user_session_path, :method => :delete) %></li>
+
     </ul>
   <% end %>
 
