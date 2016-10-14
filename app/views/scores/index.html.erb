@@ -4,7 +4,7 @@
   <header><h3><a name="tiebreakers"></a>Event Score Navigation</h3></header>
   <div class="module_content">
     <p>
-      <% if current_user.admin? %>
+      <% if current_user.try(:admin?) %>
         <strong>
           <%= link_to "Enter scores for #{@event.name}", new_event_score_path(@event) %>
           /  
@@ -29,7 +29,7 @@
     <header>
       <h3>
         <%= ed.name %> (<%= ed.discipline.abbreviation %>)
-        <% if current_user.admin? %>
+        <% if current_user.try(:admin?) %>
           <%= form_tag remove_event_scores_path(@event), method: :put, style: "float: right" do %>
             <%= hidden_field_tag "event_discipline_id", ed.id %>
             <% ed.scores.each do |score| %>
