@@ -3,6 +3,16 @@
 <article class="module width_3_quarter">
   <header><h3><a name="tiebreakers"></a>Event Score Navigation</h3></header>
   <div class="module_content">
+    <p>
+      <% if current_user.admin? %>
+        <strong>
+          <%= link_to "Enter scores for #{@event.name}", new_event_score_path(@event) %>
+          /  
+          <%= link_to "Season standings", standings_path(season_id: @event.season.id) %>
+        </strong>
+      <% end %>    
+    </p>
+
     <ul>
       <% @event.season.events.each do |event| %>
         <% unless event.scores.empty? %>
@@ -16,7 +26,20 @@
 <% @event.event_disciplines.each do |ed| %>
   <% next if ed.scores.empty? %>
   <article class="module width_3_quarter">
-    <header><h3><%= ed.name %> (<%= ed.discipline.abbreviation %>)</h3></header>
+    <header>
+      <h3>
+        <%= ed.name %> (<%= ed.discipline.abbreviation %>)
+        <% if current_user.admin? %>
+          <%= form_tag remove_event_scores_path(@event), method: :put, style: "float: right" do %>
+            <%= hidden_field_tag "event_discipline_id", ed.id %>
+            <% ed.scores.each do |score| %>
+              <%= hidden_field_tag "score_ids[]", score.id %>
+            <% end %>
+            <%= submit_tag "Remove Discipline Scores" %>
+          <% end %>
+        <% end %>
+      </h3>
+    </header>
     <table class="tablesorter" cellspacing="0">
       <thead>
 				<tr>

@@ -88,7 +88,11 @@ EasternLeague::Application.routes.draw do
   resources :seasons
 
   resources :events do
-    resources :scores
+    resources :scores do
+      collection do
+        put :remove
+      end
+    end
     resources :registrations
     resources :comments
     member do

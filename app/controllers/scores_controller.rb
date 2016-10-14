@@ -26,6 +26,15 @@ class ScoresController < ApplicationController
     
     redirect_to @event
   end
+
+  def remove
+    load_event
+    @event_discipline = @event.event_disciplines.find(params[:event_discipline_id])
+    @scores = @event.scores.find(params[:score_ids])
+    @scores.each { |score| score.destroy }
+    flash[:notice] = "Scores for #{@event_discipline.name} removed.  Re-enter scores and then re-calculate standings."
+    redirect_to event_scores_path(@event) and return
+  end
   
 private
 
