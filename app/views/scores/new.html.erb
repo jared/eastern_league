@@ -6,7 +6,7 @@
     <div class="module_content">
       <fieldset>
         <%= label_tag :discipline %>
-        <%= select_tag(:event_discipline_id, options_from_collection_for_select(@event.event_disciplines, :id, :name)) %>
+        <%= select_tag(:event_discipline_id, options_from_collection_for_select(@event.event_disciplines.select { |ed| ed.scores.empty? }, :id, :name)) %>
         <table id="score_table">
           <thead>
             <tr>

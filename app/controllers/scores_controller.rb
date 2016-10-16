@@ -24,7 +24,7 @@ class ScoresController < ApplicationController
     
     Score.calculate_points(@event_discipline, %w(EPP EPB MPP MPB ETP ETB MTP MTB OTT OTP OTB).include?(@event_discipline.discipline.abbreviation))
     
-    redirect_to @event
+    redirect_to new_event_score_path(@event)
   end
 
   def remove
