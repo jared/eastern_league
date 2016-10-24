@@ -17,6 +17,7 @@ class UserMailer < ActionMailer::Base
   def membership_purchased(membership)
     @membership = membership
     @user = @membership.user
+    @commissioner = User.find(AdminSetting.first.commissioner_user_id)
     mail(:to => @user.email, :subject => "Your Eastern League Membership Purchase")
   end
 
@@ -24,6 +25,7 @@ class UserMailer < ActionMailer::Base
     @event_registration = event_registration
     @user = @event_registration.competitor.user
     @event = @event_registration.event
+    @commissioner = User.find(AdminSetting.first.commissioner_user_id)
     mail(:to => @user.email, :bcc => ["elcommissioner@gmail.com", @event.contact_email], :subject => "Your Event Registration Confirmation")
   end
 

@@ -46,6 +46,6 @@
 <p>We have received your payment of <%= number_to_currency(@event_registration.amount) %> and look forward to seeing you at <%= @event.location %></p>
 
 <p>
-  Jared Haworth<br />
+  <%= @commissioner.full_name %><br />
   Commissioner
 </p>

@@ -7,6 +7,7 @@ class AboutController < ApplicationController
   end
 
   def organizers
+    load_commissioner
   end
 
   def spectators
@@ -16,7 +17,13 @@ class AboutController < ApplicationController
   end
 
   def contact
-    @commissioner = User.find(AdminSetting.first.commissioner_user_id)
+    load_commissioner
   end
+
+  private
+
+    def load_commissioner
+      @commissioner = User.find(AdminSetting.first.commissioner_user_id)  
+    end
 
 end
