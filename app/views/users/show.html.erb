@@ -25,7 +25,7 @@
     <% if current_user %>
       <p>
         <%= image_tag('icons/email.png', :style => "vertical-align: bottom;") %> 
-        <% if @user.share_email %>
+        <% if @user.share_email || current_user.admin? %>
           <%= mail_to(@user.email) %>
         <% else %>
           <%= link_to "Send Message", new_user_message_path(@user) %>
@@ -34,7 +34,7 @@
       
       <p>
         <%= image_tag('icons/phone.png') %> 
-        <% if @user.share_phone %>
+        <% if @user.share_phone || current_user.admin? %>
           <%= @user.phone_number %>
         <% else %>
           Private Phone Number
@@ -46,7 +46,7 @@
       <p>
         <%= image_tag('icons/map.png') %>
         <%= @user.full_name %><br />
-        <% if @user.share_address %>
+        <% if @user.share_address || current_user.admin? %>
           <span style="padding-left: 20px;"><%= @user.street_address_1 %></span><br />
           <% unless @user.street_address_2.blank? %>
             <span style="padding-left: 20px;"><%= @user.street_address_2 %></span><br />
