@@ -61,6 +61,8 @@ gem 'seed-fu'#, :git => "git://github.com/mbleigh/seed-fu.git", :branch => "rail
 
 gem 'exception_notification', '2.6.1'
 
+gem 'whenever', require: false
+
 # group :development do
 #   gem "better_errors", ">= 0.3.2"
 #   gem "binding_of_caller", ">= 0.6.8"
