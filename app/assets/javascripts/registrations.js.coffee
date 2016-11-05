@@ -4,3 +4,5 @@
 
 $(document).ready ->
   $("#event_registration_form").validate()
+  $(".mark_paid_link").click -> 
+    $(this).parents('tr').find('form.payment_form').submit()

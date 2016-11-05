@@ -93,7 +93,11 @@ EasternLeague::Application.routes.draw do
         put :remove
       end
     end
-    resources :registrations
+    resources :registrations do
+      member do
+        put :mark_paid
+      end
+    end
     resources :comments
     member do
       get :donate

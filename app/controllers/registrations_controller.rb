@@ -49,6 +49,13 @@ class RegistrationsController < ApplicationController
     redirect_to event_registrations_path(@event)
   end
 
+  def mark_paid
+    load_event
+    @event_registration = @event.event_registrations.find(params[:id])
+    @event_registration.update_attribute(:paid, true)
+    redirect_to event_registrations_path(@event)
+  end
+
   def create
     load_event
 

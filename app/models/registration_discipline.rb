@@ -3,7 +3,7 @@ class RegistrationDiscipline < ActiveRecord::Base
   belongs_to :event_registration
   belongs_to :event_discipline
 
-  scope :for_discipline, -> (discipline_ids) { includes(event_discipline: :discipline).where("disciplines.id IN (?)", discipline_ids) }
+  scope :for_discipline, -> (discipline_ids) { joins(event_discipline: :discipline).includes(event_discipline: :discipline).where("disciplines.id IN (?)", discipline_ids) }
 
   # def self.for_discipline(discipline_id)
   #   includes(:event_discipline => :discipline).where("disciplines.id = ?", discipline_id).first
