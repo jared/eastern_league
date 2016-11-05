@@ -63,7 +63,7 @@
               <% end %>
               <%= link_to image_tag("icons/icn_edit.png"), edit_event_registration_path(@event, registration),  title: "Edit" %>
               &nbsp;
-              <%= link_to image_tag("icons/icn_trash.png"), event_registration_path(@event, registration), html: { method: :delete }, title: "Delete" %>
+              <%= link_to(image_tag("icons/icn_trash.png"), event_registration_path(@event, registration), method: :delete, title: "Delete") %>
             <% end %>
           </td>
         </tr>
