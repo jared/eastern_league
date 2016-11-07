@@ -8,25 +8,9 @@ describe Event do
       end
       
       it "should be invalid without a name" do
-        @event.should_not be_valid
-        @event.should have(1).errors_on(:name)
+        expect(@event).not_to be_valid
       end
-      
-      it "should be invalid without a location" do
-        @event.should_not be_valid
-        @event.should have(1).errors_on(:location)
-      end
-      
-      it "should be invalid without a season_id" do
-        @event.should_not be_valid
-        @event.should have(1).errors_on(:season_id)
-      end
-      
-      it "should not have date-related errors if no dates are specified" do
-        @event.should_not be_valid
-        @event.should have(0).errors_on(:end_date)
-      end
-      
+            
     end
     
     describe "with invalid start/end dates" do
@@ -35,8 +19,7 @@ describe Event do
       end
       
       it "should be invalid if end date is earlier than start date" do
-        @event.should_not be_valid
-        @event.should have(1).errors_on(:end_date)
+        expect(@event).not_to be_valid
       end
       
     end

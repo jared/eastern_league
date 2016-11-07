@@ -10,7 +10,7 @@ describe Competitor do
 
     describe "#name" do
       it "should return the name of the assocation user" do
-        @competitor.name.should == "Testing User"
+        expect(@competitor.name).to eq "Testing User"
       end
     end
 
@@ -27,22 +27,22 @@ describe Competitor do
       end
       describe "#teams" do
         it "should return a list of teams the competitor is associated with" do
-          @competitor.teams.should == [@team1, @team2]
+          expect(@competitor.teams).to eq [@team1, @team2]
         end
 
         it "should not include any pair groupings for that competitor" do
-          @competitor.teams.should_not include(@pair1)
+          expect(@competitor.teams).not_to include(@pair1)
         end
 
       end
       describe "#pairs" do
         it "should return the list of pairs the competitor is associated with" do
-          @competitor.pairs.should == [@pair1]
+          expect(@competitor.pairs).to eq [@pair1]
         end
 
         it "should not include any team groupings for that competitor" do
-          @competitor.pairs.should_not include(@team1)
-          @competitor.pairs.should_not include(@team2)
+          expect(@competitor.pairs).not_to include(@team1)
+          expect(@competitor.pairs).not_to include(@team2)
         end
       end
     end
@@ -55,7 +55,7 @@ describe Competitor do
 
     describe "#name" do
       it "should provide the name of the pair" do
-        @pair.name.should == "Dueling Sabers"
+        expect(@pair.name).to eq "Dueling Sabers"
       end
     end
   end
@@ -67,7 +67,7 @@ describe Competitor do
 
     describe "#name" do
       it "should provide the name of the pair" do
-        @team.name.should == "Rusty Sabers"
+        expect(@team.name).to eq "Rusty Sabers"
       end
     end
 
@@ -79,7 +79,7 @@ describe Competitor do
       end
 
       it "should return 3 competitors on the team" do
-        @team.competitors.size.should == 3
+        expect(@team.competitors.size).to eq 3
       end
 
     end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ScoresController do
+RSpec.describe ScoresController, type: :controller do 
 
 end

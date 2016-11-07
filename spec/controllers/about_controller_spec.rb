@@ -1,36 +1,36 @@
 require 'spec_helper'
 
-describe AboutController do
+RSpec.describe AboutController, type: :controller do
 
   describe "#index" do
     it "should be successful" do
       get :index
-      response.should be_success
-      response.should render_template('index')
+      expect(response).to be_success
+      expect(response).to render_template('index')
     end
   end
 
   describe "#competitors" do
     it "should be successful" do
       get :competitors
-      response.should be_success
-      response.should render_template('competitors')
+      expect(response).to be_success
+      expect(response).to render_template('competitors')
     end
   end
 
   describe "#organizers" do
     it "should be successful" do
       get :organizers
-      response.should be_success
-      response.should render_template('organizers')
+      expect(response).to be_success
+      expect(response).to render_template('organizers')
     end
   end
 
   describe "#spectators" do
     it "should be successful" do
       get :spectators
-      response.should be_success
-      response.should render_template('spectators')
+      expect(response).to be_success
+      expect(response).to render_template('spectators')
     end
   end
 

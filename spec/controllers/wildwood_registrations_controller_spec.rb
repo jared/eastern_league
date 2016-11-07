@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe WildwoodRegistrationsController do
+RSpec.describe WildwoodRegistrationsController, type: :controller do 
 
 end

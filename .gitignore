@@ -1,4 +1,5 @@
 .bundle
+config/secrets.yml
 config/initializers/active_merchant.rb
 config/initializers/secret_token.rb
 config/initializers/setup_mail.rb

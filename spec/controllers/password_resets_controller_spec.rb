@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe PasswordResetsController do
+RSpec.describe PasswordResetsController, type: :controller do 
 
 end

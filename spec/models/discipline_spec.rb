@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-describe Discipline do
+RSpec.describe Discipline, type: :model do
   describe "validations" do
     describe "with invalid attributes" do
       before(:each) do
-        @discipline = Discipline.new
+        @discipline = FactoryGirl.create(:discipline)
       end
       
       it "should be invalid without a name" do
-        @discipline.should_not be_valid
-        @discipline.should have(1).errors_on(:name)
+        @discipline.name = ""
+        expect(@discipline).to_not be_valid
       end
 
       it "should be invalid without an abbreviation" do
-        @discipline.should_not be_valid
-        @discipline.should have(1).errors_on(:abbreviation)
+        @discipline.abbreviation = ""
+        expect(@discipline).to_not be_valid
       end
     end
   end

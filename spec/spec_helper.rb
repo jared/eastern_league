@@ -1,3 +1,8 @@
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter "/.bundle/"
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -26,6 +31,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.before(:each) do
+    FactoryGirl.create :admin_setting
+  end
+
   # config.before(:each, :type => :controller) do
   #   Authlogic::Session::Base.controller = (@request && Authlogic::TestCase::ControllerAdapter.new(@request)) || controller
   # end
@@ -41,3 +50,9 @@ module LoginHelper
   end
 end
 include LoginHelper
+
+setup_sqlite_db = lambda do
+  ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+  load "#{Rails.root.to_s}/db/schema.rb"
+end
+silence_stream(STDOUT, &setup_sqlite_db)

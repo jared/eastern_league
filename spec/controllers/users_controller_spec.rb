@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+RSpec.describe UsersController, type: :controller do 
 
   describe "#show" do
     before(:each) do
@@ -8,7 +8,7 @@ describe UsersController do
     end
     it "should show a user's profile page" do
       get :show, :id => @user.id
-      response.should be_success
+      expect(response).to be_success
     end
 
   end
@@ -16,34 +16,34 @@ describe UsersController do
   describe "#new" do
     it "should not require login" do
       get :new
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "should use the new user template form" do
       get :new
-      response.should render_template 'new'
+      expect(response).to render_template 'new'
     end
   end
 
   describe "#create" do
     before(:each) do
-      @params = { :user => {}}
+      @params = { user: {street_addres_1: '123 Fake Street'} }
     end
 
     describe "with valid parameters" do
       before(:each) do
-        @params[:user] = { :full_name => "Test User", :email => "test@example.com", :password => "test"}
+        @params[:user] = { :full_name => "Test User", :email => "test@example.com", :password => "password1!"}
       end
 
       it "should create a user" do
-        lambda do
+        expect do
           post :create, @params
-        end.should change(User, :count).by(1)
+        end.to change(User, :count).by(1)
       end
 
       it "should redirect to the home page" do
         post :create, @params
-        response.should redirect_to root_path
+        expect(response).to redirect_to root_path
       end
 
 
@@ -51,14 +51,14 @@ describe UsersController do
 
     describe "without valid parameters" do
       it "should not create a user" do
-        lambda do
+        expect do
           post :create, @params
-        end.should_not change(User, :count)
+        end.not_to change(User, :count)
       end
 
       it "should redisplay the new user form" do
         post :create, @params
-        response.should render_template 'new'
+        expect(response).to render_template 'new'
       end
     end
   end
@@ -73,7 +73,7 @@ describe UsersController do
       describe "editing his own profile" do
         it "should render the edit form" do
           get :edit, :id => @user.id
-          response.should render_template 'edit'
+          expect(response).to render_template 'edit'
         end
       end
 
@@ -81,8 +81,8 @@ describe UsersController do
         it "should not allow non-admin to edit" do
           @other_user = FactoryGirl.create(:user)
           get :edit, :id => @other_user.id
-          flash[:error].should == "You may only edit your own account."
-          response.should redirect_to root_path
+          expect(flash[:error]).to eq "You may only edit your own account."
+          expect(response).to redirect_to root_path
         end
       end
     end
@@ -96,8 +96,8 @@ describe UsersController do
 
       it "should allow admin to edit other user profiles" do
         get :edit, :id => @user.id
-        response.should be_success
-        response.should render_template 'edit'
+        expect(response).to be_success
+        expect(response).to render_template 'edit'
       end
     end
   end
@@ -114,16 +114,16 @@ describe UsersController do
         describe "with valid attributes" do
           it "should update the user" do
             put :update, :id => @user.id, :user => { :full_name => "Test Updated" }
-            assigns(:user).should be_valid
-            assigns(:user).full_name.should == "Test Updated"
+            expect(assigns(:user)).to be_valid
+            expect(assigns(:user).full_name).to eq "Test Updated"
           end
         end
 
         describe "with invalid attributes" do
           it "should not update the user" do
             put :update, :id => @user.id, :user => { :email => "" }
-            assigns(:user).should_not be_valid
-            response.should render_template 'edit'
+            expect(assigns(:user)).not_to be_valid
+            expect(response).to render_template 'edit'
           end
 
         end
@@ -133,8 +133,8 @@ describe UsersController do
         it "should not allow non-admin to edit" do
           @other_user = FactoryGirl.create(:user)
           put :update, :id => @other_user.id, :user => { :full_name => "Test Updated" }
-          flash[:error].should == "You may only edit your own account."
-          response.should redirect_to root_path
+          expect(flash[:error]).to eq "You may only edit your own account."
+          expect(response).to redirect_to root_path
         end
       end
     end

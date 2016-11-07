@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe CalendarsController do
+RSpec.describe CalendarsController, type: :controller do 
 
 end

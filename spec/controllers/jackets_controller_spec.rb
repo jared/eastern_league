@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe JacketsController do
+RSpec.describe JacketsController, type: :controller do 
 
 end

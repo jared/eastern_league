@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe StandingsController do
+RSpec.describe StandingsController, type: :controller do 
 
 end

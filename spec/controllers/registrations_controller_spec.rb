@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe RegistrationsController do
+RSpec.describe RegistrationsController, type: :controller do 
 
 end

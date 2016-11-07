@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe MembershipsController do
+RSpec.describe MembershipsController, type: :controller do 
 
 end

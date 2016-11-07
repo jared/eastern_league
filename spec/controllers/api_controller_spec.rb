@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-include ActiveMerchant::Billing::Integrations
+include OffsitePayments::Integrations
 
-describe ApiController do
+RSpec.describe ApiController, type: :controller do
   describe "#ipn" do
     before(:each) do
       ipn_setup_order
-      @membership.stub!(:activate!).and_return(true)
+      allow(@membership).to receive_messages(activate!: true)      
     end
 
     describe "successful" do
@@ -17,22 +17,22 @@ describe ApiController do
 
       it "should process an update the order state" do
         post :ipn, @ipn_params
-        @order.reload.state.should == "IPN Received"
+        expect(@order.reload.state).to eq "IPN Received"
       end
 
       it "should set the paypal_status" do
         post :ipn, @ipn_params
-        @order.reload.paypal_status.should == "Completed"
+        expect(@order.reload.paypal_status).to eq "Completed"
       end
 
       it "should set the transaction identifier" do
         post :ipn, @ipn_params
-        @order.reload.paypal_transaction_identifier.should == @trans_id
+        expect(@order.reload.paypal_transaction_identifier).to eq @trans_id
       end
 
       it "should activate the membership" do
         post :ipn, @ipn_params
-        @user.reload.el_member.should be_true
+        expect(@user.reload.el_member).to be true
       end
 
     end
@@ -82,11 +82,11 @@ def ipn_setup_order
 end
 
 def mock_notify(ipn)
-  @notify = mock(:transaction_id  => ipn[:txn_id],
-                 :complete?       => true,
-                 :status          => ipn[:payment_status],
-                 :fee             => ipn[:payment_fee],
-                 :invoice         => ipn[:invoice],
-                 :acknowledge     => ipn[:acknowledge])
-  Paypal::Notification.stub!(:new).and_return(@notify)
+  @notify = double("Paypal Notification", transaction_id: ipn[:txn_id],
+                 complete?: true,
+                 status: ipn[:payment_status],
+                 fee: ipn[:payment_fee],
+                 invoice: ipn[:invoice],
+                 acknowledge: ipn[:acknowledge])
+  allow(Paypal::Notification).to receive_messages(new: @notify)
 end

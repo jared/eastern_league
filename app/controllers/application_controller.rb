@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
-    redirect_to root_url and return
+    redirect_to root_url # and return
   end
 
 protected

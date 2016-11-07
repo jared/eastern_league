@@ -9,14 +9,14 @@ describe Order do
 
     it "should calculate the total amount" do
       @order.save
-      @order.reload.amount.should == 25.00
+      expect(@order.reload.amount).to eq 25.00
     end
 
     it "should encrypt the payment info into a PayPal button" do
-      crypto = mock(:encrypted_data => "definitely_encrypted_data")
-      ElCrypto::EncryptedOrder.should_receive(:new).and_return(crypto)
+      crypto = double("Encrypted Data", :encrypted_data => "definitely_encrypted_data")
+      allow(ElCrypto::EncryptedOrder).to receive_messages(new: crypto)
       @order.save
-      @order.reload.encrypted_data.should == "definitely_encrypted_data"
+      expect(@order.reload.encrypted_data).to eq "definitely_encrypted_data"
     end
 
   end

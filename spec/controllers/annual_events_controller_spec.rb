@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe AnnualEventsController do
+RSpec.describe AnnualEventsController, type: :controller do
 
 end

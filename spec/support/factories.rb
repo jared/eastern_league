@@ -1,5 +1,9 @@
 FactoryGirl.define do
 
+  factory :admin_setting do
+    association :commissioner_user, factory: :active_user
+  end
+
   factory :announcement do
     headline 'The Title'
     body  'The article body'
@@ -9,45 +13,45 @@ FactoryGirl.define do
     full_name 'Jared Haworth'
     nickname 'Jared'
     sequence(:email) { |n| "email#{n * Time.now.to_i}@example.com" }
-    password 'test'
+    password 'password1!'
   end
 
-  factory :active_user, :parent => :user do
+  factory :active_user, parent: :user do
     el_member true
     current_through_date 6.months.from_now.to_date
   end
 
-  factory :expired_user, :parent => :user do
+  factory :expired_user, parent: :user do
     el_member true
     current_through_date 1.month.ago.to_date
   end
 
-  factory :expiring_soon_user, :parent => :user do
+  factory :expiring_soon_user, parent: :user do
     el_member true
     current_through_date 15.days.from_now.to_date
   end
 
-  factory :board_member_user, :parent => :user do
+  factory :board_member_user, parent: :user do
     el_member true
     board_member true
   end
 
-  factory :lifetime_member_user, :parent => :user do
+  factory :lifetime_member_user, parent: :user do
     el_member true
     lifetime true
   end
 
   factory :competitor do
-    association :user, :factory => :active_user
+    association :user, factory: :active_user
     bio "This is my competitor biography."
   end
 
-  factory :pair, :parent => :competitor do
+  factory :pair, parent: :competitor do
     pair true
     name "Dueling Sabers"
   end
 
-  factory :team, :parent => :competitor do
+  factory :team, parent: :competitor do
     team true
     name "Rusty Sabers"
   end
@@ -99,7 +103,7 @@ FactoryGirl.define do
     url           "http://example.com"
     status        "Sanctioning Approved"
     fee_received  true
-    association    :organizer, :factory => :active_user
+    association    :organizer, factory: :active_user
     association    :season
     registration_deadline Date.new(2011, 8, 1)
   end

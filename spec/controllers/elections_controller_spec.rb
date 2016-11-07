@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ElectionsController do
+RSpec.describe ElectionsController, type: :controller do 
 
 end

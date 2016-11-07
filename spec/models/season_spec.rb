@@ -8,7 +8,7 @@ describe Season do
     end
 
     it "should return the current season" do
-      Season.current.should == @current_season
+      expect(Season.current).to eq @current_season
     end
   end
 end

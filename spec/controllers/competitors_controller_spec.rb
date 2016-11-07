@@ -1,5 +1,5 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe CompetitorsController, type: :controller do
+RSpec.describe Admin::CompetitorsController, type: :controller do
 
 end
