@@ -2,21 +2,21 @@
 
 <article class="module width_full">
   <header><h3>Update your Eastern League Account</h3></header>
-  <%= form_for @user, :html => { :multipart => true } do |f| %>
+  <%= form_for @user, html: { multipart: true } do |f| %>
     <div class="module_content">
-      <%= render "shared/error_messages", :target => @user %>
-      <%= render :partial => "user_form", :locals => { :f => f } %>
+      <%= render "shared/error_messages", target: @user %>
+      <%= render partial: "user_form", locals: { f: f } %>
       <%= f.fields_for :competitor do |competitor_form| %>
-        <%= render :partial => "competitor_form", :locals => { :f => competitor_form } %>
+        <%= render partial: "competitor_form", locals: { f: competitor_form } %>
       <% end %>
-      <%= render :partial => "privacy_form", :locals => { :f => f } %>
+      <%= render partial: "privacy_form", locals: { f: f } %>
       <% if current_user.admin? %>
-        <%= render :partial => "admin_form", :locals => { :f => f } %>
+        <%= render partial: "admin_form", locals: { f: f } %>
       <% end %>
     </div>
     <footer>
       <div class="submit_link">
-        <%= f.submit "Save", :class => "alt_btn" %>
+        <%= f.submit "Save", class: "alt_btn" %>
         or <%= link_to "Cancel", request.referer %>
       </div>
     </footer>

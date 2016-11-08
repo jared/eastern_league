@@ -4,15 +4,12 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :candidates
 
-  before_create :two_candidates
+  validate :two_candidates
 
 private
 
-  def two_candidates
-    unless candidate_ids.size == 2
-      errors[:base] << "Please choose (only) two candidates"
-      return false
-    end
+  def two_candidates  
+    errors[:base] << "Please choose (only) two candidates" unless candidate_ids.size == 2
   end
 
 end

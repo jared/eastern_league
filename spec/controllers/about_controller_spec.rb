@@ -34,4 +34,12 @@ RSpec.describe AboutController, type: :controller do
     end
   end
 
+  describe "#contact" do
+    it "should be successful" do
+      get :contact
+      expect(response).to be_success
+      expect(response).to render_template('contact')
+    end
+  end
+
 end

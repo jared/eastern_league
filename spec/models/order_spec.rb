@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Order do
+RSpec.describe Order, type: :model do
   describe "after_create" do
     before(:each) do
       @order = FactoryGirl.build(:order)
@@ -20,4 +20,15 @@ describe Order do
     end
 
   end
+
+  describe "#amount_collected" do
+    before(:each) do
+      @order = FactoryGirl.build(:order, amount: 15.00, paypal_fee: 1.00)
+    end
+
+    it "should calculate the amount received less paypal fees" do
+      expect(@order.amount_collected).to eq 14.00
+    end
+  end
+
 end

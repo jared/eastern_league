@@ -6,7 +6,7 @@
   <% if @user.competitor.avatar? %>
     <p style="padding-left: 1em;">
       <%= image_tag(@user.competitor.avatar.url(:thumb)) %>
-      <%= check_box_tag :remove_avatar, :value => true %>
+      <%= check_box_tag :remove_avatar, value: true %>
       Remove Picture?
     </p>
   <% end %>

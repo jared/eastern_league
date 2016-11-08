@@ -21,9 +21,17 @@ FactoryGirl.define do
     current_through_date 6.months.from_now.to_date
   end
 
+  factory :admin_user, parent: :active_user do
+    admin true
+  end
+
   factory :expired_user, parent: :user do
     el_member true
     current_through_date 1.month.ago.to_date
+  end
+
+  factory :non_member, parent: :user do
+    el_member false
   end
 
   factory :expiring_soon_user, parent: :user do
@@ -44,6 +52,7 @@ FactoryGirl.define do
   factory :competitor do
     association :user, factory: :active_user
     bio "This is my competitor biography."
+    avatar { Rails.root.join('spec/support/user.png').open }
   end
 
   factory :pair, parent: :competitor do
@@ -68,7 +77,7 @@ FactoryGirl.define do
   end
 
   factory :membership do
-    association :user
+    association :user, factory: :active_user
     association :membership_plan
     expires_at  1.year.from_now.end_of_month
     paid        true
@@ -136,6 +145,26 @@ FactoryGirl.define do
     competition_count 1
     points            26
     rank              1
+  end
+
+  factory :annual_event do
+    event_name 'Blue Ridge Kite Festival'
+    start_year 1999
+  end
+
+  factory :election do
+    name "Flyers Rep Election"
+    description "Vote for your flyer representatives on the EL board."
+  end
+
+  factory :candidate do
+    association :election
+    association :user, factory: :active_user
+  end
+
+  factory :vote do
+    association :election
+    association :user, factory: :active_user
   end
 
 end

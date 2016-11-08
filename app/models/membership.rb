@@ -15,9 +15,6 @@ class Membership < ActiveRecord::Base
     where(primary_member: true, expires_at: (time..time.end_of_month)).select do |membership|
       membership.user.current_through_date <= time.end_of_month.to_date
     end
-    # find(:all, :conditions => { :primary_member => true, :expires_at => (time..time.end_of_month)}).select do |membership|
-    #   membership.user.current_through_date <= time.end_of_month.to_date
-    # end
   end
 
   def activate!(renewal_date = Date.today, send_email = true)

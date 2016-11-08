@@ -82,4 +82,75 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#related_users" do
+    before(:each) do
+      @second_family_membership = FactoryGirl.create :membership
+      @third_family_membership  = FactoryGirl.create :membership
+      @unrelated_membership     = FactoryGirl.create :membership, primary_member: true
+      @primary_membership = FactoryGirl.create :membership, primary_member: true, family_memberships: [@second_family_membership, @third_family_membership]
+      @primary_user = @primary_membership.user
+      @second_family_membership.update_attribute(:primary_user_id, @primary_user.id)
+      @third_family_membership.update_attribute(:primary_user_id, @primary_user.id)
+    end
+
+    it "should correlate related members together" do
+      expect(@primary_user.related_users).to eq [@second_family_membership.user, @third_family_membership.user]
+    end
+  end
+
+  describe "#deliver_password_reset_instructions!" do
+    before(:each) do
+      @user = FactoryGirl.create :active_user
+      @mailer = double("UserMailer", deliver: true)
+      expect(UserMailer).to receive(:password_reset_instructions).with(@user).and_return(@mailer)
+    end
+
+    it "should change the perishable token" do
+      expect { @user.deliver_password_reset_instructions! }.to change(@user, :perishable_token)
+    end
+
+  end
+
+  describe "#primary_member?" do
+    before(:each) do
+      @user = FactoryGirl.create :active_user
+    end
+
+    describe "when user has no membership records" do
+      it "should return true" do
+        expect(@user.primary_member?).to be true
+      end
+    end
+
+    describe "when user has one or more membership records as primary" do
+      it "should return true" do
+        FactoryGirl.create :membership, primary_member: true, expires_at: Date.today.advance(months: 12).to_time.end_of_month, user: @user
+        FactoryGirl.create :membership, primary_member: true, expires_at: 1.month.ago.to_time.end_of_month, user: @user
+        expect(@user.primary_member?).to be true
+      end
+    end
+
+    describe "when user is not the primary member" do
+      it "should return false" do
+        FactoryGirl.create :membership, primary_member: false, expires_at: Date.today.advance(months: 12).to_time.end_of_month, user: @user
+        expect(@user.primary_member?).to be false
+      end
+    end
+  end
+
+  describe "#as_json" do
+    it "should return the JSON version of a user object" do
+      @user = FactoryGirl.create(:competitor).user
+      expect(@user.as_json).to eq({ id: @user.id, label: @user.full_name, competitor_id: @user.competitor.id })
+    end
+  end
+
+  describe "creating a legacy user" do
+    it "should set a current_through_date based on month and year parameters" do
+      @future_date = 1.month.from_now
+      @user = FactoryGirl.create(:user, current_through_month: @future_date.month, current_through_year: @future_date.year)
+      expect(@user.current_through_date).to eq @future_date.to_date.end_of_month
+    end
+  end
+
 end

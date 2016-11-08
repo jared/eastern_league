@@ -4,11 +4,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    authorize! :manage, User.new, :message => "Only an administrator may view the list of users"
+    authorize! :manage, User.new, message: "Only an administrator may view the list of users"
   end
   
   def search
-    authorize! :search, User.new, :message => "Only current Eastern League members may use the search function."
+    authorize! :search, User.new, message: "Only current Eastern League members may use the search function."
     if params[:q].present?
       search_term = "%#{params[:q]}%"
     else 
@@ -95,7 +95,8 @@ class UsersController < ApplicationController
                                  :former_member,
                                  competitor_attributes: [
                                   :bio, 
-                                  :id
+                                  :id,
+                                  :avatar
                                  ])
   end
 
