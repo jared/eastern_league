@@ -32,7 +32,7 @@ gem 'jquery-ui-rails', '5.0.3'
 gem 'capistrano', '3.4.0'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
-gem 'capistrano-passenger', '0.0.5'
+gem 'capistrano-passenger', '0.2.0'
 gem 'capistrano-rvm'
 gem 'capistrano3-puma'
 
