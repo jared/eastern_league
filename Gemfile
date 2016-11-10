@@ -6,7 +6,7 @@ gem 'rails', '~> 4.2.0'
 gem 'rake'#, '0.8.7'
 
 gem 'sqlite3'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 
 group :production do
   # gem 'mysql2'

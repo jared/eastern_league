@@ -288,7 +288,7 @@ DEPENDENCIES
   heroku
   jquery-rails (= 3.1.2)
   jquery-ui-rails (= 5.0.3)
-  mysql2
+  mysql2 (~> 0.3.18)
   offsite_payments (~> 2.1.0)
   paperclip (~> 5.0.0)
   paranoia (~> 2.1.1)
