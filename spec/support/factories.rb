@@ -132,6 +132,11 @@ FactoryGirl.define do
     abbreviation  "MIB"
   end
 
+  factory :event_registration do
+    association :competitor
+    association :event
+  end
+
   factory :score do
     association :season
     association :competitor

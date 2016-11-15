@@ -10,13 +10,7 @@ class Score < ActiveRecord::Base
   scope :ranked, -> { order("rank ASC") }
   scope :season, -> (season) { where('season_id = ?', season.id) }
 
-  def discipline
-    event_discipline.discipline
-  end
-  
-  def event
-    event_discipline.event
-  end
+  delegate :discipline, :event, to: :event_discipline
   
   def self.calculate_points(event_discipline, group=false)
     scores = event_discipline.scores.ranked
