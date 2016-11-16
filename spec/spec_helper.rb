@@ -32,7 +32,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.before(:each) do
-    FactoryGirl.create :admin_setting
+    @admin_setting = FactoryGirl.create :admin_setting
   end
 
   # config.before(:each, :type => :controller) do

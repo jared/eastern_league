@@ -28,10 +28,8 @@
           </td>
           <td>
             <% registration.registration_disciplines.each do |rd| %>
-              <% rd.abbrev_and_members.each do |str| %>
-                <%= str %>
-                <br />
-              <% end %>
+              <%= rd.abbrev_and_members %>
+              <br />
             <% end %>
             <% if @event.acronym == "ODSKC" %>
               Lunches for Saturday: <%= registration.saturday_lunches  %><br />
