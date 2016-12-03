@@ -43,4 +43,6 @@ EasternLeague::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
+  config.active_record.raise_in_transactional_callbacks = true
+
 end

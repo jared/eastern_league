@@ -46,6 +46,10 @@
             <% order = registration.line_item.try(:order)  %>
             <% if registration.paid? %>
               <%= number_to_currency(order.try(:amount_collected)) %>
+            <% elsif registration.first_time_competitor? %>
+              First Time Competitor
+              <br />
+              Free Registration
             <% else %>
               Payment not processed via PayPal <br />
               (amount due: <%= number_to_currency(order.try(:amount)) %>)
@@ -53,9 +57,9 @@
             <%= form_for registration, url: mark_paid_event_registration_path(@event, registration), html: { class: 'payment_form', method: :put } do |f| %>
             <% end %>
           </td>
-          <td>
+          <td class="actions">
             <% if @current_user.admin? %>
-              <% if !registration.paid? %>
+              <% if !registration.paid? && !registration.first_time_competitor? %>
                 <%= link_to image_tag("icons/icn_pay.png"), '#', title: "Mark Paid", class: 'mark_paid_link' %>
                 &nbsp;
               <% end %>

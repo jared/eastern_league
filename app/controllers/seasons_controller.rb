@@ -19,7 +19,7 @@ class SeasonsController < ApplicationController
       redirect_to seasons_path
     else
       flash[:error] = "Unable to save your changes.  See explanation below"
-      render action: :edit
+      render action: :new
     end  
   end
 

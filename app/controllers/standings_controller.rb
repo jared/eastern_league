@@ -6,14 +6,16 @@ class StandingsController < ApplicationController
   end
 
   def calculate
+    authorize! :manage, Standing, message: "Only admin users can calculate standings."
     Standing.calculate_standings(Season.current)
     flash[:notice] = "Standings have been updated for this season."
     redirect_to standings_path
   end
 
   def calculate_final
+    authorize! :manage, Standing, message: "Only admin users can calculate standings."
     Standing.calculate_standings(Season.current, true)
-    flash[:notice] = "Final Standings have been updated for this season."
+    flash[:notice] = "Final standings have been updated for this season."
     redirect_to standings_path
   end
 
