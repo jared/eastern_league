@@ -45,7 +45,7 @@ gem 'heroku'
 gem 'tinymce-rails'
 
 # gem 'activemerchant'
-gem 'offsite_payments', '~> 2.1.0'
+gem 'offsite_payments', '~> 2.3.0'
 gem 'authlogic'#, :git => 'git://github.com/binarylogic/authlogic.git', :ref => '0297e1c005c626c1e37b'
 gem 'bcrypt-ruby'
 gem 'cancan'
