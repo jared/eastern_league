@@ -124,6 +124,9 @@ class RegistrationsController < ApplicationController
     else
       @user = @event_registration.competitor.user
       flash[:error] = "Something went wrong, please try your registration again"
+      if @user.admin?
+        flash[:error] += " Further details: #{@event_registration.errors.full_messages.join(" ")}"
+      end
       render :action => :new
     end
 
