@@ -9,8 +9,6 @@ class EventRegistration < ActiveRecord::Base
   has_many :event_disciplines, through: :registration_disciplines
   has_many :disciplines, through: :event_disciplines
 
-  validates_uniqueness_of :first_time_competitor, scope: :competitor_id
-
   def op_team_name
     self.registration_disciplines.for_discipline([13,14,15,16]).first.try(:group_name)
   end
