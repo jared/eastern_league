@@ -18,7 +18,7 @@ class JacketsController < ApplicationController
     if @jacket.save
       amount = @jacket.price
       if @jacket.delivery?
-        amount += 9.00
+        amount += 15.00
       end
       @order = current_user.orders.build(:description => "Award Jacket for #{current_user.full_name}")
       @order.line_items.build(:purchasable => @jacket, :amount => amount, :description => "#{@jacket.season.year} Jacket")
