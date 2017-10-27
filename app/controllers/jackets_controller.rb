@@ -35,7 +35,12 @@ class JacketsController < ApplicationController
       @season = @jacket.season
       render action: :new
     end
+  end
 
+  def destroy
+    @jacket = Jacket.find(params[:id])
+    @jacket.destroy
+    redirect_to jackets_path and return
   end
 
 private

@@ -10,6 +10,7 @@
         <th>Size</th>
         <th>Typeface</th>
         <th>Delivery?</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,10 +20,11 @@
           <td><%= jacket.style %></td>
           <td><%= jacket.size %></td>
           <td><%= jacket.typeface %></td>
-          <td><%= jacket.delivery? ? "Yes" : "No" %>
+          <td><%= jacket.delivery? ? "Yes" : "No" %></td>
+          <td><%= link_to(image_tag("icons/icn_trash.png"), jacket_path(jacket), method: :delete, title: "Delete") %></td>
         </tr>
         <tr>
-          <td colspan="4">
+          <td colspan="6">
             Line 1: <%= jacket.custom_text_1 %><br />
             Line 2: <%= jacket.custom_text_2 %><br />
             Line 3: <%= jacket.custom_text_3 %>
