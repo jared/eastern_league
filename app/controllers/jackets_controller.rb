@@ -39,7 +39,12 @@ class JacketsController < ApplicationController
 
   def destroy
     @jacket = Jacket.find(params[:id])
-    @jacket.destroy
+    authorize! :destroy, @jacket
+    if @jacket.destroy
+      flash[:notice] = "You have removed this jacket from the list."
+    else
+      flash[:notice] = "Something went wrong; contact the administrator and let him know what you were trying to accomplish."
+    end
     redirect_to jackets_path and return
   end
 
