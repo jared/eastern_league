@@ -30,7 +30,7 @@ gem 'jquery-ui-rails', '5.0.3'
 # gem 'therubyracer'
 
 # gem 'capistrano', '2.12.0'
-gem 'capistrano', '3.4.0'
+gem 'capistrano', '~> 3.10.0'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-passenger', '0.2.0'
