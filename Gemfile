@@ -51,7 +51,7 @@ gem 'bcrypt-ruby'
 gem 'cancan'
 
 gem 'acts_as_commentable'
-gem 'paperclip', '~> 5.0.0'
+gem 'paperclip', '~> 5.1.0'
 gem 'flickraw', '~> 0.9.8'
 
 gem 'paranoia', '~> 2.1.1'
