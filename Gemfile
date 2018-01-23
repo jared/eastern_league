@@ -25,7 +25,7 @@ gem 'coffee-rails', "~> 4.1.0"
 gem 'uglifier', '>=1.3.0'
 # end
 
-gem 'jquery-rails', '3.1.2'
+gem 'jquery-rails', '3.1.3'
 gem 'jquery-ui-rails', '5.0.3'
 # gem 'therubyracer'
 
