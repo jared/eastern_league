@@ -12,7 +12,7 @@ set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
 # Don't change these unless you know what you're doing
-set :pty,             true
+set :pty,             false
 set :use_sudo,        false
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/var/www/#{fetch(:application)}"
