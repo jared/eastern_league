@@ -1,3 +1,4 @@
+# See local config/initializers/active_merchant.rb for instructions on creating new certs.
 module ElCrypto
 
   class EncryptedOrder
