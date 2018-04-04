@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
-# gem 'rails4_upgrade'
+gem 'activemodel', '4.2.10'
 
 gem 'rake'#, '0.8.7'
 
@@ -41,7 +41,7 @@ gem "puma"
 
 gem 'thin'
 
-gem 'heroku'
+# gem 'heroku'
 
 gem 'tinymce-rails'
 
@@ -52,7 +52,7 @@ gem 'bcrypt-ruby'
 gem 'cancan'
 
 gem 'acts_as_commentable'
-gem 'paperclip', '~> 5.1.0'
+gem 'paperclip', '~> 5.2.0'
 gem 'flickraw', '~> 0.9.8'
 
 gem 'paranoia', '~> 2.1.1'
