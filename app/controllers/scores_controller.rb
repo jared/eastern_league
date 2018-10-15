@@ -22,7 +22,7 @@ class ScoresController < ApplicationController
     
     @event_discipline = EventDiscipline.find(params[:event_discipline_id])
     
-    Score.calculate_points(@event_discipline, %w(EPP EPB MPP MPB ETP ETB MTP MTB OTT OTP OTB).include?(@event_discipline.discipline.abbreviation))
+    Score.calculate_points(@event_discipline, %w(EPP EPB MPP MPB ETP ETB MTP MTB OTT OTP OTB OTMB OPMB).include?(@event_discipline.discipline.abbreviation))
     
     redirect_to new_event_score_path(@event)
   end
