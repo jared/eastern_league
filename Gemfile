@@ -64,6 +64,8 @@ gem 'exception_notification', '2.6.1'
 
 gem 'whenever', require: false
 
+gem 'multi_json'
+
 # group :development do
 #   gem "better_errors", ">= 0.3.2"
 #   gem "binding_of_caller", ">= 0.6.8"
