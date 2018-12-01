@@ -32,7 +32,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-passenger', '0.2.0', require: false
   gem 'capistrano-rvm', require: false
-  gem 'capistrano3-puma', require: false
+  gem 'capistrano3-puma', '0.7.0', require: false
 end
 
 gem "puma"

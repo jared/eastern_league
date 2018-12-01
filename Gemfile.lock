@@ -68,10 +68,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (3.1.1)
-      capistrano (~> 3.7)
-      capistrano-bundler
-      puma (~> 3.4)
+    capistrano3-puma (0.7.0)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     chronic (0.10.2)
     climate_control (0.2.0)
     cocaine (0.5.8)
@@ -264,7 +263,7 @@ DEPENDENCIES
   capistrano-passenger (= 0.2.0)
   capistrano-rails
   capistrano-rvm
-  capistrano3-puma
+  capistrano3-puma (= 0.7.0)
   coffee-rails (~> 4.1.0)
   exception_notification (= 2.6.1)
   factory_girl_rails
