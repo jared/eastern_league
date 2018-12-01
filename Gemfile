@@ -26,12 +26,14 @@ gem 'uglifier', '>=1.3.0'
 gem 'jquery-rails', '3.1.3'
 gem 'jquery-ui-rails', '5.0.3'
 
-gem 'capistrano', '3.10.1'
-gem 'capistrano-rails'
-gem 'capistrano-bundler'
-gem 'capistrano-passenger', '0.2.0'
-gem 'capistrano-rvm'
-gem 'capistrano3-puma'
+group :development do
+  gem 'capistrano', '3.11.0', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-passenger', '0.2.0', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano3-puma', require: false
+end
 
 gem "puma"
 
