@@ -1,16 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
-gem 'activemodel', '4.2.10'
+gem 'rails', '~> 4.2.11'
+gem 'activemodel', '~> 4.2.11'
 
-gem 'rake'#, '0.8.7'
+gem 'rake'
 
 gem 'sqlite3'
-# gem 'mysql2', '~> 0.3.18'
 
 group :production do
   gem 'mysql2', '~> 0.3.18'
-  # gem 'mysql2'
   # gem 'activerecord-mysql-adapter'
   # gem 'libv8', '3.11.8.3'
   # gem 'therubyracer', '0.11.0beta5', :platform => :ruby
@@ -27,9 +25,7 @@ gem 'uglifier', '>=1.3.0'
 
 gem 'jquery-rails', '3.1.3'
 gem 'jquery-ui-rails', '5.0.3'
-# gem 'therubyracer'
 
-# gem 'capistrano', '2.12.0'
 gem 'capistrano', '~> 3.10.0'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
@@ -41,13 +37,11 @@ gem "puma"
 
 gem 'thin'
 
-# gem 'heroku'
-
 gem 'tinymce-rails'
 
-# gem 'activemerchant'
 gem 'offsite_payments', '~> 2.3.0'
 gem 'authlogic'#, :git => 'git://github.com/binarylogic/authlogic.git', :ref => '0297e1c005c626c1e37b'
+gem 'scrypt', '~> 3.0.6' # Mojave and authlogic require the latest scrypt version.
 gem 'bcrypt-ruby'
 gem 'cancan'
 
@@ -65,11 +59,6 @@ gem 'exception_notification', '2.6.1'
 gem 'whenever', require: false
 
 gem 'multi_json'
-
-# group :development do
-#   gem "better_errors", ">= 0.3.2"
-#   gem "binding_of_caller", ">= 0.6.8"
-# end
 
 group :test do
   # Pretty printed test output
