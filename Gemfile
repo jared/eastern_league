@@ -26,7 +26,7 @@ gem 'uglifier', '>=1.3.0'
 gem 'jquery-rails', '3.1.3'
 gem 'jquery-ui-rails', '5.0.3'
 
-gem 'capistrano', '~> 3.10.0'
+gem 'capistrano', '3.10.1'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-passenger', '0.2.0'
