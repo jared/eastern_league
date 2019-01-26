@@ -1,6 +1,8 @@
 module UsersHelper
   
   def membership_status_display(user)
+    # Status display suppressed while membership renewal is offline.
+    return false
     case user.membership_status
     when "active"
       message = "Your Eastern League membership is in good standing. "

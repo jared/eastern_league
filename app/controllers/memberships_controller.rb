@@ -1,5 +1,7 @@
 class MembershipsController < ApplicationController
 
+  # NOTE: See `load_user` method for membership renewal suspension.  Jan 26 2019 per JW
+
   before_filter :require_user
 
   def index
@@ -86,6 +88,8 @@ class MembershipsController < ApplicationController
 private
 
   def load_user
+    flash[:notice] = "Online membership renewal is currently unavailable.  Please try again later!"
+    redirect_to root_path and return
     @user = User.find(params[:user_id])
   end
 

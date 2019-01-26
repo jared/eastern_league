@@ -20,5 +20,6 @@
 # Learn more: http://github.com/javan/whenever
 
 every '0 12 1,23 * *' do
-  rake "membership:send_renewal_notices"
+  # Suspended Jan 26, 2019 per JW
+  # rake "membership:send_renewal_notices"
 end
