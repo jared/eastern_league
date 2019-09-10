@@ -123,7 +123,7 @@ GEM
     mime-types-data (3.2018.0812)
     mimemagic (0.3.2)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     mini_racer (0.2.4)
       libv8 (>= 6.3)
     minitest (5.11.3)
@@ -134,8 +134,8 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     offsite_payments (2.3.0)
       actionpack (>= 3.2.20, < 5.1)
       active_utils (~> 3.2.0)
@@ -276,6 +276,7 @@ DEPENDENCIES
   mini_racer
   multi_json
   mysql2 (~> 0.3.18)
+  nokogiri (~> 1.10.4)
   offsite_payments (~> 2.3.0)
   paperclip (~> 5.2.0)
   paranoia (~> 2.1.1)
