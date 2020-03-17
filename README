@@ -7,3 +7,8 @@ Rails-based league management app featuring:
 * Registration & Fee Collection
 * Fundraising Raffles
 * Automated renewal notices
+
+As of 2019, the Eastern League has disbanded, and this site is no longer operational.
+
+The repository will stay here for the time being as a reference, but will not be 
+receiving security fixes or patches; at an unspecified point in the future, it may be archived.
