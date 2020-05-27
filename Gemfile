@@ -48,7 +48,7 @@ gem 'scrypt', '~> 3.0.6' # Mojave and authlogic require the latest scrypt versio
 gem 'bcrypt-ruby'
 gem 'cancan'
 
-gem 'nokogiri', '~> 1.10.4'
+gem 'nokogiri', '~> 1.10.8'
 
 gem 'acts_as_commentable'
 gem 'paperclip', '~> 5.2.0'
